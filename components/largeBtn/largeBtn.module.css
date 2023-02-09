@@ -1,6 +1,6 @@
 .btn {
 	background-color: var(--primaryColor);
-	color: var(--tertiaryText);
+	color: white;
 	text-transform: uppercase;
 	font-weight: 600;
 	line-height: 120%;
