@@ -23,17 +23,19 @@ export default function Home() {
 					alt="man doing handstand in nature"
 				/>
 				<h1>Silent Moon</h1>
-				<div className={styles.introTextBox}>
-					<h2>We are what we do</h2>
-					<p>
-						Thousand of people are using silent moon for meditation and yoga
-						classes.
+				<div className={styles.content}>
+					<div className={styles.introTextBox}>
+						<h2>We are what we do</h2>
+						<p>
+							Thousand of people are using silent moon for meditation and yoga
+							classes.
+						</p>
+					</div>
+					<LargeBtn url="/signup">Sign Up</LargeBtn>
+					<p className={styles.logInText}>
+						Already have an account? <Link href="/signin">Log in</Link>
 					</p>
 				</div>
-				<LargeBtn url="/signup">Sign Up</LargeBtn>
-				<p className={styles.logInText}>
-					Already have an account? <Link href="/signin">Log in</Link>
-				</p>
 			</main>
 		</div>
 	);

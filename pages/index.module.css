@@ -10,8 +10,12 @@
 	letter-spacing: 0.2rem;
 }
 
+.content {
+	padding: 0 var(--phonePadding);
+}
+
 .introTextBox {
-	width: 86%;
+	width: 90%;
 	margin: 0 auto;
 	margin-bottom: 7.5rem;
 }
