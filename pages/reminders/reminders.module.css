@@ -1,0 +1,67 @@
+.reminders {
+	padding: 0 var(--phonePadding);
+}
+
+.reminders h1 {
+	font-size: 1.6rem;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 0.2em;
+	text-align: center;
+	margin: 3rem 0 4rem;
+}
+
+.reminders h2 {
+	font-size: 2.4rem;
+	font-weight: 900;
+	line-height: 120%;
+	width: 25rem;
+	margin-bottom: 1.5rem;
+}
+
+.reminders p {
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	color: var(--secondaryText);
+	width: 80%;
+	margin-bottom: 3rem;
+}
+
+.timeContainer {
+	width: 100%;
+	background-color: gray;
+	height: 6rem;
+	margin-bottom: 4rem;
+}
+
+.dayContainer {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5rem;
+}
+
+.day {
+	width: 4rem;
+	height: 4rem;
+	font-size: 1.6rem;
+	font-weight: 600;
+	color: var(--primaryText);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--tertiaryText);
+	border-radius: 2rem;
+	cursor: pointer;
+}
+
+.day:hover {
+	background-color: var(--secondaryColor);
+	border: 1px solid var(--secondaryColor);
+	color: var(--tertiaryText);
+}
+
+.noThanks {
+	color: var(--primaryColor);
+	display: block;
+	text-align: center;
+}
