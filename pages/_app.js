@@ -3,7 +3,10 @@ import { Source_Sans_Pro } from "@next/font/google";
 import "@/styles/globals.css";
 import styles from "./app.module.css";
 
-const sourceSansPro = Source_Sans_Pro({ subsets: ["latin"], weight: "400" });
+const sourceSansPro = Source_Sans_Pro({
+	subsets: ["latin"],
+	weight: ["400", "700", "900"],
+});
 
 export default function App({ Component, pageProps }) {
 	return (
