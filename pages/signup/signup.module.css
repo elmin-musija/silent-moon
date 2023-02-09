@@ -1,0 +1,69 @@
+.signupPage {
+	position: relative;
+	overflow: hidden;
+}
+
+.content {
+	position: relative;
+	z-index: 50;
+}
+
+.backBtn {
+	position: absolute;
+	top: 3rem;
+	left: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid #faf2da;
+	width: 5.5rem;
+	height: 5.5rem;
+	border-radius: 50%;
+	cursor: pointer;
+	z-index: 100;
+}
+
+.header {
+	color: var(--primaryText);
+	font-size: 3.6rem;
+	font-weight: 900;
+	letter-spacing: 0.06em;
+	text-align: center;
+	margin: 13.5rem 0 9rem;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding-inline: 2rem;
+	margin-bottom: 1.3rem;
+}
+
+.input {
+	font-size: 1.6rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	color: var(--secondaryText);
+	text-align: center;
+	padding: 2.2rem;
+	border: 1px solid var(--primaryColor);
+	border-radius: 3.8rem;
+	background-color: transparent;
+}
+
+.input::placeholder {
+	color: var(--secondaryText);
+	text-transform: uppercase;
+}
+
+.submit {
+	font-size: 1.6rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	padding: 2.2rem;
+	color: white;
+	border: none;
+	border-radius: 3.8rem;
+	background-color: var(--primaryColor);
+}
