@@ -1,0 +1,49 @@
+:root {
+	--phonePadding: 1.5rem;
+	--transition: all 0.2s;
+
+	/* ----- Colors ----- */
+	--primaryColor: #e28f83;
+	/* --primaryColor50: rgba(226, 144, 131, 0.5); */
+	--secondaryColor: #8e9775;
+
+	--primaryText: #4a503d;
+	--secondaryText: #a1a4b2;
+	--tertiaryText: #faf2da;
+
+	--boxShadow: #54575c1a;
+	--transparent: #00000000;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+	min-height: 100vh;
+
+	background-image: radial-gradient(rgba(250, 242, 218), #537a6e);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	scroll-behavior: smooth;
+}
+
+p,
+a,
+h1,
+h2,
+h3,
+button {
+	color: var(--primaryText);
+}
+
+a {
+	font-size: inherit;
+	text-decoration: none;
+}
