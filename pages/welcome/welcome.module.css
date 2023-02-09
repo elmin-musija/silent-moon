@@ -24,3 +24,7 @@
 	width: 17rem;
 	color: var(--quarternaryText);
 }
+
+.welcome > div {
+	padding: 0 var(--phonePadding);
+}

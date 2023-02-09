@@ -14,7 +14,9 @@ const WelcomePage = () => {
 				height="699"
 				alt="woman does yoga"
 			/>
-			<LargeBtn url="/reminders">Get Started</LargeBtn>
+			<div>
+				<LargeBtn url="/reminders">Get Started</LargeBtn>
+			</div>
 		</div>
 	);
 };
