@@ -21,6 +21,7 @@ export default function Home() {
 					width="414"
 					height="468"
 					alt="man doing handstand in nature"
+					priority
 				/>
 				<h1>Silent Moon</h1>
 				<div className={styles.content}>
