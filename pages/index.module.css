@@ -1,0 +1,44 @@
+.splashscreen h1 {
+	position: absolute;
+	top: 3rem;
+	left: 50%;
+	transform: translateX(-50%);
+
+	font-size: 1.6rem;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 0.2rem;
+}
+
+.introTextBox {
+	width: 86%;
+	margin: 0 auto;
+	margin-bottom: 7.5rem;
+}
+
+.introTextBox h2 {
+	font-size: 3rem;
+	font-weight: 700;
+	margin-bottom: 1.3rem;
+	text-align: center;
+}
+
+.introTextBox p {
+	text-align: center;
+	color: var(--secondaryText);
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	line-height: 120%;
+}
+
+.logInText {
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	color: var(--secondaryText);
+	text-align: center;
+}
+
+.logInText a {
+	color: var(--primaryColor);
+}
