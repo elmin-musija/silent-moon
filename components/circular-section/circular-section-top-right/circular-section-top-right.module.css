@@ -1,0 +1,6 @@
+.circularSectionTopRight {
+	position: absolute;
+	top: -7.8rem;
+	right: -2.7rem;
+	z-index: 1;
+}
