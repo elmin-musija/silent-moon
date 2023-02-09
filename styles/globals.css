@@ -41,9 +41,9 @@ h2,
 h3,
 button {
 	color: var(--primaryText);
+	font-size: 1.6rem;
 }
 
 a {
-	font-size: inherit;
 	text-decoration: none;
 }
