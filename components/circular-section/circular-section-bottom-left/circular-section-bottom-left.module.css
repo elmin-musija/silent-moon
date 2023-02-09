@@ -1,0 +1,6 @@
+.circularSectionBottomLeft {
+	position: absolute;
+	top: 17.5rem;
+	left: -9.5rem;
+	z-index: 1;
+}
