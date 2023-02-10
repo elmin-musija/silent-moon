@@ -4,6 +4,7 @@ import BackArrow from "@/components/backArrow/backArrow";
 import styles from "./signin.module.css";
 import CircularSection from "@/components/circular-section/circular-section";
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 
 const SigninPage = () => {
 	const onSubmitHandler = (event) => {
@@ -63,10 +64,56 @@ const SigninPage = () => {
 						sign up
 					</Link>
 				</p>
-				<button onClick={googleSigninHandler}>Sign in with Google</button>
-				<button onClick={spotifySigninHandler}>Sign in with Spotify</button>
-				<button onClick={githubSigninHandler}>Sign in with GitHub</button>
-				<button onClick={discordSigninHandler}>Sign in with Discord</button>
+				<div className={styles.providerContainer}>
+					<div className={styles.providerItem}>
+						<Image
+							className={styles.providerLogo}
+							onClick={googleSigninHandler}
+							src="img/google.svg"
+							width="50"
+							height="50"
+						></Image>
+						<p className={styles.providerText} onClick={googleSigninHandler}>
+							Google
+						</p>
+					</div>
+					<div className={styles.providerItem}>
+						<Image
+							className={styles.providerLogo}
+							onClick={spotifySigninHandler}
+							src="img/spotify.svg"
+							width="50"
+							height="50"
+						></Image>
+						<p className={styles.providerText} onClick={spotifySigninHandler}>
+							Spotify
+						</p>
+					</div>
+					<div className={styles.providerItem}>
+						<Image
+							className={styles.providerLogo}
+							onClick={githubSigninHandler}
+							src="img/github.svg"
+							width="50"
+							height="50"
+						></Image>
+						<p className={styles.providerText} onClick={githubSigninHandler}>
+							Github
+						</p>
+					</div>
+					<div className={styles.providerItem}>
+						<Image
+							className={styles.providerLogo}
+							onClick={discordSigninHandler}
+							src="img/discord.svg"
+							width="50"
+							height="50"
+						></Image>
+						<p className={styles.providerText} onClick={discordSigninHandler}>
+							Discord
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
