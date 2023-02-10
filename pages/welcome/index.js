@@ -36,5 +36,7 @@ export async function getServerSideProps(context) {
 		return { redirect: { destination: "/", permanent: false } };
 	}
 
+	session.user.image = session.user.image || "";
+
 	return { props: { session: session } };
 }
