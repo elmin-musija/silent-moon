@@ -17,6 +17,10 @@ const SigninPage = () => {
 		await signIn("github", { callbackUrl: "/welcome" });
 	};
 
+	const discordSigninHandler = async () => {
+		await signIn("discord", { callbackUrl: "/welcome" });
+	};
+
 	return (
 		<div className={styles.signinPage}>
 			<CircularSection />
@@ -52,6 +56,7 @@ const SigninPage = () => {
 					</Link>
 				</p>
 				<button onClick={githubSigninHandler}>Sign in with GitHub</button>
+				<button onClick={discordSigninHandler}>Sign in with Discord</button>
 			</div>
 		</div>
 	);
