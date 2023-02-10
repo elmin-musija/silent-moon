@@ -2,8 +2,10 @@ import React from "react";
 import Image from "next/image";
 import LargeBtn from "@/components/largeBtn/largeBtn";
 import styles from "./welcome.module.css";
+import { getServerSession } from "next-auth/next";
+import { NextAuthOptions } from "../api/auth/[...nextauth]";
 
-const WelcomePage = () => {
+const WelcomePage = (props) => {
 	return (
 		<div className={styles.welcome}>
 			<h1>Silent Moon</h1>
@@ -22,3 +24,17 @@ const WelcomePage = () => {
 };
 
 export default WelcomePage;
+
+export async function getServerSideProps(context) {
+	const session = await getServerSession(
+		context.req,
+		context.res,
+		NextAuthOptions
+	);
+
+	if (!session) {
+		return { redirect: { destination: "/", permanent: false } };
+	}
+
+	return { props: { session: session } };
+}
