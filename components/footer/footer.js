@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import styles from "./footer.module.css";
 
-const Navigation = () => {
+const Footer = () => {
 	const router = useRouter();
 
 	if (
@@ -173,7 +173,7 @@ const Navigation = () => {
 	};
 
 	return (
-		<div className={styles.navigation}>
+		<div className={styles.footer}>
 			{renderYogaBtn()}
 			{renderMeditateBtn()}
 			{renderHomeBtn()}
@@ -183,4 +183,4 @@ const Navigation = () => {
 	);
 };
 
-export default Navigation;
+export default Footer;
