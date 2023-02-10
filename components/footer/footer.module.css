@@ -1,0 +1,40 @@
+.navigation {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 1.5rem 0;
+	box-shadow: 0 0 1.7rem var(--boxShadow);
+}
+
+.navigation a {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.3rem;
+}
+
+.imgContainer {
+	/* padding: 1rem; */
+	width: 4.4rem;
+	height: 4.4rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 1.8rem;
+}
+
+.imgContainerActive {
+	background-color: var(--primaryColor);
+}
+
+.navigation p {
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	text-align: center;
+	color: var(--secondaryText);
+}
+
+.navigation .activeText {
+	color: var(--primaryColor);
+}
