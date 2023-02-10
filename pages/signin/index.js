@@ -3,6 +3,7 @@ import Link from "next/link";
 import BackArrow from "@/components/backArrow/backArrow";
 import styles from "./signin.module.css";
 import CircularSection from "@/components/circular-section/circular-section";
+import { signIn } from "next-auth/react";
 
 const SigninPage = () => {
 	const onSubmitHandler = (event) => {
@@ -10,6 +11,10 @@ const SigninPage = () => {
 		/**
 		 * signin with nextauth
 		 */
+	};
+
+	const githubSigninHandler = async () => {
+		await signIn("github", { callbackUrl: "/welcome" });
 	};
 
 	return (
@@ -46,6 +51,7 @@ const SigninPage = () => {
 						sign up
 					</Link>
 				</p>
+				<button onClick={githubSigninHandler}>Sign in with GitHub</button>
 			</div>
 		</div>
 	);
