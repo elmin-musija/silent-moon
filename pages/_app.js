@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Source_Sans_Pro } from "@next/font/google";
 import "@/styles/globals.css";
 import styles from "./app.module.css";
+import Footer from "@/components/footer/footer";
 
 const sourceSansPro = Source_Sans_Pro({
 	subsets: ["latin"],
@@ -18,6 +19,7 @@ export default function App({
 			<div className={`${styles.smartphone} ${sourceSansPro.className}`}>
 				<div className={styles.content}>
 					<Component {...pageProps} />
+					<Footer />
 				</div>
 				<Link href="/" className={styles.homeBtn}></Link>
 			</div>
