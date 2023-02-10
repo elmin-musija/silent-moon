@@ -17,6 +17,10 @@ const SigninPage = () => {
 		await signIn("google", { callbackUrl: "/welcome" });
 	};
 
+	const spotifySigninHandler = async () => {
+		await signIn("spotify", { callbackUrl: "/welcome" });
+	};
+
 	const githubSigninHandler = async () => {
 		await signIn("github", { callbackUrl: "/welcome" });
 	};
@@ -60,6 +64,7 @@ const SigninPage = () => {
 					</Link>
 				</p>
 				<button onClick={googleSigninHandler}>Sign in with Google</button>
+				<button onClick={spotifySigninHandler}>Sign in with Spotify</button>
 				<button onClick={githubSigninHandler}>Sign in with GitHub</button>
 				<button onClick={discordSigninHandler}>Sign in with Discord</button>
 			</div>
