@@ -5,11 +5,12 @@ import styles from "./welcome.module.css";
 import { getServerSession } from "next-auth/next";
 import { NextAuthOptions } from "../api/auth/[...nextauth]";
 
-const WelcomePage = (props) => {
+const WelcomePage = ({ name, image, email }) => {
+	const firstName = name.split(" ")[0];
 	return (
 		<div className={styles.welcome}>
 			<h1>Silent Moon</h1>
-			<h2>Hi Leon, welcome to Silent Moon</h2>
+			<h2>Hi {firstName}, welcome to Silent Moon</h2>
 			<Image
 				src={"/img/welcome.png"}
 				width="415"
@@ -36,7 +37,7 @@ export async function getServerSideProps(context) {
 		return { redirect: { destination: "/", permanent: false } };
 	}
 
-	session.user.image = session.user.image || "";
+	const { name, image = "", email } = session.user;
 
-	return { props: { session: session } };
+	return { props: { name, image, email } };
 }
