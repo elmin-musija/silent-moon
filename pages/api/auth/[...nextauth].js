@@ -29,6 +29,23 @@ export const NextAuthOptions = {
 			clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
 		}),
 	],
+	callbacks: {
+		async jwt({ token, account }) {
+			/**
+			 * The arguments user, account, profile and isNewUser are only passed the first time this
+			 * callback is called on a new session, after the user signs in. In subsequent calls,
+			 * only token will be available.
+			 */
+			if (account) {
+				token.refresh_token = account.refresh_token;
+			}
+			return token;
+		},
+		async session(session, token) {
+			session.user = session.token;
+			return session;
+		},
+	},
 	secret: process.env.NEXT_AUTH_SECRET,
 	pages: { signIn: "/signin" },
 };
