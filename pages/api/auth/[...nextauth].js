@@ -20,6 +20,11 @@ export const NextAuthOptions = {
 			clientSecret: process.env.DISCORD_CLIENT_SECRET,
 		}),
 		SpotifyProvider({
+			/**
+			 * authorization: Set the scope to read user email und private playlists
+			 */
+			authorization:
+				"https://accounts.spotify.com/authorize?scope=user-read-email,playlist-read-private",
 			clientId: process.env.SPOTIFY_CLIENT_ID,
 			clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
 		}),
