@@ -10,34 +10,56 @@ import {
 	getPlaylistInfo,
 } from "@/utils/spotify/spotify";
 import { convertDurationTimeFormat } from "@/utils/convert/convert";
+import styles from "./music.module.css";
 
 const MusicPage = ({ playlistInfo, playlistTracks }) => {
 	const { items } = playlistTracks;
 
 	return (
-		<div>
-			<h1>Sillent Moon</h1>
+		<div className={styles.musicPage}>
+			<h1>Silent Moon</h1>
 			<h2>{playlistInfo.name}</h2>
 			<p key={uid()}>Playlist</p>
 			<p key={uid()}>{playlistInfo.description}</p>
-			{items.map((element) => (
+			<div className={styles.statisticsContainer}>
 				<div key={uid()}>
+					<Image
+						src="/img/red-heart.svg"
+						width="18"
+						height="16"
+						alt="heart icon"
+					></Image>
+					<p>24.234 Favourites</p>
+				</div>
+				<div key={uid()}>
+					<Image
+						src="/img/headphones.svg"
+						width="20"
+						height="16"
+						alt="headphones icon"
+					></Image>
+					<p>34.972 Listening</p>
+				</div>
+			</div>
+			{items.map((element) => (
+				<div key={uid()} className={styles.trackContainer}>
 					<Link key={uid()} href={`/player/${element.track.id}`}>
 						<Image
 							src="/img/play_button.svg"
 							width="40"
 							height="40"
 							alt="play icon"
+							className={styles.playBtn}
 						></Image>
 					</Link>
-					<div>
-						<div key={uid()}>
+					<div className={styles.trackInfoContainer}>
+						<div key={uid()} className={styles.trackNameDurationContainer}>
 							<Link key={uid()} href={`/player/${element.track.id}`}>
 								{element.track.name}
 							</Link>
 							<p>{convertDurationTimeFormat(element.track.duration_ms)}</p>
 						</div>
-						<div key={uid()}>
+						<div key={uid()} className={styles.artistContainer}>
 							{element.track.artists.map((artist) => (
 								<p key={uid()}>{artist.name}</p>
 							))}
