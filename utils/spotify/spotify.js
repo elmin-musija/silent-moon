@@ -62,6 +62,7 @@ const getPlaylistInfo = async (refresh_token) => {
 };
 
 module.exports = {
+	getAccessToken,
 	getUsersPlaylists,
 	getPlaylistTracks,
 	getPlaylistInfo,
