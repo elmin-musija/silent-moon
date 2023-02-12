@@ -1,0 +1,13 @@
+.playerPage {
+	background-color: white;
+	height: 100vh;
+}
+
+.webPlayer {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	background-color: white;
+}
