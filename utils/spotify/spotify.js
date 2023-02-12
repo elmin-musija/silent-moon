@@ -3,12 +3,6 @@ const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 const basicAuthentication = Buffer.from(`${clientId}:${clientSecret}`).toString(
 	"base64"
 );
-const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
-const PLAYLISTS_ENDPOINT = "https://api.spotify.com/v1/me/playlists";
-const PLAYLIST_TRACKS_ENDPOINT =
-	"https://api.spotify.com/v1/playlists/3pDOlfaY0lXRAW0iwNl7c7/tracks";
-const PLAYLIST_INFO_ENDPOINT =
-	"https://api.spotify.com/v1/playlists/3pDOlfaY0lXRAW0iwNl7c7";
 
 const getAccessToken = async (refresh_token) => {
 	const options = {
@@ -23,14 +17,17 @@ const getAccessToken = async (refresh_token) => {
 		}),
 	};
 
-	const response = await fetch(TOKEN_ENDPOINT, options);
+	const response = await fetch(
+		"https://accounts.spotify.com/api/token",
+		options
+	);
 	const accessToken = await response.json();
 	return accessToken;
 };
 
 const getUsersPlaylists = async (refresh_token) => {
 	const { access_token } = await getAccessToken(refresh_token);
-	const response = await fetch(PLAYLISTS_ENDPOINT, {
+	const response = await fetch("https://api.spotify.com/v1/me/playlists", {
 		headers: {
 			Authorization: `Bearer ${access_token}`,
 		},
@@ -39,24 +36,30 @@ const getUsersPlaylists = async (refresh_token) => {
 	return playlist;
 };
 
-const getPlaylistTracks = async (refresh_token) => {
+const getPlaylistTracks = async (refresh_token, meditationId) => {
 	const { access_token } = await getAccessToken(refresh_token);
-	const response = await fetch(PLAYLIST_TRACKS_ENDPOINT, {
-		headers: {
-			Authorization: `Bearer ${access_token}`,
-		},
-	});
+	const response = await fetch(
+		`https://api.spotify.com/v1/playlists/${meditationId}/tracks`,
+		{
+			headers: {
+				Authorization: `Bearer ${access_token}`,
+			},
+		}
+	);
 	const playlistTracks = await response.json();
 	return playlistTracks;
 };
 
-const getPlaylistInfo = async (refresh_token) => {
+const getPlaylistInfo = async (refresh_token, meditationId) => {
 	const { access_token } = await getAccessToken(refresh_token);
-	const response = await fetch(PLAYLIST_INFO_ENDPOINT, {
-		headers: {
-			Authorization: `Bearer ${access_token}`,
-		},
-	});
+	const response = await fetch(
+		`https://api.spotify.com/v1/playlists/${meditationId}`,
+		{
+			headers: {
+				Authorization: `Bearer ${access_token}`,
+			},
+		}
+	);
 	const playlistInfo = await response.json();
 	return playlistInfo;
 };
