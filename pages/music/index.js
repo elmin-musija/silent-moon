@@ -84,8 +84,17 @@ export async function getServerSideProps(context) {
 	if (!session) {
 		return { redirect: { destination: "/", permanent: false } };
 	}
-	const playlistInfo = await getPlaylistInfo(session.user.refresh_token);
-	const playlistTracks = await getPlaylistTracks(session.user.refresh_token);
+
+	const meditationId = process.env.GOOD_VIBE_PLAYLIST_ID;
+
+	const playlistInfo = await getPlaylistInfo(
+		session.user.refresh_token,
+		meditationId
+	);
+	const playlistTracks = await getPlaylistTracks(
+		session.user.refresh_token,
+		meditationId
+	);
 
 	return { props: { playlistInfo, playlistTracks } };
 }
