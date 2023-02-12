@@ -24,7 +24,7 @@ export const NextAuthOptions = {
 			 * authorization: Set the scope to read user email und private playlists
 			 */
 			authorization:
-				"https://accounts.spotify.com/authorize?scope=user-read-email,playlist-read-private",
+				"https://accounts.spotify.com/authorize?scope=streaming,user-read-email,user-read-private,user-read-playback-state,user-modify-playback-state,playlist-read-private,user-library-read,user-library-modify",
 			clientId: process.env.SPOTIFY_CLIENT_ID,
 			clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
 		}),
