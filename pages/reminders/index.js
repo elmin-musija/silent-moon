@@ -1,12 +1,13 @@
 import LargeBtn from "@/components/largeBtn/largeBtn";
 import React from "react";
 import Link from "next/link";
+import Title from "@/components/title/title";
 import styles from "./reminders.module.css";
 
 const RemindersPage = () => {
 	return (
 		<div className={styles.reminders}>
-			<h1>Silent Moon</h1>
+			<Title />
 			<h2>What time would you like to meditate?</h2>
 			<p>
 				You can meditate at any time, but we recommend to do in the morning.

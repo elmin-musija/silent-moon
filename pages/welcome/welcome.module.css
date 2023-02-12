@@ -7,10 +7,8 @@
 	top: 1.75rem;
 	left: 50%;
 	transform: translateX(-50%);
-	letter-spacing: 0.2em;
 	color: var(--quarternaryText);
-	font-weight: 700;
-	text-transform: uppercase;
+	margin: 0;
 }
 
 .welcome h2 {

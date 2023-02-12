@@ -11,13 +11,14 @@ import {
 } from "@/utils/spotify/spotify";
 import { convertDurationTimeFormat } from "@/utils/convert/convert";
 import styles from "./music.module.css";
+import Title from "@/components/title/title";
 
 const MusicPage = ({ playlistInfo, playlistTracks }) => {
 	const { items } = playlistTracks;
 
 	return (
 		<div className={styles.musicPage}>
-			<h1>Silent Moon</h1>
+			<Title />
 			<h2>{playlistInfo.name}</h2>
 			<p key={uid()}>Playlist</p>
 			<p key={uid()}>{playlistInfo.description}</p>

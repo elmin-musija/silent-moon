@@ -1,9 +1,10 @@
+import Title from "@/components/title/title";
 import React from "react";
 
 const MeditationPage = () => {
 	return (
 		<div>
-			<h1>MeditationPage</h1>
+			<Title />
 		</div>
 	);
 };

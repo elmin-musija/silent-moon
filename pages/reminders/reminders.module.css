@@ -2,15 +2,6 @@
 	padding: 0 var(--phonePadding);
 }
 
-.reminders h1 {
-	font-size: 1.6rem;
-	text-transform: uppercase;
-	font-weight: 700;
-	letter-spacing: 0.2em;
-	text-align: center;
-	margin: 3rem 0 4rem;
-}
-
 .reminders h2 {
 	font-size: 2.4rem;
 	font-weight: 900;

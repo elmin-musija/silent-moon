@@ -5,6 +5,7 @@ import Image from "next/image";
 const inter = Inter({ subsets: ["latin"] });
 import styles from "./index.module.css";
 import LargeBtn from "@/components/largeBtn/largeBtn";
+import Title from "@/components/title/title";
 
 export default function Home() {
 	return (
@@ -23,7 +24,7 @@ export default function Home() {
 					alt="man doing handstand in nature"
 					priority
 				/>
-				<h1>Silent Moon</h1>
+				<Title />
 				<div className={styles.content}>
 					<div className={styles.introTextBox}>
 						<h2>We are what we do</h2>
