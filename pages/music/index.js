@@ -4,14 +4,10 @@ import Image from "next/image";
 import { getServerSession } from "next-auth/next";
 import { NextAuthOptions } from "../api/auth/[...nextauth]";
 import { uid } from "uid";
-import {
-	getUsersPlaylists,
-	getPlaylistTracks,
-	getPlaylistInfo,
-} from "@/utils/spotify/spotify";
+import { getPlaylistTracks, getPlaylistInfo } from "@/utils/spotify/spotify";
 import { convertDurationTimeFormat } from "@/utils/convert/convert";
-import styles from "./music.module.css";
 import Title from "@/components/title/title";
+import styles from "./music.module.css";
 
 const MusicPage = ({ playlistInfo, playlistTracks }) => {
 	const { items } = playlistTracks;
@@ -19,7 +15,11 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 	return (
 		<div className={styles.musicPage}>
 			<Title />
-			<h2>{playlistInfo.name}</h2>
+			<Link
+				href={`/player/q?type=${playlistInfo.type}&offset=0&id=${playlistInfo.id}`}
+			>
+				<h2>{playlistInfo.name}</h2>
+			</Link>
 			<p key={uid()}>Playlist</p>
 			<p key={uid()}>{playlistInfo.description}</p>
 			<div className={styles.statisticsContainer}>
@@ -42,9 +42,12 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 					<p>34.972 Listening</p>
 				</div>
 			</div>
-			{items.map((element) => (
+			{items.map((element, index) => (
 				<div key={uid()} className={styles.trackContainer}>
-					<Link key={uid()} href={`/player/${element.track.id}`}>
+					<Link
+						key={uid()}
+						href={`/player/q?type=${playlistInfo.type}&offset=${index}&id=${playlistInfo.id}`}
+					>
 						<Image
 							src="/img/play_button.svg"
 							width="40"
@@ -55,7 +58,10 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 					</Link>
 					<div className={styles.trackInfoContainer}>
 						<div key={uid()} className={styles.trackNameDurationContainer}>
-							<Link key={uid()} href={`/player/${element.track.id}`}>
+							<Link
+								key={uid()}
+								href={`/player/q?type=${playlistInfo.type}&offset=${index}&id=${playlistInfo.id}`}
+							>
 								{element.track.name}
 							</Link>
 							<p>{convertDurationTimeFormat(element.track.duration_ms)}</p>

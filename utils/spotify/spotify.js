@@ -65,6 +65,7 @@ const getPlaylistInfo = async (refresh_token, meditationId) => {
 };
 
 module.exports = {
+	getAccessToken,
 	getUsersPlaylists,
 	getPlaylistTracks,
 	getPlaylistInfo,
