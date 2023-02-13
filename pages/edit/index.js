@@ -10,6 +10,7 @@ const EditPage = () => {
 	const inputLengthValueMinRef = useRef(null);
 	const inputLengthValueSecRef = useRef(null);
 	const inputUrlRef = useRef(null);
+	const inputImageRef = useRef(null);
 
 	const onSubmitHandler = async (event) => {
 		event.preventDefault();
@@ -29,6 +30,7 @@ const EditPage = () => {
 					seconds: inputLengthValueSecRef.current.value,
 				},
 				videoUrl: inputUrlRef.current.value,
+				imageUrl: inputImageRef.current.value,
 			}),
 		};
 		const result = await fetch("/api/yoga/exercise", options);
@@ -43,6 +45,7 @@ const EditPage = () => {
 			inputLengthValueMinRef.current.value = "";
 			inputLengthValueSecRef.current.value = "";
 			inputUrlRef.current.value = "";
+			inputImageRef.current.value = "";
 		}
 	};
 
@@ -121,6 +124,14 @@ const EditPage = () => {
 					id="input-video-url"
 					ref={inputUrlRef}
 					placeholder="Video url"
+					required
+				/>
+				<input
+					type="text"
+					name="input-image-url"
+					id="input-image-url"
+					ref={inputImageRef}
+					placeholder="Image url"
 					required
 				/>
 				<input type="submit" value="Create" />
