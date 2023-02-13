@@ -14,6 +14,7 @@ const postInsertYogaExercise = async (req, res) => {
 			seconds: Number(req.body.lengthValue.seconds),
 		},
 		videoUrl: req.body.videoUrl,
+		imageUrl: req.body.imageUrl,
 	};
 	const result = await YogaService.insertYogaExercise(yogaInfos);
 	return res.json({

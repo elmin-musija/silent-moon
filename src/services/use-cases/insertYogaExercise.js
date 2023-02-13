@@ -8,6 +8,7 @@ const insertYogaExercise = async ({
 	lengthCategory,
 	lengthValue,
 	videoUrl,
+	imageUrl,
 }) => {
 	const yoga = Yoga.create({
 		title,
@@ -17,6 +18,7 @@ const insertYogaExercise = async ({
 		lengthCategory,
 		lengthValue,
 		videoUrl,
+		imageUrl,
 	});
 	return yoga;
 };

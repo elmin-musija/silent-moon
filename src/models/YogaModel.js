@@ -26,6 +26,10 @@ const yogaSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	imageUrl: {
+		type: String,
+		required: true,
+	},
 });
 
 module.exports = mongoose.models.Yoga || mongoose.model("Yoga", yogaSchema);
