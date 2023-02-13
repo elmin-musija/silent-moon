@@ -4,15 +4,16 @@ import Image from "next/image";
 import { getServerSession } from "next-auth/next";
 import { NextAuthOptions } from "@/pages/api/auth/[...nextauth]";
 import { uid } from "uid";
-import { getPlaylistTracks, getPlaylistInfo } from "@/utils/spotify/spotify";
-import { convertDurationTimeFormat } from "@/utils/convert/convert";
+import {
+	getPlaylistTracks,
+	getPlaylistInfo,
+} from "@/src/services/utils/spotify/spotify";
+import { convertDurationTimeFormat } from "@/src/services/utils/convert/convert";
 import styles from "./meditationId.module.css";
 import Title from "@/components/title/title";
 
 const MeditationDetails = ({ playlistInfo, playlistTracks }) => {
 	const { items } = playlistTracks;
-	console.log(playlistInfo);
-
 	return (
 		<div className={styles.mediationDetailsPage}>
 			<Title />

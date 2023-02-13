@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getServerSession } from "next-auth/next";
 import { NextAuthOptions } from "@/pages/api/auth/[...nextauth]";
-import { getAccessToken } from "@/utils/spotify/spotify";
+import { getAccessToken } from "@/src/services/utils/spotify/spotify";
 import dynamic from "next/dynamic";
 import styles from "./player.module.css";
 
