@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SpotifyPlayer from "react-spotify-web-playback";
 import { uid } from "uid";
-import { convertDurationTimeFormat } from "@/utils/convert/convert";
+import { convertDurationTimeFormat } from "@/src/services/utils/convert/convert";
 import styles from "./player.module.css";
 
 const Player = ({ type, offset, id, token }) => {
