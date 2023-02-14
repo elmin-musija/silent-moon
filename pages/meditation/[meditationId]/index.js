@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { getServerSession } from "next-auth/next";
 import { NextAuthOptions } from "@/pages/api/auth/[...nextauth]";
 import { uid } from "uid";
@@ -14,9 +15,26 @@ import Title from "@/components/title/title";
 
 const MeditationDetails = ({ playlistInfo, playlistTracks }) => {
 	const { items } = playlistTracks;
+	const router = useRouter();
+
 	return (
 		<div className={styles.mediationDetailsPage}>
 			<Title />
+
+			<div className={styles.btnContainer}>
+				<button onClick={() => router.back()} className={styles.backBtn}>
+					<Image
+						src="/img/back_arrow_yellow.svg"
+						width="55"
+						height="55"
+						alt="back"
+					/>
+				</button>
+				<button className={styles.likeBtn}>
+					<Image src="/img/like_btn.svg" width="55" height="55" alt="heart" />
+				</button>
+			</div>
+
 			<Image
 				src={playlistInfo.images[0].url}
 				width="414"
