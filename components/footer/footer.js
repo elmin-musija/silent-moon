@@ -12,7 +12,7 @@ const Footer = () => {
 		router.pathname === "/signup" ||
 		router.pathname === "/welcome" ||
 		router.pathname === "/reminders" ||
-		router.pathname === "/meditation-player"
+		router.pathname.includes("/player")
 	) {
 		return;
 	}
