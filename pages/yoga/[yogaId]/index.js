@@ -4,10 +4,16 @@ import { YogaService } from "@/src/services/use-cases/index";
 import clsx from "classnames";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import styles from "./yogaId.module.css";
 
 const YogaDetails = ({ yogaId }) => {
 	const router = useRouter();
+	const [videoFullscreen, setVideoFullscreen] = useState(true);
+
+	const videoFullscreenHandler = () => {
+		setVideoFullscreen(!videoFullscreen);
+	};
 
 	{
 		/** extract video Id from video link and format to embed  */
@@ -22,53 +28,73 @@ const YogaDetails = ({ yogaId }) => {
 		[styles.advanced]: yogaId.level === "ADVANCED",
 	});
 
-	return (
-		<div className={styles.yogaIdPage}>
-			<div className={styles.btnContainer}>
-				<button onClick={() => router.back()} className={styles.backBtn}>
-					<Image
-						src="/img/back_arrow_yellow.svg"
-						width="55"
-						height="55"
-						alt="back"
-					/>
-				</button>
-				<button className={styles.likeBtn}>
-					<Image src="/img/like_btn.svg" width="55" height="55" alt="heart" />
-				</button>
-			</div>
-			<iframe src={videoUrl} title={yogaId.title} frameBorder="0"></iframe>
-			<div className={styles.content}>
-				<h2>{yogaId.title}</h2>
-				<div className={styles.levelCategoryContainer}>
-					<p key={uid()} className={levelStyle}>
-						{yogaId.level}
-					</p>
-					<div className={styles.typeCategory}>
-						<p key={uid()}>#</p>
-						<p key={uid()}>{yogaId.typeCategory}</p>
-					</div>
-				</div>
-				<p key={uid()} className={styles.lengthCategory}>
-					Length: {yogaId.lengthCategory.toLowerCase()}
-				</p>
-				<p key={uid()} className={styles.description}>
-					{yogaId.description}
-				</p>
-				<div className={styles.controlFullscreenContainer}>
-					<button>
+	if (!videoFullscreen) {
+		return (
+			<div className={styles.yogaIdPage}>
+				<div className={styles.btnContainer}>
+					<button onClick={() => router.back()} className={styles.backBtn}>
 						<Image
-							src="/img/fullscreen.svg"
-							width="20"
-							height="20"
-							alt="fullscreen"
+							src="/img/back_arrow_yellow.svg"
+							width="55"
+							height="55"
+							alt="back"
 						/>
 					</button>
-					<p>Video Fullscreen</p>
+					<button className={styles.likeBtn}>
+						<Image src="/img/like_btn.svg" width="55" height="55" alt="heart" />
+					</button>
+				</div>
+				<iframe src={videoUrl} title={yogaId.title} frameBorder="0"></iframe>
+				<div className={styles.content}>
+					<h2>{yogaId.title}</h2>
+					<div className={styles.levelCategoryContainer}>
+						<p key={uid()} className={levelStyle}>
+							{yogaId.level}
+						</p>
+						<div className={styles.typeCategory}>
+							<p key={uid()}>#</p>
+							<p key={uid()}>{yogaId.typeCategory}</p>
+						</div>
+					</div>
+					<p key={uid()} className={styles.lengthCategory}>
+						Length: {yogaId.lengthCategory.toLowerCase()}
+					</p>
+					<p key={uid()} className={styles.description}>
+						{yogaId.description}
+					</p>
+					<div className={styles.controlFullscreenContainer}>
+						<button onClick={videoFullscreenHandler}>
+							<Image
+								src="/img/fullscreen.svg"
+								width="20"
+								height="20"
+								alt="fullscreen"
+							/>
+						</button>
+						<p>Video Fullscreen</p>
+					</div>
 				</div>
 			</div>
-		</div>
-	);
+		);
+	}
+
+	if (videoFullscreen) {
+		return (
+			<div className={styles.videoFullscreenContainer}>
+				<div className={styles.overlay}>
+					<button onClick={videoFullscreenHandler}>
+						<Image
+							src="/img/close_player.svg"
+							width="55"
+							height="55"
+							alt="close player"
+						/>
+					</button>
+				</div>
+				<iframe src={videoUrl} title={yogaId.title} frameBorder="0"></iframe>
+			</div>
+		);
+	}
 };
 
 export default YogaDetails;
