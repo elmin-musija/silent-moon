@@ -1,0 +1,49 @@
+.player {
+	position: absolute;
+	top: 0;
+	left: var(--phonePadding);
+	right: var(--phonePadding);
+	z-index: 99;
+}
+
+.trackInfoContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 5rem;
+	min-height: 45rem;
+	margin-top: 10rem;
+}
+
+.player h1 {
+	font-size: 4.2rem;
+	font-weight: 900;
+	letter-spacing: 0.06em;
+	text-align: center;
+}
+
+.artistsContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+.artistsContainer p {
+	font-weight: 600;
+	text-transform: uppercase;
+	color: var(--secondaryText);
+	letter-spacing: 0.06em;
+}
+
+.duration {
+	text-align: center;
+}
+
+.spotifyPlayer {
+	position: absolute;
+	top: 62rem;
+	left: var(--phonePadding);
+	right: var(--phonePadding);
+}

@@ -1,13 +1,97 @@
 .playerPage {
-	background-color: white;
-	height: 100vh;
+	background-color: #faf2da;
+	height: 100%;
 }
 
-.webPlayer {
+.btnContainer {
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 100%;
-	background-color: white;
+	top: var(--phonePadding);
+	left: var(--phonePadding);
+	right: var(--phonePadding);
+	z-index: 1000;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+.btnContainer button {
+	cursor: pointer;
+	background-color: #00000000;
+	border: none;
+}
+
+.closeBtn {
+	transform-origin: 27.5px 27.5px;
+	transition: var(--transition);
+}
+
+.closeBtn:hover {
+	transform: rotate(90deg);
+}
+
+.likeBtn {
+	position: relative;
+}
+
+.likeBtn:hover::after {
+	content: "";
+	display: inline-block;
+	height: 55px;
+	width: 55px;
+	border-radius: 100px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	background-color: #d1b0b0;
+	animation: flickerButton 0.5s;
+}
+
+@keyframes flickerButton {
+	0% {
+		transform: scaleX(1) scaleY(1);
+		opacity: 1;
+	}
+
+	100% {
+		transform: scaleX(1.8) scaleY(1.8);
+		opacity: 0;
+	}
+}
+
+.bg_element_1 {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.bg_element_2 {
+	position: absolute;
+	top: -6rem;
+	right: 0;
+}
+
+.bg_element_3 {
+	position: absolute;
+	top: 24rem;
+	left: 0;
+	transform: rotate(5deg);
+}
+
+.bg_element_4 {
+	position: absolute;
+	top: 44rem;
+	right: 0;
+}
+
+.bg_element_5 {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.bg_element_6 {
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
