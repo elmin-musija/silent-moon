@@ -46,7 +46,7 @@ const MeditationDetails = ({ playlistInfo, playlistTracks }) => {
 							height="16"
 							alt="headphones icon"
 						></Image>
-						<p>{(playlistInfo.followers.total % 100) * 18} Listening</p>
+						<p>{(playlistInfo.followers.total % 500) * 33} Listening</p>
 					</div>
 				</div>
 			</div>
