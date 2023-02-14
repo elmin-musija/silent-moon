@@ -38,6 +38,7 @@ export const NextAuthOptions = {
 			 */
 			if (account) {
 				token.refresh_token = account.refresh_token;
+				token.provider = account.provider;
 			}
 			return token;
 		},
