@@ -6,13 +6,16 @@
 
 .btnContainer {
 	position: absolute;
-	top: var(--phonePadding);
-	left: var(--phonePadding);
-	right: var(--phonePadding);
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: var(--phonePadding) var(--phonePadding);
+	height: 17em;
 	z-index: 100;
 
 	display: flex;
 	justify-content: space-between;
+	align-items: flex-start;
 }
 
 .btnContainer button {
