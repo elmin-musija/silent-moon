@@ -1,22 +1,72 @@
 import React from "react";
 import { uid } from "uid";
 import { YogaService } from "@/src/services/use-cases/index";
+import clsx from "classnames";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import styles from "./yogaId.module.css";
 
 const YogaDetails = ({ yogaId }) => {
+	const router = useRouter();
+
 	{
 		/** extract video Id from video link and format to embed  */
 	}
 	const videoId = String(yogaId.videoUrl).split("?v=")[1];
 	const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 
+	const levelStyle = clsx({
+		[styles.beginner]: yogaId.level === "BEGINNER",
+		[styles.medium]: yogaId.level === "MEDIUM",
+		[styles.intermediate]: yogaId.level === "INTERMEDIATE",
+		[styles.advanced]: yogaId.level === "ADVANCED",
+	});
+
 	return (
-		<div>
+		<div className={styles.yogaIdPage}>
+			<div className={styles.btnContainer}>
+				<button onClick={() => router.back()} className={styles.backBtn}>
+					<Image
+						src="/img/back_arrow_yellow.svg"
+						width="55"
+						height="55"
+						alt="back"
+					/>
+				</button>
+				<button className={styles.likeBtn}>
+					<Image src="/img/like_btn.svg" width="55" height="55" alt="heart" />
+				</button>
+			</div>
 			<iframe src={videoUrl} title={yogaId.title} frameBorder="0"></iframe>
-			<h2>{yogaId.title}</h2>
-			<p key={uid()}>{yogaId.level}</p>
-			<p key={uid()}>{yogaId.typeCategory}</p>
-			<p key={uid()}>{yogaId.lengthCategory}</p>
-			<p key={uid()}>{yogaId.description}</p>
+			<div className={styles.content}>
+				<h2>{yogaId.title}</h2>
+				<div className={styles.levelCategoryContainer}>
+					<p key={uid()} className={levelStyle}>
+						{yogaId.level}
+					</p>
+					<div className={styles.typeCategory}>
+						<p key={uid()}>#</p>
+						<p key={uid()}>{yogaId.typeCategory}</p>
+					</div>
+				</div>
+				<p key={uid()} className={styles.lengthCategory}>
+					Length: {yogaId.lengthCategory.toLowerCase()}
+				</p>
+				<p key={uid()} className={styles.description}>
+					{yogaId.description}
+				</p>
+				<div className={styles.controlFullscreenContainer}>
+					<button>
+						<Image
+							src="/img/fullscreen.svg"
+							width="20"
+							height="20"
+							alt="fullscreen"
+						/>
+					</button>
+					<p>Video Fullscreen</p>
+				</div>
+			</div>
 		</div>
 	);
 };

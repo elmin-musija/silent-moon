@@ -1,0 +1,183 @@
+.yogaIdPage iframe {
+	width: 100%;
+	height: 23.3rem;
+	margin-bottom: 5rem;
+}
+
+.btnContainer {
+	position: absolute;
+	top: var(--phonePadding);
+	left: var(--phonePadding);
+	right: var(--phonePadding);
+	z-index: 100;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+.btnContainer button {
+	cursor: pointer;
+	background-color: #00000000;
+	border: none;
+}
+
+.backBtn:hover {
+	animation: moveButtonLeft infinite 0.5s;
+}
+
+.likeBtn {
+	position: relative;
+}
+
+.likeBtn:hover::after {
+	content: "";
+	display: inline-block;
+	height: 55px;
+	width: 55px;
+	border-radius: 100px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	background-color: #d1b0b0;
+	animation: flickerButton 0.5s;
+}
+
+@keyframes flickerButton {
+	0% {
+		transform: scaleX(1) scaleY(1);
+		opacity: 1;
+	}
+
+	100% {
+		transform: scaleX(1.8) scaleY(1.8);
+		opacity: 0;
+	}
+}
+
+@keyframes moveButtonLeft {
+	0% {
+		transform: translateX(0);
+	}
+
+	50% {
+		transform: translateX(-1rem);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.content {
+	padding: 0 var(--phonePadding);
+}
+
+.content h2 {
+	font-weight: 900;
+	font-size: 3.6rem;
+	letter-spacing: 0.06em;
+	margin-bottom: 2rem;
+}
+
+.levelCategoryContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.8rem;
+}
+
+.levelCategoryContainer > p:first-of-type {
+	color: white;
+	padding: 0.3rem 1rem;
+	border-radius: 5rem;
+}
+
+.beginner {
+	background: linear-gradient(
+		to right bottom,
+		rgb(140, 241, 140),
+		rgb(8, 183, 20)
+	);
+}
+
+.medium {
+	background: linear-gradient(
+		to right bottom,
+		rgb(177, 215, 89),
+		rgb(214, 200, 75)
+	);
+}
+
+.intermediate {
+	background: linear-gradient(
+		to right bottom,
+		rgb(238, 231, 150),
+		rgb(239, 189, 6)
+	);
+}
+
+.advanced {
+	background: linear-gradient(
+		to right bottom,
+		rgb(253, 122, 155),
+		rgb(227, 21, 49)
+	);
+}
+
+.typeCategory {
+	display: flex;
+	align-items: center;
+}
+
+.levelCategoryContainer .typeCategory p:first-of-type {
+	font-size: 2.4rem;
+	font-weight: 600;
+	color: var(--primaryColor);
+}
+
+.levelCategoryContainer .typeCategory p:nth-of-type(2) {
+	text-transform: lowercase;
+	font-size: 1.8rem;
+}
+
+.lengthCategory {
+	margin-bottom: 2.4rem;
+}
+
+.description {
+	margin-bottom: 2.4rem;
+}
+
+.controlFullscreenContainer {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+
+.controlFullscreenContainer button {
+	display: flex;
+	align-items: center;
+
+	border: none;
+	background-color: #00000000;
+	cursor: pointer;
+}
+
+.controlFullscreenContainer button:hover {
+	animation: scaleFullscreenBtn infinite 0.5s;
+}
+
+@keyframes scaleFullscreenBtn {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.2);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
