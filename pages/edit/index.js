@@ -50,8 +50,8 @@ const EditPage = () => {
 	};
 
 	return (
-		<div>
-			<h1>Edit Page</h1>
+		<div className={styles.editPage}>
+			<h1 className={styles.headline}> Edit Page </h1>
 			<form className={styles.form} onSubmit={onSubmitHandler}>
 				<input
 					type="text"
@@ -59,49 +59,18 @@ const EditPage = () => {
 					id="input-title"
 					required
 					ref={inputTitleRef}
-					placeholder="title"
+					placeholder="Title"
 				/>
-				<select
-					name="input-level-select"
-					id="input-level-select"
-					ref={inputLevelRef}
-					required
-				>
-					<option value="BEGINNER">Beginner</option>
-					<option value="MEDIUM">Medium</option>
-					<option value="INTERMEDIATE">Intermediate</option>
-					<option value="ADVANCED">Advanced</option>
-				</select>
+
 				<input
 					type="text"
 					name="input-description"
 					id="input-description"
 					required
 					ref={inputDescriptionRef}
-					placeholder="description"
+					placeholder="Description"
 				/>
-				<select
-					name="input-type-category-select"
-					id="input-type-category-select"
-					ref={inputTypeCategoryRef}
-					required
-				>
-					<option value="ANXIOUS">Anxious</option>
-					<option value="SLEEP">Sleep</option>
-					<option value="KIDS">Kids</option>
-					<option value="RECOVERY">Recovery</option>
-					<option value="FITNESS">Fitness</option>
-				</select>
-				<select
-					name="input-length-category-select"
-					id="input-length-category-select"
-					ref={inputLengthCategoryRef}
-					required
-				>
-					<option value="SHORT">Short</option>
-					<option value="MEDIUM">Medium</option>
-					<option value="LONG">Long</option>
-				</select>
+
 				<input
 					type="number"
 					name="input-length-value-min"
@@ -134,7 +103,52 @@ const EditPage = () => {
 					placeholder="Image url"
 					required
 				/>
-				<input type="submit" value="Create" />
+				<select
+					className={styles.select}
+					name="input-level-select"
+					id="input-level-select"
+					ref={inputLevelRef}
+					required
+				>
+					<option value="" disabled selected>
+						Choose your Level
+					</option>
+					<option value="BEGINNER">Beginner</option>
+					<option value="MEDIUM">Medium</option>
+					<option value="INTERMEDIATE">Intermediate</option>
+					<option value="ADVANCED">Advanced</option>
+				</select>
+				<select
+					className={styles.select}
+					name="input-type-category-select"
+					id="input-type-category-select"
+					ref={inputTypeCategoryRef}
+					required
+				>
+					<option value="ANXIOUS">Anxious</option>
+					<option value="" disabled selected>
+						Choose Category
+					</option>
+					<option value="SLEEP">Sleep</option>
+					<option value="KIDS">Kids</option>
+					<option value="RECOVERY">Recovery</option>
+					<option value="FITNESS">Fitness</option>
+				</select>
+				<select
+					className={styles.select}
+					name="input-length-category-select"
+					id="input-length-category-select"
+					ref={inputLengthCategoryRef}
+					required
+				>
+					<option value="" disabled selected>
+						Choose Video Length
+					</option>
+					<option value="SHORT">Short</option>
+					<option value="MEDIUM">Medium</option>
+					<option value="LONG">Long</option>
+				</select>
+				<input className={styles.submit} type="submit" value="CREATE" />
 			</form>
 		</div>
 	);
