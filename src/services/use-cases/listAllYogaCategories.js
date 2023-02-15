@@ -5,11 +5,11 @@ const listAllYogaCategories = async () => {
 	await connectToDatabase();
 	/** get a unique set of all categories */
 	const result = await Yoga.aggregate([
-		{ $group: { _id: "$typeCategory" } },
+		{ $group: { _id: "$category" } },
 		{ $sort: { _id: 1 } },
 	]);
 	/** add missing category "all" */
-	const allYogaCategories = [{ _id: "ALL" }, ...result];
+	const allYogaCategories = [{ _id: "all" }, ...result];
 
 	return allYogaCategories;
 };

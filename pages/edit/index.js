@@ -3,14 +3,13 @@ import styles from "./edit.module.css";
 
 const EditPage = () => {
 	const inputTitleRef = useRef(null);
-	const inputLevelRef = useRef(null);
 	const inputDescriptionRef = useRef(null);
-	const inputTypeCategoryRef = useRef(null);
-	const inputLengthCategoryRef = useRef(null);
-	const inputLengthValueMinRef = useRef(null);
-	const inputLengthValueSecRef = useRef(null);
-	const inputUrlRef = useRef(null);
 	const inputImageRef = useRef(null);
+	const inputCategoryRef = useRef(null);
+	const inputLevelRef = useRef(null);
+	const inputLengthDurationMinRef = useRef(null);
+	const inputLengthDurationSecRef = useRef(null);
+	const inputUrlRef = useRef(null);
 
 	const onSubmitHandler = async (event) => {
 		event.preventDefault();
@@ -21,16 +20,15 @@ const EditPage = () => {
 			},
 			body: JSON.stringify({
 				title: inputTitleRef.current.value,
-				level: inputLevelRef.current.value,
 				description: inputDescriptionRef.current.value,
-				typeCategory: inputTypeCategoryRef.current.value,
-				lengthCategory: inputLengthCategoryRef.current.value,
-				lengthValue: {
-					minutes: inputLengthValueMinRef.current.value,
-					seconds: inputLengthValueSecRef.current.value,
+				imageUrl: inputImageRef.current.value,
+				category: inputCategoryRef.current.value,
+				level: inputLevelRef.current.value,
+				duration: {
+					minutes: inputLengthDurationMinRef.current.value,
+					seconds: inputLengthDurationSecRef.current.value,
 				},
 				videoUrl: inputUrlRef.current.value,
-				imageUrl: inputImageRef.current.value,
 			}),
 		};
 		const result = await fetch("/api/yoga/exercise", options);
@@ -38,14 +36,13 @@ const EditPage = () => {
 
 		if (response.status === "success") {
 			inputTitleRef.current.value = "";
-			inputLevelRef.current.value = "";
 			inputDescriptionRef.current.value = "";
-			inputTypeCategoryRef.current.value = "";
-			inputLengthCategoryRef.current.value = "";
-			inputLengthValueMinRef.current.value = "";
-			inputLengthValueSecRef.current.value = "";
-			inputUrlRef.current.value = "";
 			inputImageRef.current.value = "";
+			inputCategoryRef.current.value = "";
+			inputLevelRef.current.value = "";
+			inputLengthDurationMinRef.current.value = "";
+			inputLengthDurationSecRef.current.value = "";
+			inputUrlRef.current.value = "";
 		}
 	};
 
@@ -61,17 +58,6 @@ const EditPage = () => {
 					ref={inputTitleRef}
 					placeholder="title"
 				/>
-				<select
-					name="input-level-select"
-					id="input-level-select"
-					ref={inputLevelRef}
-					required
-				>
-					<option value="BEGINNER">Beginner</option>
-					<option value="MEDIUM">Medium</option>
-					<option value="INTERMEDIATE">Intermediate</option>
-					<option value="ADVANCED">Advanced</option>
-				</select>
 				<input
 					type="text"
 					name="input-description"
@@ -83,30 +69,31 @@ const EditPage = () => {
 				<select
 					name="input-type-category-select"
 					id="input-type-category-select"
-					ref={inputTypeCategoryRef}
+					ref={inputCategoryRef}
 					required
 				>
-					<option value="ANXIOUS">Anxious</option>
-					<option value="SLEEP">Sleep</option>
-					<option value="KIDS">Kids</option>
-					<option value="RECOVERY">Recovery</option>
-					<option value="FITNESS">Fitness</option>
+					<option value="anxious">Anxious</option>
+					<option value="sleep">Sleep</option>
+					<option value="kids">Kids</option>
+					<option value="recovery">Recovery</option>
+					<option value="fitness">Fitness</option>
 				</select>
 				<select
-					name="input-length-category-select"
-					id="input-length-category-select"
-					ref={inputLengthCategoryRef}
+					name="input-level-select"
+					id="input-level-select"
+					ref={inputLevelRef}
 					required
 				>
-					<option value="SHORT">Short</option>
-					<option value="MEDIUM">Medium</option>
-					<option value="LONG">Long</option>
+					<option value="beginner">Beginner</option>
+					<option value="medium">Medium</option>
+					<option value="intermediate">Intermediate</option>
+					<option value="advanced">Advanced</option>
 				</select>
 				<input
 					type="number"
 					name="input-length-value-min"
 					id="input-length-value-min"
-					ref={inputLengthValueMinRef}
+					ref={inputLengthDurationMinRef}
 					placeholder="Video length minutes"
 					required
 				/>
@@ -114,16 +101,8 @@ const EditPage = () => {
 					type="number"
 					name="input-length-value-sec"
 					id="input-length-value-sec"
-					ref={inputLengthValueSecRef}
+					ref={inputLengthDurationSecRef}
 					placeholder="Video length seconds"
-					required
-				/>
-				<input
-					type="text"
-					name="input-video-url"
-					id="input-video-url"
-					ref={inputUrlRef}
-					placeholder="Video url"
 					required
 				/>
 				<input
@@ -132,6 +111,14 @@ const EditPage = () => {
 					id="input-image-url"
 					ref={inputImageRef}
 					placeholder="Image url"
+					required
+				/>
+				<input
+					type="text"
+					name="input-video-url"
+					id="input-video-url"
+					ref={inputUrlRef}
+					placeholder="Video url"
 					required
 				/>
 				<input type="submit" value="Create" />

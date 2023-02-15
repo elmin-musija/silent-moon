@@ -1,32 +1,28 @@
 import { mongoose } from "mongoose";
 
 const yogaSchema = new mongoose.Schema({
+	// _id: { type: mongoose.Types.ObjectId },
 	title: { type: String, required: true },
+	description: { type: String, required: true },
+	imageUrl: {
+		type: String,
+		required: true,
+	},
+	category: {
+		type: String,
+		enum: ["anxious", "sleep", "kids", "recovery", "fitness"],
+		required: true,
+	},
 	level: {
 		type: String,
-		enum: ["BEGINNER", "MEDIUM", "INTERMEDIATE", "ADVANCED"],
+		enum: ["beginner", "medium", "intermediate", "advanced"],
 		required: true,
 	},
-	description: { type: String, required: true },
-	typeCategory: {
-		type: String,
-		enum: ["ANXIOUS", "SLEEP", "KIDS", "RECOVERY", "FITNESS"],
-		required: true,
-	},
-	lengthCategory: {
-		type: String,
-		enum: ["SHORT", "MEDIUM", "LONG"],
-		required: true,
-	},
-	lengthValue: {
+	duration: {
 		minutes: { type: Number, min: 0, required: true },
 		seconds: { type: Number, min: 0, required: true },
 	},
 	videoUrl: {
-		type: String,
-		required: true,
-	},
-	imageUrl: {
 		type: String,
 		required: true,
 	},

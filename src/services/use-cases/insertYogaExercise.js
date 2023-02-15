@@ -2,23 +2,21 @@ import Yoga from "../../models/YogaModel";
 
 const insertYogaExercise = async ({
 	title,
-	level,
 	description,
-	typeCategory,
-	lengthCategory,
-	lengthValue,
-	videoUrl,
 	imageUrl,
+	category,
+	level,
+	duration,
+	videoUrl,
 }) => {
 	const yoga = Yoga.create({
 		title,
-		level,
 		description,
-		typeCategory,
-		lengthCategory,
-		lengthValue,
-		videoUrl,
 		imageUrl,
+		category,
+		level,
+		duration,
+		videoUrl,
 	});
 	return yoga;
 };

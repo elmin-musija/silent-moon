@@ -27,8 +27,8 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 
 	useEffect(() => {
 		const filteredYogaPrograms = yogaPrograms.filter((element) => {
-			if (categoryFilter !== "ALL") {
-				return element.typeCategory
+			if (categoryFilter !== "all") {
+				return element.category
 					.toLowerCase()
 					.includes(categoryFilter.toLowerCase());
 			} else {
