@@ -93,6 +93,9 @@ export async function getServerSideProps(context) {
 	if (!session) {
 		return { redirect: { destination: "/", permanent: false } };
 	}
+	if (session.user.provider !== "spotify") {
+		return { redirect: { destination: "/home", permanent: false } };
+	}
 
 	const meditationId = process.env.GOOD_VIBE_PLAYLIST_ID;
 
