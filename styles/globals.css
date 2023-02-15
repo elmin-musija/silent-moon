@@ -1,5 +1,6 @@
 :root {
 	--phonePadding: 2rem;
+	--gapGrid: 2rem;
 	--transition: all 0.2s;
 
 	/* ----- Colors ----- */
