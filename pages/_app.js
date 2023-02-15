@@ -1,5 +1,6 @@
 import { SessionProvider } from "next-auth/react";
 import Link from "next/link";
+import { useState } from "react";
 import { Source_Sans_Pro } from "@next/font/google";
 import "@/styles/globals.css";
 import styles from "./app.module.css";
@@ -14,11 +15,23 @@ export default function App({
 	Component,
 	pageProps: { session, ...pageProps },
 }) {
+	const [isRotated, setIsRotated] = useState(false);
+
+	const rotateHandler = () => {
+		setIsRotated((prevState) => !prevState);
+	};
+
 	return (
 		<SessionProvider session={session} refetchInterval={60 * 60 * 24}>
-			<div className={`${styles.smartphone} ${sourceSansPro.className}`}>
+			<div
+				className={
+					isRotated
+						? `${styles.smartphone} ${styles.smartphoneRotated} ${sourceSansPro.className}`
+						: `${styles.smartphone}  ${sourceSansPro.className}`
+				}
+			>
 				<div className={styles.content}>
-					<Component {...pageProps} />
+					<Component {...pageProps} rotateHandler={rotateHandler} />
 					<Footer />
 				</div>
 				<Link href="/" className={styles.homeBtn}></Link>

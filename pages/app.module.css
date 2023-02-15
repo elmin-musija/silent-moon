@@ -6,6 +6,12 @@
 	border-top-width: 60px;
 	border-bottom-width: 60px;
 	border-radius: 36px;
+	transform: rotate(0deg);
+	transition: transform 1s;
+}
+
+.smartphoneRotated {
+	transform: rotate(90deg);
 }
 
 /* The screen (or content) of the device */
