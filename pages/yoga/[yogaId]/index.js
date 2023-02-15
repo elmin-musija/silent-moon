@@ -9,7 +9,7 @@ import styles from "./yogaId.module.css";
 
 const YogaDetails = ({ yogaId }) => {
 	const router = useRouter();
-	const [videoFullscreen, setVideoFullscreen] = useState(true);
+	const [videoFullscreen, setVideoFullscreen] = useState(false);
 
 	const videoFullscreenHandler = () => {
 		setVideoFullscreen(!videoFullscreen);
@@ -22,10 +22,10 @@ const YogaDetails = ({ yogaId }) => {
 	const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 
 	const levelStyle = clsx({
-		[styles.beginner]: yogaId.level === "BEGINNER",
-		[styles.medium]: yogaId.level === "MEDIUM",
-		[styles.intermediate]: yogaId.level === "INTERMEDIATE",
-		[styles.advanced]: yogaId.level === "ADVANCED",
+		[styles.beginner]: yogaId.level === "beginner",
+		[styles.medium]: yogaId.level === "medium",
+		[styles.intermediate]: yogaId.level === "intermediate",
+		[styles.advanced]: yogaId.level === "advanced",
 	});
 
 	if (!videoFullscreen) {
@@ -53,12 +53,12 @@ const YogaDetails = ({ yogaId }) => {
 						</p>
 						<div className={styles.typeCategory}>
 							<p key={uid()}>#</p>
-							<p key={uid()}>{yogaId.typeCategory}</p>
+							<p key={uid()}>{yogaId.category}</p>
 						</div>
 					</div>
-					<p key={uid()} className={styles.lengthCategory}>
+					{/* <p key={uid()} className={styles.lengthCategory}>
 						Length: {yogaId.lengthCategory.toLowerCase()}
-					</p>
+					</p> */}
 					<p key={uid()} className={styles.description}>
 						{yogaId.description}
 					</p>

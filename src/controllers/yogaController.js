@@ -5,16 +5,16 @@ const postInsertYogaExercise = async (req, res) => {
 	await connectToDatabase();
 	const yogaInfos = {
 		title: req.body.title,
-		level: req.body.level,
 		description: req.body.description,
-		typeCategory: req.body.typeCategory,
-		lengthCategory: req.body.lengthCategory,
-		lengthValue: {
-			minutes: Number(req.body.lengthValue.minutes),
-			seconds: Number(req.body.lengthValue.seconds),
-		},
-		videoUrl: req.body.videoUrl,
 		imageUrl: req.body.imageUrl,
+		category: req.body.category,
+		level: req.body.level,
+		duration: {
+			minutes: Number(req.body.duration.minutes),
+			seconds: Number(req.body.duration.seconds),
+		},
+
+		videoUrl: req.body.videoUrl,
 	};
 	const result = await YogaService.insertYogaExercise(yogaInfos);
 	return res.json({

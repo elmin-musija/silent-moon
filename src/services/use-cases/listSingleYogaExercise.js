@@ -7,16 +7,15 @@ const listSingleYogaExercise = async (paramYogaId) => {
 	const singleYogaExercise = {
 		_id: result._id.toString(),
 		title: result.title,
-		level: result.level,
 		description: result.description,
-		typeCategory: result.typeCategory,
-		lengthCategory: result.lengthCategory,
-		lengthValue: {
-			minutes: result.lengthValue.minutes,
-			seconds: result.lengthValue.seconds,
+		imageUrl: result.imageUrl,
+		category: result.category,
+		level: result.level,
+		duration: {
+			minutes: result.duration.minutes,
+			seconds: result.duration.seconds,
 		},
 		videoUrl: result.videoUrl,
-		imageUrl: result.imageUrl,
 	};
 	return singleYogaExercise;
 };

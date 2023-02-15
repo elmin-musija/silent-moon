@@ -7,16 +7,15 @@ const listAllYogaExercises = async () => {
 	const yoga = result.map((element) => ({
 		_id: element._id.toString(),
 		title: element.title,
-		level: element.level,
+		imageUrl: element.imageUrl,
+		category: element.category,
 		description: element.description,
-		typeCategory: element.typeCategory,
-		lengthCategory: element.lengthCategory,
-		lengthValue: {
-			minutes: element.lengthValue.minutes,
-			seconds: element.lengthValue.seconds,
+		level: element.level,
+		duration: {
+			minutes: element.duration.minutes,
+			seconds: element.duration.seconds,
 		},
 		videoUrl: element.videoUrl,
-		imageUrl: element.imageUrl,
 	}));
 
 	return yoga;
