@@ -1,3 +1,78 @@
+.spotifyLoginPage {
+	padding: 0 var(--phonePadding);
+}
+
+.spotifyLoginPage h2 {
+	font-weight: 900;
+	font-size: 3.6rem;
+	text-align: center;
+	letter-spacing: 0.06em;
+	margin-bottom: 2.5rem;
+}
+
+.spotifyLoginPage p {
+	text-align: center;
+	letter-spacing: 0.05em;
+	color: var(--secondaryText);
+	/* text-transform: uppercase; */
+	margin: 0 auto 13rem;
+	width: 75%;
+	line-height: 1.4;
+}
+
+.imageContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+	position: relative;
+}
+
+.providerLogo {
+	display: inline-block;
+	width: 7rem;
+	height: 7rem;
+	cursor: pointer;
+	margin-left: 2rem;
+	animation: bumping 1.5s infinite;
+	transition: all 0.7s;
+	filter: grayscale(1);
+}
+
+.imageContainer .namaste {
+	position: absolute;
+	top: 13rem;
+	left: 13.5rem;
+	opacity: 0;
+	width: fit-content;
+	font-size: 1.4rem;
+	padding: 1rem 3rem;
+	border-radius: 3rem;
+	background-color: var(--primaryColor);
+	color: white;
+	transition: all 0.7s;
+}
+
+.spotifyLogoContainer:hover .namaste {
+	opacity: 1;
+}
+
+.spotifyLogoContainer:hover .providerLogo {
+	filter: grayscale(0);
+}
+
+@keyframes bumping {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
 .musicPage {
 	padding: 0 var(--phonePadding);
 }

@@ -10,10 +10,60 @@ import {
 } from "@/src/services/utils/spotify/spotify";
 import { convertDurationTimeFormat } from "@/src/services/utils/convert/convert";
 import Title from "@/components/title/title";
+import { useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import styles from "./music.module.css";
 
 const MusicPage = ({ playlistInfo, playlistTracks }) => {
+	const { data: session, status } = useSession();
 	const { items } = playlistTracks;
+
+	const spotifySigninHandler = async () => {
+		// await signIn("spotify", { callbackUrl: "/music" });
+		await signIn("spotify");
+	};
+
+	if (!session) {
+		return null;
+	}
+
+	if (session.user.provider !== "spotify") {
+		return (
+			<div className={styles.spotifyLoginPage}>
+				<Title />
+				<h2>Spotify Login</h2>
+				<p>This function requires you to be logged in with Spotify</p>
+				<div className={styles.imageContainer}>
+					<Image
+						src="/img/buddha.png"
+						width="100"
+						height="100"
+						alt="buddha"
+					></Image>
+					<Image
+						src="/img/right-arrow.svg"
+						width="40"
+						height="40"
+						alt="right arrow"
+					></Image>
+					<div
+						onClick={spotifySigninHandler}
+						className={styles.spotifyLogoContainer}
+					>
+						<Image
+							className={styles.providerLogo}
+							onClick={spotifySigninHandler}
+							src="/img/spotify.svg"
+							width="70"
+							height="70"
+							alt="spotify logo"
+						></Image>
+						<p className={styles.namaste}>Namastè</p>
+					</div>
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className={styles.musicPage}>
@@ -90,12 +140,12 @@ export async function getServerSideProps(context) {
 		NextAuthOptions
 	);
 
-	if (!session) {
-		return { redirect: { destination: "/", permanent: false } };
-	}
-	if (session.user.provider !== "spotify") {
-		return { redirect: { destination: "/home", permanent: false } };
-	}
+	// if (!session) {
+	// 	return { redirect: { destination: "/", permanent: false } };
+	// }
+	// if (session.user.provider !== "spotify") {
+	// 	return { redirect: { destination: "/home", permanent: false } };
+	// }
 
 	const meditationId = process.env.GOOD_VIBE_PLAYLIST_ID;
 
