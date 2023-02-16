@@ -26,18 +26,21 @@ export default function App({
 	return (
 		<SessionProvider session={session} refetchInterval={60 * 60 * 24}>
 			<NotificationContextProvider>
-				<div
-					className={
-						isRotated
-							? `${styles.smartphone} ${styles.smartphoneRotated} ${sourceSansPro.className}`
-							: `${styles.smartphone}  ${sourceSansPro.className}`
-					}
-				>
-					<div className={styles.content}>
-						<Notification />
-						<Component {...pageProps} rotateHandler={rotateHandler} />
-						<Footer />
+				<div className={styles.smartphoneContainer}>
+					<div
+						className={
+							isRotated
+								? `${styles.smartphone} ${styles.smartphoneRotated} ${sourceSansPro.className}`
+								: `${styles.smartphone}  ${sourceSansPro.className}`
+						}
+					>
+						<div className={styles.content}>
+							<Notification />
+							<Component {...pageProps} rotateHandler={rotateHandler} />
+							<Footer />
+						</div>
 					</div>
+					<div className={styles.loudspeaker}></div>
 					<Link href="/" className={styles.homeBtn}></Link>
 				</div>
 			</NotificationContextProvider>

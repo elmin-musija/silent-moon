@@ -1,3 +1,9 @@
+.smartphoneContainer {
+	width: 446px;
+	height: 930px;
+	position: relative;
+}
+
 .smartphone {
 	position: relative;
 	width: 446px;
@@ -8,6 +14,7 @@
 	border-radius: 36px;
 	transform: rotate(0deg);
 	transition: transform 1s;
+	overflow: hidden;
 }
 
 .smartphoneRotated {
@@ -23,13 +30,12 @@
 }
 
 /* Speaker */
-.smartphone:before {
-	content: "";
+.loudspeaker {
 	display: block;
 	width: 60px;
 	height: 5px;
 	position: absolute;
-	top: -30px;
+	top: 30px;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	background: #333;
@@ -40,7 +46,7 @@
 .homeBtn {
 	position: absolute;
 	left: 50%;
-	bottom: -65px;
+	bottom: -5px;
 
 	width: 35px;
 	height: 35px;
