@@ -5,14 +5,32 @@ import clsx from "classnames";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 import styles from "./yogaId.module.css";
 
 const YogaDetails = ({ yogaId }) => {
+	const { data: session, status } = useSession();
 	const router = useRouter();
 	const [videoFullscreen, setVideoFullscreen] = useState(false);
 
 	const videoFullscreenHandler = () => {
 		setVideoFullscreen(!videoFullscreen);
+	};
+
+	const onLikeButtonClickHandler = async () => {
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				name: session.user.name,
+				email: session.user.email,
+				yogaId: yogaId._id,
+			}),
+		};
+		const result = await fetch("/api/yoga/exercise", options);
+		const response = await result.json();
 	};
 
 	{
@@ -40,7 +58,7 @@ const YogaDetails = ({ yogaId }) => {
 							alt="back"
 						/>
 					</button>
-					<button className={styles.likeBtn}>
+					<button className={styles.likeBtn} onClick={onLikeButtonClickHandler}>
 						<Image src="/img/like_btn.svg" width="55" height="55" alt="heart" />
 					</button>
 				</div>
