@@ -1,5 +1,5 @@
+import React, { useEffect, useRef, useState } from "react";
 import Title from "@/components/title/title";
-import React from "react";
 import { getServerSession } from "next-auth/next";
 import { NextAuthOptions } from "../api/auth/[...nextauth]";
 import { UserService } from "@/src/services/use-cases/index";
@@ -9,12 +9,74 @@ import Image from "next/image";
 import styles from "./profile.module.css";
 
 const ProfilePage = ({ allYogaFavorites }) => {
+	const inputFieldSearchRef = useRef(null);
+	const [filteredYogaFavorites, setFilteredYogaFavorites] =
+		useState(allYogaFavorites);
+	const [inputSearchString, setInputSearchString] = useState("");
+	const [inputSearchUsed, setInputSearchUsed] = useState(false);
+
+	const onInputSearchYogaHandler = (event) => {
+		event.preventDefault();
+		setInputSearchString(inputFieldSearchRef.current.value);
+		if (inputSearchString === "") {
+			setInputSearchUsed(false);
+		}
+	};
+
+	useEffect(() => {
+		setInputSearchUsed(true);
+		const filteredYogaFavorites = allYogaFavorites.filter((element) =>
+			element.title.toLowerCase().includes(inputSearchString.toLowerCase())
+		);
+		setFilteredYogaFavorites(filteredYogaFavorites);
+		if (inputSearchString.trim() === "") {
+			setInputSearchUsed(false);
+		}
+	}, [inputSearchString]);
+
+	const displayMessageFavoriteYoga = () => {
+		if (allYogaFavorites.length === 0) {
+			return (
+				<div>
+					<p>You don't have any favorite yoga sessions yet.</p>
+					<p>
+						Find your next favorite yoga session{" "}
+						<Link className={styles.linkYogaPage} href={"/yoga"}>
+							here.
+						</Link>{" "}
+					</p>
+				</div>
+			);
+		} else {
+			if (inputSearchUsed === true && filteredYogaFavorites.length === 0) {
+				return <p>No search results found {inputSearchUsed}</p>;
+			}
+		}
+	};
+
 	return (
 		<div className={styles.profilePage}>
 			<Title />
+
+			{/** Search bar */}
+			<div className={styles.searchbar}>
+				<form onChange={onInputSearchYogaHandler}>
+					<input
+						type="text"
+						name="input-yoga-search"
+						id="input-yoga-search"
+						ref={inputFieldSearchRef}
+						placeholder="Search for your favorites sessions or meditations"
+					/>
+				</form>
+				<div className={styles.searchIconContainer}>
+					<Image src="/img/search.svg" width="15" height="15" alt="search" />
+				</div>
+			</div>
+
 			<h2>Favourite Yoga Session</h2>
 			<div className={styles.slider}>
-				{allYogaFavorites?.map((element) => (
+				{filteredYogaFavorites?.map((element) => (
 					<Link
 						key={element._id}
 						href={`/yoga/${element._id}`}
@@ -42,6 +104,7 @@ const ProfilePage = ({ allYogaFavorites }) => {
 						</div>
 					</Link>
 				))}
+				{displayMessageFavoriteYoga()}
 			</div>
 			<h2>Favourite Meditations</h2>
 			{/* <div className={styles.slider}>

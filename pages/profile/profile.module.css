@@ -5,6 +5,41 @@
 	margin-bottom: 2rem;
 }
 
+.searchbar {
+	margin: 0 var(--phonePadding);
+	background-color: rgba(161, 164, 178, 0.2);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem 1rem 0.5rem 0.5rem;
+	border-radius: 1rem;
+	margin-bottom: 5rem;
+	border: 1px solid transparent;
+	transition: var(--transition);
+}
+
+.searchbar:focus-within {
+	border: 1px solid var(--primaryColor);
+	box-shadow: 0 0 2.5rem var(--boxShadow);
+}
+
+.searchbar form,
+.searchbar form input {
+	width: 100%;
+	background-color: transparent;
+}
+
+.searchbar form input {
+	border: none;
+	color: var(--primaryText);
+	padding: 0.5rem;
+	font-size: 1.4rem;
+}
+
+.searchbar form input:focus {
+	outline: none;
+}
+
 .slider {
 	display: flex;
 	gap: 2.5rem;
@@ -57,4 +92,9 @@
 
 .itemSubInfo p:first-of-type {
 	text-transform: uppercase;
+}
+
+.linkYogaPage {
+	color: var(--primaryColor);
+	font-weight: 900;
 }
