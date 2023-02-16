@@ -1,5 +1,9 @@
+.welcome {
+	position: relative;
+}
+
 .welcome img {
-	margin: -1.5rem 0 2.5rem;
+	object-fit: cover;
 }
 
 .welcome h1 {
@@ -13,16 +17,24 @@
 
 .welcome h2 {
 	position: absolute;
-	top: 10rem;
-	left: 3rem;
-	font-size: 3.6rem;
+	top: 8rem;
+	left: 2rem;
+	width: 17rem;
+	font-size: 3rem;
 	font-weight: 900;
-	line-height: 120%;
 	letter-spacing: 0.07em;
-	width: 21rem;
 	color: var(--quarternaryText);
 }
 
-.welcome > div {
-	padding: 0 var(--phonePadding);
+.continue {
+	position: absolute;
+	bottom: 3rem;
+	left: 0;
+	right: 0;
+	margin: 0 var(--phonePadding);
+	color: var(--quarternaryText);
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 0.05em;
 }

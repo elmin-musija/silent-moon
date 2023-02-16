@@ -1,27 +1,27 @@
 import React from "react";
 import Image from "next/image";
-import LargeBtn from "@/components/largeBtn/largeBtn";
-import styles from "./welcome.module.css";
+import Link from "next/link";
 import { getServerSession } from "next-auth/next";
 import { NextAuthOptions } from "../api/auth/[...nextauth]";
 import Title from "@/components/title/title";
+import styles from "./welcome.module.css";
 
 const WelcomePage = ({ name, image, email }) => {
 	const firstName = name.split(" ")[0];
 	return (
-		<div className={styles.welcome}>
-			<Title />
-			<h2>Hi {firstName}, welcome to Silent Moon</h2>
-			<Image
-				src={"/img/welcome.png"}
-				width="415"
-				height="699"
-				alt="woman does yoga"
-			/>
-			<div>
-				<LargeBtn url="/reminders">Get Started</LargeBtn>
+		<Link href="/reminders">
+			<div className={styles.welcome}>
+				<Title />
+				<h2>Welcome {firstName}, namastè.</h2>
+				<Image
+					src={"/img/welcome.jpg"}
+					width="414"
+					height="810"
+					alt="woman does yoga"
+				/>
+				<p className={styles.continue}>Tap to continue</p>
 			</div>
-		</div>
+		</Link>
 	);
 };
 
