@@ -6,10 +6,13 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { useContext } from "react";
+import NotificationContext from "@/context/context";
 import styles from "./yogaId.module.css";
 
 const YogaDetails = ({ yogaId }) => {
 	const { data: session, status } = useSession();
+	const { displayNotification } = useContext(NotificationContext);
 	const router = useRouter();
 	const [videoFullscreen, setVideoFullscreen] = useState(false);
 	const [yogaIsFavorite, setYogaIsFavorite] = useState(false);
@@ -32,7 +35,20 @@ const YogaDetails = ({ yogaId }) => {
 		};
 		const result = await fetch("/api/yoga/exercise", options);
 		const response = await result.json();
-		setYogaIsFavorite(response.data.isFavorite);
+		if (response.status === "success") {
+			if (response.data.isFavorite) {
+				displayNotification({
+					type: "success",
+					message: "Exercise successfully added to favorites",
+				});
+			} else {
+				displayNotification({
+					type: "success",
+					message: "Exercise successfully removed from favorites",
+				});
+			}
+			setYogaIsFavorite(response.data.isFavorite);
+		}
 	};
 
 	useEffect(() => {
