@@ -98,7 +98,8 @@ const ProfilePage = ({ allYogaFavorites }) => {
 							<div className={styles.itemSubInfo}>
 								<p key={uid()}>{element.level}</p>
 								<p key={uid()}>
-									{element.duration.minutes}:{element.duration.seconds} min
+									{element.duration.minutes}:
+									{String(element.duration.seconds).padStart(2, "0")} min
 								</p>
 							</div>
 						</div>
