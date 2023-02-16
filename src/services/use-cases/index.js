@@ -5,6 +5,7 @@ import { listSingleYogaExercise } from "@/src/services/use-cases/listSingleYogaE
 
 import { addYogaExerciseToFavorites } from "@/src/services/use-cases/addYogaExerciseToFavorites";
 import { listAllFavoriteYogaExercises } from "@/src/services/use-cases/listAllFavoriteYogaExercises";
+import { listSingleFavoriteYogaExercise } from "@/src/services/use-cases/listSingleYogaFavoriteExercise";
 
 const YogaService = {
 	insertYogaExercise,
@@ -16,6 +17,7 @@ const YogaService = {
 const UserService = {
 	addYogaExerciseToFavorites,
 	listAllFavoriteYogaExercises,
+	listSingleFavoriteYogaExercise,
 };
 
 module.exports = {
