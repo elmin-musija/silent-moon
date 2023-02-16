@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { uid } from "uid";
 import { YogaService } from "@/src/services/use-cases/index";
 import clsx from "classnames";
@@ -12,6 +12,7 @@ const YogaDetails = ({ yogaId }) => {
 	const { data: session, status } = useSession();
 	const router = useRouter();
 	const [videoFullscreen, setVideoFullscreen] = useState(false);
+	const [yogaIsFavorite, setYogaIsFavorite] = useState(false);
 
 	const videoFullscreenHandler = () => {
 		setVideoFullscreen(!videoFullscreen);
@@ -31,7 +32,27 @@ const YogaDetails = ({ yogaId }) => {
 		};
 		const result = await fetch("/api/yoga/exercise", options);
 		const response = await result.json();
+		setYogaIsFavorite(response.data.isFavorite);
 	};
+
+	useEffect(() => {
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				yogaId: yogaId._id,
+			}),
+		};
+		fetch("/api/yoga/singlefavorite", options)
+			.then((res) => res.json())
+			.then((result) => {
+				if (result.status === "success") {
+					setYogaIsFavorite(result.data.isFavorite);
+				}
+			});
+	}, []);
 
 	{
 		/** extract video Id from video link and format to embed  */
@@ -59,7 +80,22 @@ const YogaDetails = ({ yogaId }) => {
 						/>
 					</button>
 					<button className={styles.likeBtn} onClick={onLikeButtonClickHandler}>
-						<Image src="/img/like_btn.svg" width="55" height="55" alt="heart" />
+						{!yogaIsFavorite && (
+							<Image
+								src="/img/like_btn.svg"
+								width="55"
+								height="55"
+								alt="heart"
+							/>
+						)}
+						{yogaIsFavorite && (
+							<Image
+								src="/img/like_btn_filled.svg"
+								width="55"
+								height="55"
+								alt="heart"
+							/>
+						)}
 					</button>
 				</div>
 				<iframe src={videoUrl} title={yogaId.title} frameBorder="0"></iframe>

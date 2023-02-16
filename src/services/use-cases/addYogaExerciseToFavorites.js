@@ -15,6 +15,7 @@ const addYogaExerciseToFavorites = async ({ name, email, yogaId }) => {
 			/** add yoga exercise to user favorites */
 			userExists[0].yoga.push(yogaId);
 			userExists[0].save();
+			return true;
 		} else {
 			/** remove yoga exercise from user favorites */
 			const filteredYoga = yogaObjectId.filter(
@@ -22,6 +23,7 @@ const addYogaExerciseToFavorites = async ({ name, email, yogaId }) => {
 			);
 			userExists[0].yoga = filteredYoga;
 			userExists[0].save();
+			return false;
 		}
 	} else {
 		/** user does not exist */
@@ -33,6 +35,7 @@ const addYogaExerciseToFavorites = async ({ name, email, yogaId }) => {
 			email: email,
 			yoga: yogaId,
 		});
+		return true;
 	}
 };
 

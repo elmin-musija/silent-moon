@@ -5,7 +5,7 @@ const listAllFavoriteYogaExercises = async ({ email }) => {
 	await connectToDatabase();
 	const result = await User.find({ email: email }).populate("yoga").exec();
 	if (result.length !== 0) {
-		/** user does not exist */
+		/** user does exist */
 		const { yoga } = result[0];
 		const allFavoriteYogaExercises = yoga.map((element) => ({
 			_id: element._id.toString(),
