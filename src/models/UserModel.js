@@ -7,10 +7,8 @@ const userSchema = new mongoose.Schema({
 		lastname: { type: String, required: true },
 	},
 	email: { type: String },
-	favorites: {
-		yoga: [{ type: mongoose.Types.ObjectId, ref: "Yoga" }],
-		meditation: [{ type: mongoose.Types.ObjectId, ref: "Mediation" }],
-	},
+	yoga: [{ type: mongoose.Types.ObjectId, ref: "Yoga" }],
+	meditation: [{ type: mongoose.Types.ObjectId, ref: "Mediation" }],
 });
 
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);
