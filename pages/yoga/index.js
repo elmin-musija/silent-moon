@@ -84,7 +84,7 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 			{session && session.user.provider === "spotify" && <MiniPlayer />}
 
 			{/** Yoga */}
-			<div className={styles.yogaGallery}>
+			<div className={styles.gallery}>
 				{filteredYogaPrograms?.map((element) => (
 					<Link key={element._id} href={`/yoga/${element._id}`}>
 						<Image

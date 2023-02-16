@@ -91,21 +91,21 @@
 	outline: none;
 }
 
-.yogaGallery {
+.gallery {
 	padding: 0 var(--phonePadding);
 	column-count: 2;
 	gap: var(--gapGrid);
 	margin-bottom: 3rem;
 }
 
-.yogaGallery a {
+.gallery a {
 	position: relative;
 	display: inline-block;
 	margin-bottom: var(--gapGrid);
 	border-radius: 1rem;
 }
 
-.yogaGallery h3 {
+.gallery h3 {
 	position: absolute;
 	bottom: 0rem;
 	left: 0rem;
@@ -117,7 +117,7 @@
 	border-bottom-right-radius: 1rem;
 }
 
-.yogaGallery img {
+.gallery img {
 	width: calc((414px - 2 * var(--phonePadding) - var(--gapGrid)) / 2);
 	height: auto;
 	display: block;
