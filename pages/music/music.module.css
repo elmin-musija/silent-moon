@@ -86,6 +86,12 @@
 	margin: 3rem 0 7rem;
 }
 
+.albumCover {
+	margin: 0 auto 3rem;
+	display: block;
+	border-radius: 1rem;
+}
+
 .musicPage h2 {
 	font-weight: 900;
 	font-size: 3.6rem;
