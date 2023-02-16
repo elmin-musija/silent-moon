@@ -90,6 +90,17 @@
 	margin: 0 auto 3rem;
 	display: block;
 	border-radius: 1rem;
+	transition: var(--transition);
+}
+
+.albumCover:hover {
+	border-radius: 2rem;
+}
+
+.linkToPlaylist {
+	display: block;
+	margin: 0 auto 1.5rem;
+	width: max-content;
 }
 
 .musicPage h2 {
@@ -97,7 +108,13 @@
 	font-size: 3.6rem;
 	text-align: center;
 	letter-spacing: 0.06em;
-	margin-bottom: 1.5rem;
+	width: fit-content;
+
+	transition: var(--transition);
+}
+
+.musicPage h2:hover {
+	color: var(--primaryColor);
 }
 
 .musicPage > p:first-of-type {
