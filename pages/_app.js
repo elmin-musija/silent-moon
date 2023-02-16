@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Source_Sans_Pro } from "@next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { NotificationContextProvider } from "@/context/context";
+import Head from "next/head";
 import Notification from "../components/notification/notification";
 import "@/styles/globals.css";
 import styles from "./app.module.css";
@@ -35,6 +36,18 @@ export default function App({
 						}
 					>
 						<div className={styles.content}>
+							<Head>
+								<title>Silent Moon</title>
+								<meta
+									name="description"
+									content="Silent Moon is meditation and yoga app to calm you down"
+								/>
+								<meta
+									name="viewport"
+									content="width=device-width, initial-scale=1"
+								/>
+								<link rel="icon" href="/img/favicon.png" />
+							</Head>
 							<Notification />
 							<Component {...pageProps} rotateHandler={rotateHandler} />
 							<Footer />
