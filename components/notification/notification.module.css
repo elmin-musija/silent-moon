@@ -9,27 +9,29 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* color: var(--darkBlue); */
 	cursor: pointer;
 }
 
 .success {
-	background-color: var(--secondaryColor);
+	background-color: rgba(61, 255, 47, 0.4);
 }
 
 .warning {
-	background-color: var(--tertiaryText);
+	background-color: rgba(255, 231, 47, 0.4);
 }
 
 .error {
-	background-color: var(--primaryColor);
+	background-color: rgba(255, 47, 47, 0.4);
 }
 
 .success .notificationText,
 .error .notificationText {
-	color: var(--tertiaryText);
+	font-weight: 600;
+	letter-spacing: 0.05em;
 }
 
 .warning .notificationText {
-	color: var(--tertiaryText);
+	color: white;
+	font-weight: 600;
+	letter-spacing: 0.05em;
 }

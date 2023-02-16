@@ -30,10 +30,10 @@ const Notification = (props) => {
 		<AnimatePresence initial={false}>
 			{getShowNotification() && (
 				<motion.div
-					initial={{ y: "-100px", opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
-					transition={{ duration: 1, type: "spring" }}
+					initial={{ y: "100%" }}
+					animate={{ y: 0 }}
+					exit={{ y: "100%" }}
+					transition={{ duration: 0.45, type: "spring" }}
 					className={notificationClass}
 					onClick={onClickHandler}
 				>
