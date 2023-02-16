@@ -1,0 +1,38 @@
+.miniPlayer {
+	position: relative;
+	height: 9.5rem;
+	margin: 0 var(--phonePadding) 5rem;
+	background-color: var(--tertiaryText);
+	background-image: url("/img/mini-player-bg.svg");
+	border-radius: 1rem;
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.title {
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	margin-bottom: 0.6rem;
+}
+
+.subtitle {
+	color: #858f72;
+	letter-spacing: 0.05em;
+}
+
+.playBtnContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--primaryText);
+	padding: 2rem;
+	border-radius: 4rem;
+	cursor: pointer;
+	transition: var(--transition);
+}
+
+.playBtnContainer:hover {
+	background-color: var(--primaryColor);
+}

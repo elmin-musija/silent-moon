@@ -4,9 +4,13 @@ import { uid } from "uid";
 import Image from "next/image";
 import Link from "next/link";
 import { YogaService } from "@/src/services/use-cases/index";
+import MiniPlayer from "@/components/mini-player/miniPlayer";
 import styles from "./yoga.module.css";
+import { useSession } from "next-auth/react";
 
 const YogaPage = ({ yogaPrograms, yogaCategories }) => {
+	const { data: session, status } = useSession();
+
 	const inputFieldSearchRef = useRef(null);
 	const [filteredYogaPrograms, setFilteredYogaPrograms] =
 		useState(yogaPrograms);
@@ -77,6 +81,7 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 			</div>
 
 			{/** Music player */}
+			{session && session.user.provider === "spotify" && <MiniPlayer />}
 
 			{/** Yoga */}
 			<div className={styles.yogaGallery}>
