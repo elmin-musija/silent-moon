@@ -7,6 +7,13 @@ import { addYogaExerciseToFavorites } from "@/src/services/use-cases/addYogaExer
 import { listAllFavoriteYogaExercises } from "@/src/services/use-cases/listAllFavoriteYogaExercises";
 import { listSingleFavoriteYogaExercise } from "@/src/services/use-cases/listSingleYogaFavoriteExercise";
 
+import { listAllMeditationCourses } from "@/src/services/use-cases/listAllMeditationCourses";
+import { listMeditationCourseById } from "@/src/services/use-cases/listMeditationCourseById";
+import { listAllMeditations } from "@/src/services/use-cases/listAllMeditations";
+import { listSingleMeditationById } from "@/src/services/use-cases/listSingleMeditationById";
+import { createMeditations } from "@/src/services/use-cases/createMeditations";
+import { createMeditationCourses } from "@/src/services/use-cases/createMeditationCourses";
+
 const YogaService = {
 	insertYogaExercise,
 	listAllYogaExercises,
@@ -20,7 +27,25 @@ const UserService = {
 	listSingleFavoriteYogaExercise,
 };
 
+const MeditationService = {
+	/** list all meditation courses */
+	listAllMeditationCourses,
+	/** list meditation course by a given ID */
+	listMeditationCourseById,
+	/** list all meditations */
+	listAllMeditations,
+	/** list single meditation by a given ID*/
+	listSingleMeditationById,
+
+	/**
+	 * helper service to create meditations
+	 * and meditation courses */
+	createMeditations,
+	createMeditationCourses,
+};
+
 module.exports = {
 	YogaService,
 	UserService,
+	MeditationService,
 };
