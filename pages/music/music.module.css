@@ -73,7 +73,8 @@
 	}
 }
 
-.musicPage {
+.musicPage main {
+	padding: 0 var(--phonePadding);
 }
 
 .musicPage h1 {
@@ -88,7 +89,7 @@
 .albumCover {
 	margin: 0 auto 3rem;
 	display: block;
-	border-radius: 1rem;
+	border-radius: 1.5rem;
 	transition: var(--transition);
 }
 
