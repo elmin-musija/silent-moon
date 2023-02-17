@@ -76,6 +76,10 @@ const ProfilePage = ({ allYogaFavorites }) => {
 		}
 	};
 
+	const focusHandler = () => {
+		inputFieldSearchRef.current.focus();
+	};
+
 	return (
 		<div className={styles.profilePage}>
 			<header>
@@ -93,14 +97,14 @@ const ProfilePage = ({ allYogaFavorites }) => {
 				</div>
 
 				{/** Search bar */}
-				<div className={styles.searchbar}>
+				<div className={styles.searchbar} onClick={focusHandler}>
 					<form onChange={onInputSearchYogaHandler}>
 						<input
 							type="text"
 							name="input-yoga-search"
 							id="input-yoga-search"
 							ref={inputFieldSearchRef}
-							placeholder="Search for your favorites sessions or meditations"
+							placeholder="Find your favourite sessions"
 						/>
 					</form>
 					<div className={styles.searchIconContainer}>
