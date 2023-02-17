@@ -53,7 +53,7 @@
 	}
 
 	100% {
-		transform: scaleX(1.8) scaleY(1.8);
+		transform: scaleX(1.6) scaleY(1.6);
 		opacity: 0;
 	}
 }
