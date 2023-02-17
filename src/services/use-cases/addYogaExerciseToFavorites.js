@@ -1,28 +1,28 @@
 import User from "@/src/models/UserModel";
 
 const addYogaExerciseToFavorites = async ({ name, email, yogaId }) => {
-	const userExists = await User.find({ email: email }).exec();
+	const userExists = await User.findOne({ email: email }).exec();
 
-	if (userExists.length !== 0) {
+	if (userExists) {
 		/** User exists */
-		const [yogaObjectId] = userExists.map((user) => user.yoga);
 
-		const yoga = yogaObjectId.filter(
-			(objectId) => objectId.toString() === yogaId
+		/** check if given id is already in user favorites */
+		const isFavorite = userExists.yoga.find(
+			(element) => element.toString() === yogaId
 		);
 
-		if (yoga.length !== 1) {
+		if (!isFavorite) {
 			/** add yoga exercise to user favorites */
-			userExists[0].yoga.push(yogaId);
-			userExists[0].save();
+			userExists.yoga.push(yogaId);
+			userExists.save();
 			return true;
 		} else {
 			/** remove yoga exercise from user favorites */
-			const filteredYoga = yogaObjectId.filter(
-				(objectId) => objectId.toString() !== yogaId
+			const filteredYoga = userExists.yoga.filter(
+				(element) => element.toString() !== yogaId
 			);
-			userExists[0].yoga = filteredYoga;
-			userExists[0].save();
+			userExists.yoga = filteredYoga;
+			userExists.save();
 			return false;
 		}
 	} else {
@@ -33,7 +33,7 @@ const addYogaExerciseToFavorites = async ({ name, email, yogaId }) => {
 				lastname: name.split(" ")[1],
 			},
 			email: email,
-			yoga: yogaId,
+			yoga: [yogaId],
 		});
 		return true;
 	}
