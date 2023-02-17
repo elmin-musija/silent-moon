@@ -30,116 +30,128 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 	if (session.user.provider !== "spotify") {
 		return (
 			<div className={styles.spotifyLoginPage}>
-				<Title />
-				<h2>Spotify Login</h2>
-				<p>This function requires you to be logged in with Spotify</p>
-				<div className={styles.imageContainer}>
-					<Image
-						src="/img/buddha.png"
-						width="100"
-						height="100"
-						alt="buddha"
-					></Image>
-					<Image
-						src="/img/right-arrow.svg"
-						width="40"
-						height="40"
-						alt="right arrow"
-					></Image>
-					<div
-						onClick={spotifySigninHandler}
-						className={styles.spotifyLogoContainer}
-					>
+				<header>
+					<Title />
+				</header>
+				<main>
+					<h2>Spotify Login</h2>
+					<p>This function requires you to be logged in with Spotify</p>
+					<div className={styles.imageContainer}>
 						<Image
-							className={styles.providerLogo}
-							onClick={spotifySigninHandler}
-							src="/img/spotify.svg"
-							width="70"
-							height="70"
-							alt="spotify logo"
+							src="/img/buddha.png"
+							width="100"
+							height="100"
+							alt="buddha"
 						></Image>
-						<p className={styles.namaste}>Namastè</p>
+						<Image
+							src="/img/right-arrow.svg"
+							width="40"
+							height="40"
+							alt="right arrow"
+						></Image>
+						<div
+							onClick={spotifySigninHandler}
+							className={styles.spotifyLogoContainer}
+						>
+							<Image
+								className={styles.providerLogo}
+								onClick={spotifySigninHandler}
+								src="/img/spotify.svg"
+								width="70"
+								height="70"
+								alt="spotify logo"
+							></Image>
+							<p className={styles.namaste}>Namastè</p>
+						</div>
 					</div>
-				</div>
+				</main>
 			</div>
 		);
 	}
 
 	return (
 		<div className={styles.musicPage}>
-			<Title />
-			<Link
-				href={`/player/q?type=${playlistInfo.type}&offset=0&id=${playlistInfo.id}`}
-				className={styles.linkToPlaylist}
-			>
-				<Image
-					src={playlistInfo.images[0].url}
-					width="160"
-					height="160"
-					alt="album cover"
-					className={styles.albumCover}
-				/>
-			</Link>
-			<Link
-				href={`/player/q?type=${playlistInfo.type}&offset=0&id=${playlistInfo.id}`}
-				className={styles.linkToPlaylist}
-			>
-				<h2>{playlistInfo.name}</h2>
-			</Link>
-			<p key={uid()}>Playlist</p>
-			<p key={uid()}>{playlistInfo.description}</p>
-			<div className={styles.statisticsContainer}>
-				<div key={uid()}>
+			<header>
+				<Title />
+			</header>
+			<main>
+				<Link
+					href={`/player/q?type=${playlistInfo.type}&offset=0&id=${playlistInfo.id}`}
+					className={styles.linkToPlaylist}
+				>
 					<Image
-						src="/img/red-heart.svg"
-						width="18"
-						height="16"
-						alt="heart icon"
-					></Image>
-					<p>24.234 Favourites</p>
-				</div>
-				<div key={uid()}>
-					<Image
-						src="/img/headphones.svg"
-						width="20"
-						height="16"
-						alt="headphones icon"
-					></Image>
-					<p>34.972 Listening</p>
-				</div>
-			</div>
-			{items.map((element, index) => (
-				<div key={uid()} className={styles.trackContainer}>
-					<Link
-						key={uid()}
-						href={`/player/q?type=${playlistInfo.type}&offset=${index}&id=${playlistInfo.id}`}
-					>
+						src={playlistInfo.images[0].url}
+						width="160"
+						height="160"
+						alt="album cover"
+						className={styles.albumCover}
+					/>
+				</Link>
+				<Link
+					href={`/player/q?type=${playlistInfo.type}&offset=0&id=${playlistInfo.id}`}
+					className={styles.linkToPlaylist}
+				>
+					<h2>{playlistInfo.name}</h2>
+				</Link>
+				<p key={uid()} className={styles.playlistText}>
+					Playlist
+				</p>
+				<p key={uid()} className={styles.playlistDescription}>
+					{playlistInfo.description}
+				</p>
+				<div className={styles.statisticsContainer}>
+					<div key={uid()}>
 						<Image
-							src="/img/play_button.svg"
-							width="40"
-							height="40"
-							alt="play icon"
-							className={styles.playBtn}
+							src="/img/red-heart.svg"
+							width="18"
+							height="16"
+							alt="heart icon"
 						></Image>
-					</Link>
-					<div className={styles.trackInfoContainer}>
-						<div key={uid()} className={styles.trackNameDurationContainer}>
-							<Link
-								key={uid()}
-								href={`/player/q?type=${playlistInfo.type}&offset=${index}&id=${playlistInfo.id}`}
-							>
-								{element.track.name}
-							</Link>
-							<p>{convertDurationTimeFormat(element.track.duration_ms)}</p>
-						</div>
-						<div key={uid()} className={styles.artistContainer}>
-							{element.track.artists.map((artist) => (
-								<p key={uid()}>{artist.name}</p>
-							))}
-						</div>
+						<p>24.234 Favourites</p>
+					</div>
+					<div key={uid()}>
+						<Image
+							src="/img/headphones.svg"
+							width="20"
+							height="16"
+							alt="headphones icon"
+						></Image>
+						<p>34.972 Listening</p>
 					</div>
 				</div>
-			))}
+				{items.map((element, index) => (
+					<div key={uid()} className={styles.trackContainer}>
+						<Link
+							key={uid()}
+							href={`/player/q?type=${playlistInfo.type}&offset=${index}&id=${playlistInfo.id}`}
+						>
+							<Image
+								src="/img/play_button.svg"
+								width="40"
+								height="40"
+								alt="play icon"
+								className={styles.playBtn}
+							></Image>
+						</Link>
+						<div className={styles.trackInfoContainer}>
+							<div key={uid()} className={styles.trackNameDurationContainer}>
+								<Link
+									key={uid()}
+									href={`/player/q?type=${playlistInfo.type}&offset=${index}&id=${playlistInfo.id}`}
+								>
+									{element.track.name}
+								</Link>
+								<p>{convertDurationTimeFormat(element.track.duration_ms)}</p>
+							</div>
+							<div key={uid()} className={styles.artistContainer}>
+								{element.track.artists.map((artist) => (
+									<p key={uid()}>{artist.name}</p>
+								))}
+							</div>
+						</div>
+					</div>
+				))}
+			</main>
 		</div>
 	);
 };
