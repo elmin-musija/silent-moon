@@ -21,7 +21,6 @@
 }
 
 .imgContainer {
-	/* padding: 1rem; */
 	width: 4.4rem;
 	height: 4.4rem;
 	display: flex;
@@ -35,7 +34,6 @@
 }
 
 .footer p {
-	font-weight: 600;
 	letter-spacing: 0.05em;
 	text-align: center;
 	color: var(--secondaryText);
