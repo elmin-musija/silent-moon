@@ -9,6 +9,7 @@ import { uid } from "uid";
 import Link from "next/link";
 import Image from "next/image";
 import Title from "@/components/title/title";
+import { convertDurationTimeFormat } from "@/src/services/utils/convert/convert";
 import styles from "./profile.module.css";
 
 const ProfilePage = ({ allYogaFavorites }) => {
@@ -124,8 +125,8 @@ const ProfilePage = ({ allYogaFavorites }) => {
 							<div className={styles.imgageContainer} key={uid()}>
 								<Image
 									src={element.imageUrl}
-									width={150}
-									height={150}
+									width={155}
+									height={155}
 									alt={element.title}
 									key={element._id}
 									priority
@@ -136,8 +137,11 @@ const ProfilePage = ({ allYogaFavorites }) => {
 								<div className={styles.itemSubInfo}>
 									<p key={uid()}>{element.level}</p>
 									<p key={uid()}>
-										{element.duration.minutes}:
-										{String(element.duration.seconds).padStart(2, "0")} min
+										{convertDurationTimeFormat(
+											(Number(element.duration.minutes) * 60 +
+												Number(element.duration.seconds)) *
+												1000
+										)}
 									</p>
 								</div>
 							</div>
@@ -157,8 +161,8 @@ const ProfilePage = ({ allYogaFavorites }) => {
 							<div className={styles.imgageContainer} key={uid()}>
 								<Image
 									src={element.imageUrl}
-									width={150}
-									height={150}
+									width={155}
+									height={155}
 									alt={element.title}
 									key={element._id}
 									priority
