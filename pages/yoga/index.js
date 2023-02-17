@@ -43,6 +43,10 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 		setFilteredYogaPrograms(filteredYogaPrograms);
 	}, [categoryFilter]);
 
+	const focusHandler = () => {
+		inputFieldSearchRef.current.focus();
+	};
+
 	return (
 		<div className={styles.yogaPage}>
 			<Title />
@@ -65,7 +69,7 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 			</div>
 
 			{/** Search bar */}
-			<div className={styles.searchbar}>
+			<div className={styles.searchbar} onClick={focusHandler}>
 				<form onChange={onInputSearchYogaHandler}>
 					<input
 						type="text"
