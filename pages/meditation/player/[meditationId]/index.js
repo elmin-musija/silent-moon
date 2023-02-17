@@ -14,7 +14,6 @@ export default MeditationPlayerPage;
 export async function getStaticPaths() {
 	const allMeditations = await MeditationService.listAllMeditations();
 
-	console.log({ allMeditations });
 	const path = allMeditations.map((element) => ({
 		params: { meditationId: element._id },
 	}));
@@ -22,7 +21,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-	console.log({ player: context.meditationPlayerId });
 	const { meditationId } = context.params;
 	const meditation = await MeditationService.listSingleMeditationById({
 		meditationId: meditationId,

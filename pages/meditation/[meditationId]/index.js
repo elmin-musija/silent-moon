@@ -65,7 +65,7 @@ const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
 				<h3>Playlist</h3>
 				{meditationsById.map((element) => (
 					<div key={uid()} className={styles.trackContainer}>
-						<Link key={uid()} href={`/player/${element.videoUrl}`}>
+						<Link key={uid()} href={`/player/${element._id}`}>
 							<Image
 								src="/img/play_button.svg"
 								width="40"
