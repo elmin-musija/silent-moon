@@ -16,12 +16,16 @@ const YogaDetails = ({ yogaId }) => {
 	const router = useRouter();
 	const [videoFullscreen, setVideoFullscreen] = useState(false);
 	const [yogaIsFavorite, setYogaIsFavorite] = useState(false);
+	const [animation, setAnimation] = useState(0);
 
 	const videoFullscreenHandler = () => {
 		setVideoFullscreen(!videoFullscreen);
 	};
 
 	const onLikeButtonClickHandler = async () => {
+		// Change animation state
+		setAnimation(1);
+
 		const options = {
 			method: "POST",
 			headers: {
@@ -95,7 +99,12 @@ const YogaDetails = ({ yogaId }) => {
 							alt="back"
 						/>
 					</button>
-					<button className={styles.likeBtn} onClick={onLikeButtonClickHandler}>
+					<button
+						className={styles.likeBtn}
+						onClick={onLikeButtonClickHandler}
+						onAnimationEnd={() => setAnimation(0)}
+						animation={animation}
+					>
 						{!yogaIsFavorite && (
 							<Image
 								src="/img/like_btn.svg"
