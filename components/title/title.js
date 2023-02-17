@@ -23,7 +23,7 @@ const Title = () => {
 			<h1>silent moon</h1>
 			{router.pathname !== "/profile" && (
 				<Link href="/profile">
-					<Image src={image} width="30" height="30" alt="profile" />
+					<Image src={image} width="40" height="40" alt="profile" />
 				</Link>
 			)}
 		</div>
