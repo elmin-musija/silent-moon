@@ -1,14 +1,19 @@
 .welcome img {
-	margin: -1.5rem 0 2.5rem;
+	margin: -1rem 0 2rem;
 }
 
 .welcome h1 {
 	position: absolute;
-	top: 1.75rem;
+	top: 3rem;
 	left: 50%;
 	transform: translateX(-50%);
 	color: var(--quarternaryText);
-	margin: 0;
+
+	color: var(--quarternaryText);
+	letter-spacing: 0.2em;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: center;
 }
 
 .welcome h2 {
