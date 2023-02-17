@@ -64,8 +64,9 @@ const ProfilePage = ({ allYogaFavorites }) => {
 					<p>
 						Find your next favorite yoga session{" "}
 						<Link className={styles.linkYogaPage} href={"/yoga"}>
-							here.
-						</Link>{" "}
+							here
+						</Link>
+						.
 					</p>
 				</div>
 			);
