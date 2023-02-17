@@ -157,7 +157,7 @@ const Footer = () => {
 							alt="user icon"
 						/>
 					</div>
-					<p className={styles.activeText}>Name</p>
+					<p className={styles.activeText}>Profile</p>
 				</Link>
 			);
 		} else {
@@ -166,7 +166,7 @@ const Footer = () => {
 					<div className={styles.imgContainer}>
 						<Image src="/img/user.svg" width={24} height={24} alt="user icon" />
 					</div>
-					<p>Name</p>
+					<p>Profile</p>
 				</Link>
 			);
 		}
