@@ -2,25 +2,18 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { getServerSession } from "next-auth/next";
-import { NextAuthOptions } from "@/pages/api/auth/[...nextauth]";
 import { uid } from "uid";
-import {
-	getPlaylistTracks,
-	getPlaylistInfo,
-} from "@/src/services/utils/spotify/spotify";
 import { convertDurationTimeFormat } from "@/src/services/utils/convert/convert";
-import styles from "./meditationId.module.css";
 import Title from "@/components/title/title";
+import { MeditationService } from "@/src/services/use-cases/index";
+import styles from "./meditationId.module.css";
 
-const MeditationDetails = ({ playlistInfo, playlistTracks }) => {
-	const { items } = playlistTracks;
+const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
 	const router = useRouter();
 
 	return (
 		<div className={styles.mediationDetailsPage}>
 			<Title />
-
 			<div className={styles.btnContainer}>
 				<button onClick={() => router.back()} className={styles.backBtn}>
 					<Image
@@ -36,7 +29,7 @@ const MeditationDetails = ({ playlistInfo, playlistTracks }) => {
 			</div>
 
 			<Image
-				src={playlistInfo.images[0].url}
+				src={meditationCourseInfo.imageUrl}
 				width="414"
 				height="414"
 				alt="playlist thumbnail"
@@ -44,9 +37,9 @@ const MeditationDetails = ({ playlistInfo, playlistTracks }) => {
 			/>
 
 			<div key={uid()} className={styles.playlistInfo}>
-				<h2>{playlistInfo.name}</h2>
+				<h2>{meditationCourseInfo.title}</h2>
 				<p key={uid()}>Course</p>
-				<p key={uid()}>{playlistInfo.description}</p>
+				<p key={uid()}>{meditationCourseInfo.description}</p>
 				<div className={styles.statisticsContainer}>
 					<div key={uid()}>
 						<Image
@@ -55,7 +48,7 @@ const MeditationDetails = ({ playlistInfo, playlistTracks }) => {
 							height="16"
 							alt="heart icon"
 						></Image>
-						<p>{playlistInfo.followers.total} Follower</p>
+						{/* <p>{playlistInfo.followers.total} Follower</p> */}
 					</div>
 					<div key={uid()}>
 						<Image
@@ -64,15 +57,15 @@ const MeditationDetails = ({ playlistInfo, playlistTracks }) => {
 							height="16"
 							alt="headphones icon"
 						></Image>
-						<p>{(playlistInfo.followers.total % 500) * 33} Listening</p>
+						{/* <p>{(playlistInfo.followers.total % 500) * 33} Listening</p> */}
 					</div>
 				</div>
 			</div>
 			<div key={uid()} className={styles.playlist}>
 				<h3>Playlist</h3>
-				{items.map((element) => (
+				{meditationsById.map((element) => (
 					<div key={uid()} className={styles.trackContainer}>
-						<Link key={uid()} href={`/player/${element.track.id}`}>
+						<Link key={uid()} href={`/player/${element.videoUrl}`}>
 							<Image
 								src="/img/play_button.svg"
 								width="40"
@@ -83,15 +76,16 @@ const MeditationDetails = ({ playlistInfo, playlistTracks }) => {
 						</Link>
 						<div className={styles.trackInfoContainer}>
 							<div key={uid()} className={styles.trackNameDurationContainer}>
-								<Link key={uid()} href={`/player/${element.track.id}`}>
-									{element.track.name}
+								<Link key={uid()} href={`player/${element._id}`}>
+									{element.title}
 								</Link>
-								<p>{convertDurationTimeFormat(element.track.duration_ms)}</p>
-							</div>
-							<div key={uid()} className={styles.artistContainer}>
-								{element.track.artists.map((artist) => (
-									<p key={uid()}>{artist.name}</p>
-								))}
+								<p>
+									{convertDurationTimeFormat(
+										(Number(element.duration.minutes) * 60 +
+											Number(element.duration.seconds)) *
+											1000
+									)}
+								</p>
 							</div>
 						</div>
 					</div>
@@ -103,26 +97,26 @@ const MeditationDetails = ({ playlistInfo, playlistTracks }) => {
 
 export default MeditationDetails;
 
-export async function getServerSideProps(context) {
-	const session = await getServerSession(
-		context.req,
-		context.res,
-		NextAuthOptions
-	);
+export async function getStaticPaths() {
+	/** generate all paths for meditation courses */
+	const allMeditationCourses =
+		await MeditationService.listAllMeditationCourses();
+	const path = allMeditationCourses.map((element) => ({
+		params: { meditationId: element._id },
+	}));
+	return { paths: path, fallback: "blocking" };
+}
 
-	if (!session) {
-		return { redirect: { destination: "/", permanent: false } };
-	}
-
+export async function getStaticProps(context) {
+	/** get paths for individual meditation course */
 	const { meditationId } = context.params;
-	const playlistInfo = await getPlaylistInfo(
-		session.user.refresh_token,
-		meditationId
-	);
-	const playlistTracks = await getPlaylistTracks(
-		session.user.refresh_token,
-		meditationId
-	);
+	const { meditationCourseInfo, meditationsById } =
+		await MeditationService.listMeditationCourseById({
+			meditationCourseId: meditationId,
+		});
 
-	return { props: { playlistInfo, playlistTracks } };
+	return {
+		props: { meditationCourseInfo, meditationsById },
+		revalidate: 60 * 60 * 24,
+	};
 }
