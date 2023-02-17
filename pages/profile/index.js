@@ -18,7 +18,7 @@ const ProfilePage = ({ allYogaFavorites }) => {
 	const onInputSearchYogaHandler = (event) => {
 		event.preventDefault();
 		setInputSearchString(inputFieldSearchRef.current.value);
-		if (inputSearchString === "") {
+		if (inputSearchString.trim() === "") {
 			setInputSearchUsed(false);
 		}
 	};
@@ -49,7 +49,7 @@ const ProfilePage = ({ allYogaFavorites }) => {
 			);
 		} else {
 			if (inputSearchUsed === true && filteredYogaFavorites.length === 0) {
-				return <p>No search results found {inputSearchUsed}</p>;
+				return <p>No search results found</p>;
 			}
 		}
 	};
