@@ -6,35 +6,69 @@
 	object-fit: cover;
 }
 
-.welcome h1 {
+.welcome p {
 	position: absolute;
-	top: 1.75rem;
+	top: 3rem;
+	font-size: 2.4rem;
 	left: 50%;
 	transform: translateX(-50%);
 	color: var(--quarternaryText);
 	margin: 0;
+	font-weight: 700;
+	letter-spacing: 0.1em;
 }
 
-.welcome h2 {
-	position: absolute;
-	top: 8rem;
-	left: 2rem;
-	width: 17rem;
-	font-size: 3rem;
-	font-weight: 900;
-	letter-spacing: 0.07em;
-	color: var(--quarternaryText);
+.welcome p:nth-of-type(1) {
+	opacity: 0;
+	animation: textFadeInOut 2.5s;
+	animation-delay: 1s;
 }
 
-.continue {
-	position: absolute;
-	bottom: 3rem;
-	left: 0;
-	right: 0;
-	margin: 0 var(--phonePadding);
-	color: var(--quarternaryText);
-	text-align: center;
+.welcome p:nth-of-type(2) {
+	opacity: 0;
+	animation: textFadeInOut 2.5s;
+	animation-delay: 3s;
+}
+
+.welcome p:nth-of-type(3) {
+	opacity: 0;
+	animation: textFadeIn 7.5s;
+	animation-delay: 5s;
+	letter-spacing: 0.2em;
+	font-weight: 700;
 	text-transform: uppercase;
-	font-weight: 600;
-	letter-spacing: 0.05em;
+}
+
+@keyframes textFadeInOut {
+	0% {
+		opacity: 0;
+		transform: translate(-50%, 2rem);
+	}
+	30% {
+		opacity: 1;
+		transform: translate(-50%, 0rem);
+	}
+	70% {
+		opacity: 1;
+		transform: translate(-50%, 0rem);
+	}
+	100% {
+		opacity: 0;
+		transform: translate(-50%, -2rem);
+	}
+}
+
+@keyframes textFadeIn {
+	0% {
+		opacity: 0;
+		transform: translate(-50%, 2rem);
+	}
+	10% {
+		opacity: 1;
+		transform: translate(-50%, 0rem);
+	}
+	100% {
+		opacity: 1;
+		transform: translate(-50%, 0rem);
+	}
 }
