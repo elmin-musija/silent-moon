@@ -1,3 +1,31 @@
+.profileInfoContainer {
+	padding: 0 var(--phonePadding);
+	margin-bottom: 3rem;
+	display: flex;
+	align-items: center;
+	gap: 3rem;
+}
+
+.profileInfoContainer img {
+	border-radius: 100%;
+}
+
+.profileInfoContainer p {
+	font-size: 3.6rem;
+	font-weight: 900;
+	letter-spacing: 0.06em;
+	margin-bottom: 0.5rem;
+}
+
+.profileInfoContainer button {
+	border: none;
+	font-size: 1.6rem;
+	color: var(--primaryColor);
+	background-color: transparent;
+	font-weight: 900;
+	cursor: pointer;
+}
+
 .profilePage h2 {
 	padding: 0 var(--phonePadding);
 	font-size: 2.4rem;
