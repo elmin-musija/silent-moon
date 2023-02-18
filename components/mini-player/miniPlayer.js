@@ -5,6 +5,25 @@ import { uid } from "uid";
 import styles from "./miniPlayer.module.css";
 
 const MiniPlayer = () => {
+	const date = new Date();
+	const monthNames = [
+		"JAN",
+		"FEB",
+		"MAR",
+		"APR",
+		"MAY",
+		"JUN",
+		"JUL",
+		"AUG",
+		"SEP",
+		"OCT",
+		"NOV",
+		"DEC",
+	];
+
+	const day = date.getDate();
+	const month = monthNames[date.getMonth()];
+
 	return (
 		<div className={styles.miniPlayer}>
 			<div key={uid()}>
@@ -12,7 +31,7 @@ const MiniPlayer = () => {
 					Daily Calm
 				</p>
 				<p key={uid()} className={styles.subtitle}>
-					APR 30 &#8226; PAUSE PRACTISE
+					{month} {day} &#8226; PAUSE PRACTISE
 				</p>
 			</div>
 			<Link
