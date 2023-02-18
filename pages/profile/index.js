@@ -35,13 +35,15 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 	const inputFieldSearchRef = useRef(null);
 	const [filteredYogaFavorites, setFilteredYogaFavorites] =
 		useState(allYogaFavorites);
+	const [filteredMeditationFavorites, setFilteredMeditationFavorites] =
+		useState(allMeditationsCourseFavorites);
 	const [inputSearchString, setInputSearchString] = useState("");
 	const [inputSearchUsed, setInputSearchUsed] = useState(false);
 
 	const onInputSearchYogaHandler = (event) => {
 		event.preventDefault();
-		setInputSearchString(inputFieldSearchRef.current.value);
-		if (inputSearchString.trim() === "") {
+		setInputSearchString(inputFieldSearchRef.current.value.trim());
+		if (inputSearchString === "") {
 			setInputSearchUsed(false);
 		}
 	};
@@ -52,7 +54,12 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 			element.title.toLowerCase().includes(inputSearchString.toLowerCase())
 		);
 		setFilteredYogaFavorites(filteredYogaFavorites);
-		if (inputSearchString.trim() === "") {
+		const filteredMeditationFavorites = allMeditationsCourseFavorites.filter(
+			(element) =>
+				element.title.toLowerCase().includes(inputSearchString.toLowerCase())
+		);
+		setFilteredMeditationFavorites(filteredMeditationFavorites);
+		if (inputSearchString === "") {
 			setInputSearchUsed(false);
 		}
 	}, [inputSearchString]);
@@ -73,7 +80,30 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 			);
 		} else {
 			if (inputSearchUsed === true && filteredYogaFavorites.length === 0) {
-				return <p>No search results found</p>;
+				return <p>No search result in favorite yoga sessions found.</p>;
+			}
+		}
+	};
+	const displayMessageFavoriteMeditationCourses = () => {
+		if (allMeditationsCourseFavorites.length === 0) {
+			return (
+				<div>
+					<p>You don't have any favorite meditation courses yet.</p>
+					<p>
+						Find your next favorite meditation course{" "}
+						<Link className={styles.linkYogaPage} href={"/meditation"}>
+							here
+						</Link>
+						.
+					</p>
+				</div>
+			);
+		} else {
+			if (
+				inputSearchUsed === true &&
+				filteredMeditationFavorites.length === 0
+			) {
+				return <p>No search result in favorite meditations courses found.</p>;
 			}
 		}
 	};
@@ -100,7 +130,10 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 
 				{/** Search bar */}
 				<div className={styles.searchbar} onClick={focusHandler}>
-					<form onChange={onInputSearchYogaHandler}>
+					<form
+						onChange={onInputSearchYogaHandler}
+						onSubmit={(event) => event.preventDefault()}
+					>
 						<input
 							type="text"
 							name="input-yoga-search"
@@ -152,7 +185,7 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 
 				<h2>Favourite Meditations</h2>
 				<div className={styles.slider}>
-					{allMeditationsCourseFavorites?.map((element) => (
+					{filteredMeditationFavorites?.map((element) => (
 						<Link
 							key={element._id}
 							href={`/meditation/${element._id}`}
@@ -176,6 +209,7 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 							</div>
 						</Link>
 					))}
+					{displayMessageFavoriteMeditationCourses()}
 				</div>
 			</main>
 		</div>
