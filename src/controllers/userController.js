@@ -16,6 +16,20 @@ const postAddYogaExerciseToFavorites = async (req, res) => {
 	});
 };
 
+const postAddMeditationCourseToFavorites = async (req, res) => {
+	await connectToDatabase();
+	const favorite = {
+		name: req.body.name,
+		email: req.body.email,
+		meditationCourseId: req.body.meditationCourseId,
+	};
+	const result = await UserService.toggleMeditationCourseFavorites(favorite);
+	return res.json({
+		status: "success",
+		data: { isFavorite: result },
+	});
+};
+
 const postListSingleYogaFavorite = async (req, res) => {
 	const session = await getToken({ req });
 	if (!session) {
@@ -39,4 +53,5 @@ const postListSingleYogaFavorite = async (req, res) => {
 module.exports = {
 	postAddYogaExerciseToFavorites,
 	postListSingleYogaFavorite,
+	postAddMeditationCourseToFavorites,
 };
