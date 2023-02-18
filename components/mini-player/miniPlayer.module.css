@@ -35,4 +35,5 @@
 
 .playBtnContainer:hover {
 	background-color: var(--primaryColor);
+	transform: rotate(120deg);
 }
