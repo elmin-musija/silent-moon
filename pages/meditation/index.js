@@ -56,6 +56,10 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 		}
 	};
 
+	const focusHandler = () => {
+		inputFieldSearchRef.current.focus();
+	};
+
 	return (
 		<div className={styles.meditatePage}>
 			<Title />
@@ -78,12 +82,12 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 			</div>
 
 			{/** Search bar */}
-			<div className={styles.searchbar}>
+			<div className={styles.searchbar} onClick={focusHandler}>
 				<form onChange={onInputSearchMeditationHandler}>
 					<input
 						type="text"
-						name="input-yoga-search"
-						id="input-yoga-search"
+						name="input-meditation-search"
+						id="input-meditation-search"
 						ref={inputFieldSearchRef}
 						placeholder="Search for meditation course"
 					/>

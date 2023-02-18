@@ -71,7 +71,8 @@
 
 .searchbar:focus-within {
 	border: 1px solid var(--primaryColor);
-	box-shadow: 0 0 2.5rem var(--boxShadow);
+	transform: translateY(-3px);
+	box-shadow: 0 3px 3px var(--boxShadow);
 }
 
 .searchbar form,
