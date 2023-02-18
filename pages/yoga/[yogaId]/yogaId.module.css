@@ -9,8 +9,7 @@
 	top: 0;
 	left: 0;
 	right: 0;
-	padding: var(--phonePadding) var(--phonePadding);
-	height: 17em;
+	padding: var(--phonePadding) var(--phonePadding) 0;
 	z-index: 100;
 
 	display: flex;
