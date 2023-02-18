@@ -30,6 +30,7 @@ const WelcomePage = ({ name }) => {
 				width="414"
 				height="810"
 				alt="woman does yoga"
+				priority
 			/>
 		</div>
 	);
