@@ -7,6 +7,7 @@ import { addYogaExerciseToFavorites } from "@/src/services/use-cases/addYogaExer
 import { listAllFavoriteYogaExercises } from "@/src/services/use-cases/listAllFavoriteYogaExercises";
 import { listSingleFavoriteYogaExercise } from "@/src/services/use-cases/listSingleYogaFavoriteExercise";
 import { toggleMeditationCourseFavorites } from "@/src/services/use-cases/toggleMeditationCourseFavorites";
+import { listSingleMeditationCourseFavorite } from "@/src/services/use-cases/listSingleMeditationCourseFavorite";
 
 import { listAllMeditationCourses } from "@/src/services/use-cases/listAllMeditationCourses";
 import { listMeditationCourseById } from "@/src/services/use-cases/listMeditationCourseById";
@@ -28,6 +29,8 @@ const UserService = {
 	listSingleFavoriteYogaExercise,
 	/** toggle meditation course by given id from user favorites */
 	toggleMeditationCourseFavorites,
+	/** get single meditation course favorite by given id from user */
+	listSingleMeditationCourseFavorite,
 };
 
 const MeditationService = {
