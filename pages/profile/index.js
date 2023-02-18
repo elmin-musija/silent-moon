@@ -100,7 +100,10 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 
 				{/** Search bar */}
 				<div className={styles.searchbar} onClick={focusHandler}>
-					<form onChange={onInputSearchYogaHandler}>
+					<form
+						onChange={onInputSearchYogaHandler}
+						onSubmit={(event) => event.preventDefault()}
+					>
 						<input
 							type="text"
 							name="input-yoga-search"
