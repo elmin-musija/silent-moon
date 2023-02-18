@@ -59,6 +59,7 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 				element.title.toLowerCase().includes(inputSearchString.toLowerCase())
 		);
 		setFilteredMeditationFavorites(filteredMeditationFavorites);
+		if (inputSearchString === "") {
 			setInputSearchUsed(false);
 		}
 	}, [inputSearchString]);
