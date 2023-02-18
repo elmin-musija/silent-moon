@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getServerSession } from "next-auth/next";
 import { NextAuthOptions } from "../api/auth/[...nextauth]";
 import styles from "./welcome.module.css";
+import { getFirstnameLastname } from "@/src/services/utils/name/name";
 
 const WelcomePage = ({ name }) => {
 	const router = useRouter();
@@ -17,11 +18,11 @@ const WelcomePage = ({ name }) => {
 		};
 	}, []);
 
-	const firstName = name.split(" ")[0];
+	const { firstname, lastname } = getFirstnameLastname(name);
 
 	return (
 		<div className={styles.welcome}>
-			<p className={styles.hiName}>Hi {firstName}!</p>
+			<p className={styles.hiName}>Hi {firstname}!</p>
 			<p className={styles.welcome}>Welcome to</p>
 			<p className={styles.silentMoon}>Silent Moon</p>
 			<Image
