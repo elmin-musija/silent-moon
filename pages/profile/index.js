@@ -121,7 +121,9 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 			<main>
 				{/** Profile image, name and logout */}
 				<div className={styles.profileInfoContainer}>
-					<Image src={image} width="80" height="80" alt="profile picture" />
+					<div className={styles.profilePictureContainer}>
+						<Image src={image} width="80" height="80" alt="profile picture" />
+					</div>
 					<div>
 						<p>{firstName}</p>
 						<button onClick={onLogoutHandler}>Logout</button>

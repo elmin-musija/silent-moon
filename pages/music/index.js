@@ -70,7 +70,7 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 			<main>
 				<Link
 					href={`/player/q?type=${playlistInfo.type}&offset=0&id=${playlistInfo.id}`}
-					className={styles.linkToPlaylist}
+					className={styles.linkToPlaylistCover}
 				>
 					<Image
 						src={playlistInfo.images[0].url}

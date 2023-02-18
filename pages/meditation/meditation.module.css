@@ -92,21 +92,34 @@
 	outline: none;
 }
 
-.meditateGallery {
+.gallery {
 	padding: 0 var(--phonePadding);
 	column-count: 2;
 	gap: var(--gapGrid);
 	margin-bottom: 3rem;
 }
 
-.meditateGallery a {
+.gallery a {
 	position: relative;
 	display: inline-block;
 	margin-bottom: var(--gapGrid);
 	border-radius: 1rem;
+	overflow: hidden;
 }
 
-.meditateGallery h3 {
+.gallery img {
+	width: calc((414px - 2 * var(--phonePadding) - var(--gapGrid)) / 2);
+	height: auto;
+	display: block;
+	border-radius: 1rem;
+	transition: var(--transition);
+}
+
+.gallery a:hover img {
+	transform: scale(1.1);
+}
+
+.gallery h3 {
 	position: absolute;
 	bottom: 0rem;
 	left: 0rem;
@@ -116,11 +129,4 @@
 	background: linear-gradient(to bottom, #00000000, #111);
 	border-bottom-left-radius: 1rem;
 	border-bottom-right-radius: 1rem;
-}
-
-.meditateGallery img {
-	width: calc((414px - 2 * var(--phonePadding) - var(--gapGrid)) / 2);
-	height: auto;
-	display: block;
-	border-radius: 1rem;
 }

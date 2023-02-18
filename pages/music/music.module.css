@@ -14,7 +14,6 @@
 	text-align: center;
 	letter-spacing: 0.05em;
 	color: var(--secondaryText);
-	/* text-transform: uppercase; */
 	margin: 0 auto 13rem;
 	width: 75%;
 	line-height: 1.4;
@@ -69,21 +68,28 @@
 	margin: 3rem 0 7rem;
 }
 
-.albumCover {
-	margin: 0 auto 3rem;
-	display: block;
-	border-radius: 1.5rem;
-	transition: var(--transition);
-}
-
-.albumCover:hover {
-	border-radius: 2rem;
-}
-
 .linkToPlaylist {
 	display: block;
 	margin: 0 auto 1.5rem;
 	width: max-content;
+}
+
+.linkToPlaylistCover {
+	width: max-content;
+	display: block;
+	margin: 0 auto 3rem;
+	overflow: hidden;
+	border-radius: 1.5rem;
+}
+
+.linkToPlaylistCover:hover img {
+	transform: scale(1.1);
+}
+
+.albumCover {
+	margin: 0 auto;
+	display: block;
+	transition: var(--transition);
 }
 
 .musicPage h2 {

@@ -104,6 +104,19 @@
 	display: inline-block;
 	margin-bottom: var(--gapGrid);
 	border-radius: 1rem;
+	overflow: hidden;
+}
+
+.gallery img {
+	width: calc((414px - 2 * var(--phonePadding) - var(--gapGrid)) / 2);
+	height: auto;
+	display: block;
+	border-radius: 1rem;
+	transition: var(--transition);
+}
+
+.gallery a:hover img {
+	transform: scale(1.1);
 }
 
 .gallery h3 {
@@ -116,11 +129,4 @@
 	background: linear-gradient(to bottom, #00000000, #111);
 	border-bottom-left-radius: 1rem;
 	border-bottom-right-radius: 1rem;
-}
-
-.gallery img {
-	width: calc((414px - 2 * var(--phonePadding) - var(--gapGrid)) / 2);
-	height: auto;
-	display: block;
-	border-radius: 1rem;
 }

@@ -101,7 +101,7 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 			{session && session.user.provider === "spotify" && <MiniPlayer />}
 
 			{/** Meditation courses */}
-			<div className={styles.meditateGallery}>
+			<div className={styles.gallery}>
 				{filteredMeditationCourses?.map((element) => (
 					<Link href={`meditation/${element._id}`}>
 						<Image

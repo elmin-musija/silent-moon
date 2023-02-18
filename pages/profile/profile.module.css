@@ -10,8 +10,19 @@
 	gap: 3rem;
 }
 
-.profileInfoContainer img {
+.profilePictureContainer {
+	height: fit-content;
+	overflow: hidden;
 	border-radius: 2rem;
+}
+
+.profileInfoContainer img {
+	display: block;
+	transition: var(--transition);
+}
+
+.profilePictureContainer:hover img {
+	transform: scale(1.1);
 }
 
 .profileInfoContainer p {
@@ -94,11 +105,18 @@
 
 .imgageContainer {
 	margin-bottom: 0.6rem;
+	border-radius: 1rem;
+	overflow: hidden;
 }
 
 .imgageContainer img {
 	object-fit: cover;
-	border-radius: 1rem;
+	transition: var(--transition);
+	display: block;
+}
+
+.imgageContainer:hover img {
+	transform: scale(1.1);
 }
 
 .sliderItem h3 {
