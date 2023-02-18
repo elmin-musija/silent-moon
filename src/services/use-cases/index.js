@@ -14,8 +14,8 @@ import { listAllMeditationCourses } from "@/src/services/use-cases/listAllMedita
 import { listMeditationCourseById } from "@/src/services/use-cases/listMeditationCourseById";
 import { listAllMeditations } from "@/src/services/use-cases/listAllMeditations";
 import { listSingleMeditationById } from "@/src/services/use-cases/listSingleMeditationById";
-import { createMeditations } from "@/src/services/use-cases/createMeditations";
-import { createMeditationCourses } from "@/src/services/use-cases/createMeditationCourses";
+// import { createMeditations } from "@/src/services/use-cases/createMeditations";
+// import { createMeditationCourses } from "@/src/services/use-cases/createMeditationCourses";
 
 const YogaService = {
 	insertYogaExercise,
@@ -49,8 +49,8 @@ const MeditationService = {
 	/**
 	 * helper service to create meditations
 	 * and meditation courses */
-	createMeditations,
-	createMeditationCourses,
+	// createMeditations,
+	// createMeditationCourses,
 };
 
 module.exports = {
