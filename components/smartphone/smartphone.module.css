@@ -1,0 +1,11 @@
+.smartphoneContainer {
+	width: 446px;
+	height: 930px;
+	position: relative;
+	transform: rotate(0deg);
+	transition: transform 1s;
+}
+
+.smartphoneContainerRotated {
+	transform: rotate(90deg);
+}

@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { useState } from "react";
 import { Source_Sans_Pro } from "@next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { NotificationContextProvider } from "@/context/context";
 import Head from "next/head";
 import Notification from "../components/notification/notification";
 import "@/styles/globals.css";
-import styles from "./app.module.css";
 import Footer from "@/components/footer/footer";
+import Smartphone from "@/components/smartphone/smartphone";
+import styles from "./app.module.css";
 
 const sourceSansPro = Source_Sans_Pro({
 	subsets: ["latin"],
@@ -18,23 +18,11 @@ export default function App({
 	Component,
 	pageProps: { session, ...pageProps },
 }) {
-	const [isRotated, setIsRotated] = useState(false);
-
-	const rotateHandler = () => {
-		setIsRotated((prevState) => !prevState);
-	};
-
 	return (
 		<SessionProvider session={session} refetchInterval={60 * 60 * 24}>
 			<NotificationContextProvider>
-				<div className={styles.smartphoneContainer}>
-					<div
-						className={
-							isRotated
-								? `${styles.smartphone} ${styles.smartphoneRotated} ${sourceSansPro.className}`
-								: `${styles.smartphone}  ${sourceSansPro.className}`
-						}
-					>
+				<Smartphone>
+					<div className={`${styles.smartphone} ${sourceSansPro.className}`}>
 						<div className={styles.content}>
 							<Head>
 								<title>Silent Moon</title>
@@ -49,13 +37,13 @@ export default function App({
 								<link rel="icon" href="/img/favicon.png" />
 							</Head>
 							<Notification />
-							<Component {...pageProps} rotateHandler={rotateHandler} />
+							<Component {...pageProps} />
 							<Footer />
 						</div>
 					</div>
 					<div className={styles.loudspeaker}></div>
 					<Link href="/" className={styles.homeBtn}></Link>
-				</div>
+				</Smartphone>
 			</NotificationContextProvider>
 		</SessionProvider>
 	);

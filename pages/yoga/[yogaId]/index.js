@@ -10,13 +10,14 @@ import styles from "./yogaId.module.css";
 
 const YogaDetails = ({ yogaId }) => {
 	const { data: session, status } = useSession();
-	const { displayNotification } = useContext(NotificationContext);
+	const { displayNotification, setRotation } = useContext(NotificationContext);
 	const router = useRouter();
 	const [videoFullscreen, setVideoFullscreen] = useState(false);
 	const [yogaIsFavorite, setYogaIsFavorite] = useState(false);
 	const [animation, setAnimation] = useState(0);
 
 	const videoFullscreenHandler = () => {
+		setRotation();
 		setVideoFullscreen(!videoFullscreen);
 	};
 

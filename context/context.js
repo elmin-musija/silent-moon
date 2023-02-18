@@ -7,6 +7,7 @@ export const NotificationContextProvider = ({ children }) => {
 	const [showNotification, setShowNotification] = useState(false);
 	const [type, setType] = useState();
 	const [message, setMessage] = useState();
+	const [isRotated, setIsRotated] = useState(false);
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
@@ -25,6 +26,13 @@ export const NotificationContextProvider = ({ children }) => {
 	};
 	const getMessage = () => {
 		return message;
+	};
+	const getStatusRotation = () => {
+		return isRotated;
+	};
+	const setRotation = () => {
+		console.log("setRotation()");
+		setIsRotated((prevState) => !prevState);
 	};
 
 	const displayNotification = ({ type, message }) => {
@@ -46,6 +54,8 @@ export const NotificationContextProvider = ({ children }) => {
 				getShowNotification,
 				getNotificationType,
 				getMessage,
+				getStatusRotation,
+				setRotation,
 			}}
 		>
 			{children}
