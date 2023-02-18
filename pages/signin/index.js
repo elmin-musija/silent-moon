@@ -72,6 +72,7 @@ const SigninPage = () => {
 							src="img/google.svg"
 							width="50"
 							height="50"
+							alt="google logo"
 						></Image>
 						<p className={styles.providerText} onClick={googleSigninHandler}>
 							Google
@@ -84,6 +85,7 @@ const SigninPage = () => {
 							src="img/spotify.svg"
 							width="50"
 							height="50"
+							alt="spotify logo"
 						></Image>
 						<p className={styles.providerText} onClick={spotifySigninHandler}>
 							Spotify
@@ -96,6 +98,7 @@ const SigninPage = () => {
 							src="img/github.svg"
 							width="50"
 							height="50"
+							alt="github logo"
 						></Image>
 						<p className={styles.providerText} onClick={githubSigninHandler}>
 							Github
@@ -108,6 +111,7 @@ const SigninPage = () => {
 							src="img/discord.svg"
 							width="50"
 							height="50"
+							alt="discord logo"
 						></Image>
 						<p className={styles.providerText} onClick={discordSigninHandler}>
 							Discord
