@@ -10,11 +10,14 @@ import Link from "next/link";
 import Image from "next/image";
 import Title from "@/components/title/title";
 import { convertDurationTimeFormat } from "@/src/services/utils/convert/convert";
+import { getFirstnameLastname } from "@/src/services/utils/name/name";
 import styles from "./profile.module.css";
 
 const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 	const { data: session } = useSession();
 	const router = useRouter();
+	let userFirstname = "";
+	let userLastname = " ";
 
 	const onLogoutHandler = async () => {
 		const redirect = await signOut({ redirect: false, callbackUrl: "/signin" });
@@ -22,11 +25,13 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 	};
 
 	let image = "/img/user.svg";
-	let firstName = "";
+
 	if (session) {
 		const { user } = session;
-		const username = session.user.name;
-		firstName = username.split(" ")[0];
+		const { firstname, lastname } = getFirstnameLastname(session.user.name);
+		userFirstname = firstname;
+		userLastname = lastname;
+
 		if (user.picture) {
 			image = user.picture;
 		}
@@ -125,7 +130,7 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 						<Image src={image} width="80" height="80" alt="profile picture" />
 					</div>
 					<div>
-						<p>{firstName}</p>
+						<p>{userFirstname}</p>
 						<button onClick={onLogoutHandler}>Logout</button>
 					</div>
 				</div>

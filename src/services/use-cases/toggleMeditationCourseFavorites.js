@@ -1,4 +1,5 @@
 import User from "@/src/models/UserModel";
+import { getFirstnameLastname } from "@/src/services/utils/name/name";
 
 const toggleMeditationCourseFavorites = async ({
 	name,
@@ -31,10 +32,13 @@ const toggleMeditationCourseFavorites = async ({
 		}
 	} else {
 		/** user does not exist */
+
+		const { firstname, lastname } = getFirstnameLastname(name);
+
 		await User.create({
 			name: {
-				firstname: name.split(" ")[0],
-				lastname: name.split(" ")[1],
+				firstname: firstname || " ",
+				lastname: lastname || " ",
 			},
 			email: email,
 			meditation: [meditationCourseId],
