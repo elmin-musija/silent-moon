@@ -8,6 +8,7 @@ import { MeditationService } from "@/src/services/use-cases/index";
 import { useSession } from "next-auth/react";
 import { getFirstnameLastname } from "@/src/services/utils/name/name";
 import { convertDurationTimeFormat } from "@/src/services/utils/convert/convert";
+import { getRandomItemFromArray } from "@/src/services/utils/random/random";
 import styles from "./home.module.css";
 
 const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
@@ -22,6 +23,9 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 		useState(allMeditationCourses);
 	const [inputSearchString, setInputSearchString] = useState("");
 	const [inputSearchUsed, setInputSearchUsed] = useState(false);
+
+	const [randomYoga, setRandomYoga] = useState();
+	const [randomMeditationCourse, setRandomMeditationCourse] = useState();
 
 	const onInputSearchYogaHandler = (event) => {
 		event.preventDefault();
@@ -62,6 +66,11 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 		inputFieldSearchRef.current.focus();
 	};
 
+	useEffect(() => {
+		setRandomYoga(getRandomItemFromArray(allYogaPrograms));
+		setRandomMeditationCourse(getRandomItemFromArray(allMeditationCourses));
+	}, []);
+
 	if (session) {
 		const { firstname, lastname } = getFirstnameLastname(session.user.name);
 		userFirstname = firstname;
@@ -77,6 +86,66 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 				<p>We hope you have a good day</p>
 
 				{/** random yoga and meditation */}
+				{randomYoga && (
+					<div>
+						<Link
+							key={uid()}
+							href={`/meditation/${randomYoga._id}`}
+							className={styles.sliderItem}
+						>
+							<div className={styles.imgageContainer} key={uid()}>
+								<Image
+									src={randomYoga.imageUrl}
+									width={155}
+									height={155}
+									alt={randomYoga.title}
+									key={randomYoga._id}
+									priority
+								></Image>
+							</div>
+							<div key={uid()} className={styles.itemInfo}>
+								<h3>{randomYoga.title}</h3>
+								<div className={styles.itemSubInfo}>
+									<p key={uid()}>{randomYoga.level}</p>
+									<p key={uid()}>
+										{convertDurationTimeFormat(
+											(Number(randomYoga.duration.minutes) * 60 +
+												Number(randomYoga.duration.seconds)) *
+												1000
+										)}
+									</p>
+								</div>
+							</div>
+						</Link>
+					</div>
+				)}
+
+				{randomMeditationCourse && (
+					<div>
+						<Link
+							key={uid()}
+							href={`/meditation/${randomMeditationCourse._id}`}
+							className={styles.sliderItem}
+						>
+							<div className={styles.imgageContainer} key={uid()}>
+								<Image
+									src={randomMeditationCourse.imageUrl}
+									width={155}
+									height={155}
+									alt={randomMeditationCourse.title}
+									key={randomMeditationCourse._id}
+									priority
+								></Image>
+							</div>
+							<div key={uid()} className={styles.itemInfo}>
+								<h3>{randomMeditationCourse.title}</h3>
+								<div className={styles.itemSubInfo}>
+									<p key={uid()}>{randomMeditationCourse.category}</p>
+								</div>
+							</div>
+						</Link>
+					</div>
+				)}
 
 				{/** search bar */}
 				<div className={styles.searchbar} onClick={focusHandler}>
