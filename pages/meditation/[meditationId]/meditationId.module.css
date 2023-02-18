@@ -37,7 +37,7 @@
 	position: relative;
 }
 
-.likeBtn:hover::after {
+.likeBtn[animation="1"]::after {
 	content: "";
 	display: inline-block;
 	height: 55px;
