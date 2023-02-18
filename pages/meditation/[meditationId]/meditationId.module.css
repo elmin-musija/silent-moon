@@ -136,7 +136,7 @@
 	display: flex;
 	align-items: center;
 	gap: 2rem;
-	padding: 2rem 0;
+	padding: 2rem var(--phonePadding);
 }
 
 .trackContainer:not(:last-of-type) {
