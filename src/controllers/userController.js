@@ -1,5 +1,5 @@
 import { connectToDatabase } from "@/src/models/mongoose-setup";
-import { UserService } from "@/src/services/use-cases/";
+import { UserService } from "@/src/services/use-cases/index";
 import { getToken } from "next-auth/jwt";
 
 const postAddYogaExerciseToFavorites = async (req, res) => {
