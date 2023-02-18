@@ -74,7 +74,7 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 			</header>
 			<main className={styles.homePage}>
 				{userFirstname && <h2>Good afternoon {userFirstname}</h2>}
-				<p>We hope you have a good day</p>
+				<p className={styles.subheading}>We hope you have a good day</p>
 
 				{/** random yoga and meditation */}
 
