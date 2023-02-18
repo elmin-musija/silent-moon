@@ -48,20 +48,14 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 							height="40"
 							alt="right arrow"
 						></Image>
-						<div
+						<Image
+							className={styles.providerLogo}
 							onClick={spotifySigninHandler}
-							className={styles.spotifyLogoContainer}
-						>
-							<Image
-								className={styles.providerLogo}
-								onClick={spotifySigninHandler}
-								src="/img/spotify.svg"
-								width="70"
-								height="70"
-								alt="spotify logo"
-							></Image>
-							<p className={styles.namaste}>Namastè</p>
-						</div>
+							src="/img/spotify.svg"
+							width="70"
+							height="70"
+							alt="spotify logo"
+						></Image>
 					</div>
 				</main>
 			</div>

@@ -39,25 +39,7 @@
 	filter: grayscale(1);
 }
 
-.imageContainer .namaste {
-	position: absolute;
-	top: 13rem;
-	left: 13.5rem;
-	opacity: 0;
-	width: fit-content;
-	font-size: 1.4rem;
-	padding: 1rem 3rem;
-	border-radius: 3rem;
-	background-color: var(--primaryColor);
-	color: white;
-	transition: all 0.7s;
-}
-
-.spotifyLogoContainer:hover .namaste {
-	opacity: 1;
-}
-
-.spotifyLogoContainer:hover .providerLogo {
+.providerLogo:hover {
 	filter: grayscale(0);
 }
 
