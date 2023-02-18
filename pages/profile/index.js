@@ -42,8 +42,8 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 
 	const onInputSearchYogaHandler = (event) => {
 		event.preventDefault();
-		setInputSearchString(inputFieldSearchRef.current.value);
-		if (inputSearchString.trim() === "") {
+		setInputSearchString(inputFieldSearchRef.current.value.trim());
+		if (inputSearchString === "") {
 			setInputSearchUsed(false);
 		}
 	};
