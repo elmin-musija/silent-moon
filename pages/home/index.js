@@ -86,66 +86,63 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 				<p className={styles.subheading}>We hope you have a good day</p>
 
 				{/** random yoga and meditation */}
-				{randomYoga && (
-					<div>
-						<Link
-							key={uid()}
-							href={`/meditation/${randomYoga._id}`}
-							className={styles.sliderItem}
-						>
-							<div className={styles.imgageContainer} key={uid()}>
-								<Image
-									src={randomYoga.imageUrl}
-									width={155}
-									height={155}
-									alt={randomYoga.title}
-									key={randomYoga._id}
-									priority
-								></Image>
-							</div>
-							<div key={uid()} className={styles.itemInfo}>
-								<h3>{randomYoga.title}</h3>
-								<div className={styles.itemSubInfo}>
-									<p key={uid()}>{randomYoga.level}</p>
-									<p key={uid()}>
-										{convertDurationTimeFormat(
-											(Number(randomYoga.duration.minutes) * 60 +
-												Number(randomYoga.duration.seconds)) *
-												1000
-										)}
-									</p>
+				<h2>Get inspired</h2>
+				<div className={styles.randomsContainer}>
+					{randomYoga && (
+						<div>
+							<Link key={uid()} href={`/meditation/${randomYoga._id}`}>
+								<div className={styles.imgageContainer} key={uid()}>
+									<Image
+										src={randomYoga.imageUrl}
+										width={155}
+										height={155}
+										alt={randomYoga.title}
+										key={randomYoga._id}
+										priority
+									></Image>
 								</div>
-							</div>
-						</Link>
-					</div>
-				)}
-
-				{randomMeditationCourse && (
-					<div>
-						<Link
-							key={uid()}
-							href={`/meditation/${randomMeditationCourse._id}`}
-							className={styles.sliderItem}
-						>
-							<div className={styles.imgageContainer} key={uid()}>
-								<Image
-									src={randomMeditationCourse.imageUrl}
-									width={155}
-									height={155}
-									alt={randomMeditationCourse.title}
-									key={randomMeditationCourse._id}
-									priority
-								></Image>
-							</div>
-							<div key={uid()} className={styles.itemInfo}>
-								<h3>{randomMeditationCourse.title}</h3>
-								<div className={styles.itemSubInfo}>
-									<p key={uid()}>{randomMeditationCourse.category}</p>
+								<div key={uid()} className={styles.itemInfo}>
+									<h3>{randomYoga.title}</h3>
+									<div className={styles.itemSubInfo}>
+										<p key={uid()}>{randomYoga.level}</p>
+										<p key={uid()}>
+											{convertDurationTimeFormat(
+												(Number(randomYoga.duration.minutes) * 60 +
+													Number(randomYoga.duration.seconds)) *
+													1000
+											)}
+										</p>
+									</div>
 								</div>
-							</div>
-						</Link>
-					</div>
-				)}
+							</Link>
+						</div>
+					)}
+					{randomMeditationCourse && (
+						<div>
+							<Link
+								key={uid()}
+								href={`/meditation/${randomMeditationCourse._id}`}
+							>
+								<div className={styles.imgageContainer} key={uid()}>
+									<Image
+										src={randomMeditationCourse.imageUrl}
+										width={155}
+										height={155}
+										alt={randomMeditationCourse.title}
+										key={randomMeditationCourse._id}
+										priority
+									></Image>
+								</div>
+								<div key={uid()} className={styles.itemInfo}>
+									<h3>{randomMeditationCourse.title}</h3>
+									<div className={styles.itemSubInfo}>
+										<p key={uid()}>{randomMeditationCourse.category}</p>
+									</div>
+								</div>
+							</Link>
+						</div>
+					)}
+				</div>
 
 				{/** search bar */}
 				<div className={styles.searchbar} onClick={focusHandler}>

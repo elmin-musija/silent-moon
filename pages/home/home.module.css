@@ -16,6 +16,13 @@
 	letter-spacing: 0.05em;
 }
 
+.randomsContainer {
+	display: flex;
+	align-items: center;
+	gap: 2.5rem;
+	margin: 0 var(--phonePadding) 5rem;
+}
+
 .searchbar {
 	margin: 0 var(--phonePadding) 3rem;
 	background-color: rgba(161, 164, 178, 0.2);
