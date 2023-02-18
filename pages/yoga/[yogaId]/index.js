@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { uid } from "uid";
 import { YogaService } from "@/src/services/use-cases/index";
 import clsx from "classnames";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { useContext } from "react";
 import NotificationContext from "@/context/context";
 import styles from "./yogaId.module.css";
 
