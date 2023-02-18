@@ -12,7 +12,7 @@ import Title from "@/components/title/title";
 import { convertDurationTimeFormat } from "@/src/services/utils/convert/convert";
 import styles from "./profile.module.css";
 
-const ProfilePage = ({ allYogaFavorites }) => {
+const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 	const { data: session } = useSession();
 	const router = useRouter();
 
@@ -151,11 +151,11 @@ const ProfilePage = ({ allYogaFavorites }) => {
 				</div>
 
 				<h2>Favourite Meditations</h2>
-				{/* <div className={styles.slider}>
-					{allMeditationFavorites?.map((element) => (
+				<div className={styles.slider}>
+					{allMeditationsCourseFavorites?.map((element) => (
 						<Link
 							key={element._id}
-							href={`/yoga/${element._id}`}
+							href={`/meditation/${element._id}`}
 							className={styles.sliderItem}
 						>
 							<div className={styles.imgageContainer} key={uid()}>
@@ -171,15 +171,12 @@ const ProfilePage = ({ allYogaFavorites }) => {
 							<div key={uid()} className={styles.itemInfo}>
 								<h3>{element.title}</h3>
 								<div className={styles.itemSubInfo}>
-									<p key={uid()}>{element.level}</p>
-									<p key={uid()}>
-										{element.duration.minutes}:{element.duration.seconds} min
-									</p>
+									<p key={uid()}>{element.category}</p>
 								</div>
 							</div>
 						</Link>
 					))}
-				</div> */}
+				</div>
 			</main>
 		</div>
 	);
@@ -202,5 +199,10 @@ export async function getServerSideProps(context) {
 		email: session.user.email,
 	});
 
-	return { props: { allYogaFavorites } };
+	const allMeditationsCourseFavorites =
+		await UserService.listAllMeditationCourseFavorites({
+			email: session.user.email,
+		});
+
+	return { props: { allYogaFavorites, allMeditationsCourseFavorites } };
 }

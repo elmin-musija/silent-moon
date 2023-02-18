@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import NotificationContext from "@/context/context";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import { uid } from "uid";
 import { convertDurationTimeFormat } from "@/src/services/utils/convert/convert";
 import Title from "@/components/title/title";
@@ -9,7 +11,64 @@ import { MeditationService } from "@/src/services/use-cases/index";
 import styles from "./meditationId.module.css";
 
 const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
+	const { data: session, status } = useSession();
+	const [meditationCourseIsFavorite, setMeditationCourseIsFavorite] =
+		useState(false);
+	const { displayNotification } = useContext(NotificationContext);
+	const [animation, setAnimation] = useState(0);
 	const router = useRouter();
+
+	const onLikeButtonClickHandler = async () => {
+		// Change animation state
+		setAnimation(1);
+
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				name: session.user.name,
+				email: session.user.email,
+				meditationCourseId: meditationCourseInfo._id,
+			}),
+		};
+		const result = await fetch("/api/meditation/favorite/add", options);
+		const response = await result.json();
+		if (response.status === "success") {
+			if (response.data.isFavorite) {
+				displayNotification({
+					type: "success",
+					message: "Exercise successfully added to favorites",
+				});
+			} else {
+				displayNotification({
+					type: "success",
+					message: "Exercise successfully removed from favorites",
+				});
+			}
+			setMeditationCourseIsFavorite(response.data.isFavorite);
+		}
+	};
+
+	useEffect(() => {
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				meditationCourseId: meditationCourseInfo._id,
+			}),
+		};
+		fetch("/api/meditation/favorite/show", options)
+			.then((res) => res.json())
+			.then((result) => {
+				if (result.status === "success") {
+					setMeditationCourseIsFavorite(result.data.isFavorite);
+				}
+			});
+	}, []);
 
 	return (
 		<div className={styles.mediationDetailsPage}>
@@ -23,8 +82,23 @@ const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
 						alt="back"
 					/>
 				</button>
-				<button className={styles.likeBtn}>
-					<Image src="/img/like_btn.svg" width="55" height="55" alt="heart" />
+				<button
+					className={styles.likeBtn}
+					onClick={onLikeButtonClickHandler}
+					onAnimationEnd={() => setAnimation(0)}
+					animation={animation}
+				>
+					{!meditationCourseIsFavorite && (
+						<Image src="/img/like_btn.svg" width="55" height="55" alt="heart" />
+					)}
+					{meditationCourseIsFavorite && (
+						<Image
+							src="/img/like_btn_filled.svg"
+							width="55"
+							height="55"
+							alt="heart"
+						/>
+					)}
 				</button>
 			</div>
 
