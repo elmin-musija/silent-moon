@@ -35,6 +35,8 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 	const inputFieldSearchRef = useRef(null);
 	const [filteredYogaFavorites, setFilteredYogaFavorites] =
 		useState(allYogaFavorites);
+	const [filteredMeditationFavorites, setFilteredMeditationFavorites] =
+		useState(allMeditationsCourseFavorites);
 	const [inputSearchString, setInputSearchString] = useState("");
 	const [inputSearchUsed, setInputSearchUsed] = useState(false);
 
@@ -52,7 +54,11 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 			element.title.toLowerCase().includes(inputSearchString.toLowerCase())
 		);
 		setFilteredYogaFavorites(filteredYogaFavorites);
-		if (inputSearchString.trim() === "") {
+		const filteredMeditationFavorites = allMeditationsCourseFavorites.filter(
+			(element) =>
+				element.title.toLowerCase().includes(inputSearchString.toLowerCase())
+		);
+		setFilteredMeditationFavorites(filteredMeditationFavorites);
 			setInputSearchUsed(false);
 		}
 	}, [inputSearchString]);
@@ -155,7 +161,7 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 
 				<h2>Favourite Meditations</h2>
 				<div className={styles.slider}>
-					{allMeditationsCourseFavorites?.map((element) => (
+					{filteredMeditationFavorites?.map((element) => (
 						<Link
 							key={element._id}
 							href={`/meditation/${element._id}`}
