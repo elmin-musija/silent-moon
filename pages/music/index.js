@@ -19,8 +19,7 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 	const { items } = playlistTracks;
 
 	const spotifySigninHandler = async () => {
-		// await signIn("spotify", { callbackUrl: "/music" });
-		await signIn("spotify");
+		await signIn("spotify", { callbackUrl: "/music" });
 	};
 
 	if (!session) {
