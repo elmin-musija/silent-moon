@@ -103,7 +103,7 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 				inputSearchUsed === true &&
 				filteredMeditationFavorites.length === 0
 			) {
-				return <p>No search result in favorite meditations courses found.</p>;
+				return <p>No search result in favourite meditations courses found.</p>;
 			}
 		}
 	};
