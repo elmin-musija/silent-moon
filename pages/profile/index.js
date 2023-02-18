@@ -80,7 +80,30 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 			);
 		} else {
 			if (inputSearchUsed === true && filteredYogaFavorites.length === 0) {
-				return <p>No search results found</p>;
+				return <p>No search result in favorite yoga sessions found.</p>;
+			}
+		}
+	};
+	const displayMessageFavoriteMeditationCourses = () => {
+		if (allMeditationsCourseFavorites.length === 0) {
+			return (
+				<div>
+					<p>You don't have any favorite meditation courses yet.</p>
+					<p>
+						Find your next favorite meditation course{" "}
+						<Link className={styles.linkYogaPage} href={"/meditation"}>
+							here
+						</Link>
+						.
+					</p>
+				</div>
+			);
+		} else {
+			if (
+				inputSearchUsed === true &&
+				filteredMeditationFavorites.length === 0
+			) {
+				return <p>No search result in favorite meditations courses found.</p>;
 			}
 		}
 	};
@@ -186,6 +209,7 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 							</div>
 						</Link>
 					))}
+					{displayMessageFavoriteMeditationCourses()}
 				</div>
 			</main>
 		</div>
