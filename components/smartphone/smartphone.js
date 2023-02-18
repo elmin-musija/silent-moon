@@ -5,8 +5,6 @@ import styles from "./smartphone.module.css";
 const Smartphone = ({ children }) => {
 	const { getStatusRotation } = useContext(NotificationContext);
 
-	console.log(getStatusRotation());
-
 	return (
 		<div
 			className={

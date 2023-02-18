@@ -31,7 +31,6 @@ export const NotificationContextProvider = ({ children }) => {
 		return isRotated;
 	};
 	const setRotation = () => {
-		console.log("setRotation()");
 		setIsRotated((prevState) => !prevState);
 	};
 
