@@ -75,6 +75,7 @@
 
 .musicPage main {
 	padding: 0 var(--phonePadding);
+	margin-bottom: 12rem;
 }
 
 .musicPage h1 {

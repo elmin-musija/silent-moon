@@ -1,6 +1,6 @@
 .profileInfoContainer {
 	padding: 0 var(--phonePadding);
-	margin-bottom: 5rem;
+	margin-bottom: 12rem;
 	display: flex;
 	align-items: center;
 	gap: 3rem;
