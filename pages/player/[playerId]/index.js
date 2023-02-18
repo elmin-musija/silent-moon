@@ -49,8 +49,8 @@ const PlayerPage = ({ type, offset, id, token }) => {
 			/>
 			<Image
 				src="/img/player_bg_element_2.svg"
-				width="210"
-				height="550"
+				width="240"
+				height="600"
 				alt="background element"
 				className={styles.bg_element_2}
 			/>
@@ -70,15 +70,15 @@ const PlayerPage = ({ type, offset, id, token }) => {
 			/>
 			<Image
 				src="/img/player_bg_element_5.svg"
-				width="270"
-				height="320"
+				width="300"
+				height="380"
 				alt="background element"
 				className={styles.bg_element_5}
 			/>
 			<Image
 				src="/img/player_bg_element_6.svg"
-				width="150"
-				height="150"
+				width="170"
+				height="170"
 				alt="background element"
 				className={styles.bg_element_6}
 			/>
