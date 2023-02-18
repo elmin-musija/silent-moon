@@ -1,5 +1,13 @@
+.mediationDetailsPage {
+	margin-bottom: 12rem;
+}
+
 .mediationDetailsPage h1 {
 	display: none;
+}
+
+.imgBtnContainer {
+	position: relative;
 }
 
 .btnContainer {
@@ -70,11 +78,8 @@
 }
 
 .playlistImg {
-	width: 100%;
-	height: auto;
-	border-bottom-left-radius: 1.5rem;
-	border-bottom-right-radius: 1.5rem;
-	/* margin-top: -3rem; */
+	object-fit: cover;
+	height: 24rem;
 	margin-bottom: 4rem;
 }
 

@@ -72,43 +72,50 @@ const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
 
 	return (
 		<div className={styles.mediationDetailsPage}>
-			<Title />
-			<div className={styles.btnContainer}>
-				<button onClick={() => router.back()} className={styles.backBtn}>
-					<Image
-						src="/img/back_arrow_yellow.svg"
-						width="55"
-						height="55"
-						alt="back"
-					/>
-				</button>
-				<button
-					className={styles.likeBtn}
-					onClick={onLikeButtonClickHandler}
-					onAnimationEnd={() => setAnimation(0)}
-					animation={animation}
-				>
-					{!meditationCourseIsFavorite && (
-						<Image src="/img/like_btn.svg" width="55" height="55" alt="heart" />
-					)}
-					{meditationCourseIsFavorite && (
+			<h1>Silent Moon</h1>
+			<div className={styles.imgBtnContainer}>
+				<div className={styles.btnContainer}>
+					<button onClick={() => router.back()} className={styles.backBtn}>
 						<Image
-							src="/img/like_btn_filled.svg"
+							src="/img/back_arrow_yellow.svg"
 							width="55"
 							height="55"
-							alt="heart"
+							alt="back"
 						/>
-					)}
-				</button>
-			</div>
+					</button>
+					<button
+						className={styles.likeBtn}
+						onClick={onLikeButtonClickHandler}
+						onAnimationEnd={() => setAnimation(0)}
+						animation={animation}
+					>
+						{!meditationCourseIsFavorite && (
+							<Image
+								src="/img/like_btn.svg"
+								width="55"
+								height="55"
+								alt="heart"
+							/>
+						)}
+						{meditationCourseIsFavorite && (
+							<Image
+								src="/img/like_btn_filled.svg"
+								width="55"
+								height="55"
+								alt="heart"
+							/>
+						)}
+					</button>
+				</div>
 
-			<Image
-				src={meditationCourseInfo.imageUrl}
-				width="414"
-				height="414"
-				alt="playlist thumbnail"
-				className={styles.playlistImg}
-			/>
+				<Image
+					src={meditationCourseInfo.imageUrl}
+					width="414"
+					height="414"
+					alt="playlist thumbnail"
+					className={styles.playlistImg}
+				/>
+			</div>
 
 			<div key={uid()} className={styles.playlistInfo}>
 				<h2>{meditationCourseInfo.title}</h2>
