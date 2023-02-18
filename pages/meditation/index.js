@@ -67,7 +67,7 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 			<p>Video guided meditation techniques to help you practice on the go.</p>
 
 			{/** Categories*/}
-			<div className={styles.categorySlider}>
+			<div key={uid()} className={styles.categorySlider}>
 				{yogaCategories.map((element) => (
 					<button key={uid()} onClick={() => setCategoryFilter(element._id)}>
 						<Image
@@ -82,7 +82,7 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 			</div>
 
 			{/** Search bar */}
-			<div className={styles.searchbar} onClick={focusHandler}>
+			<div key={uid()} className={styles.searchbar} onClick={focusHandler}>
 				<form onChange={onInputSearchMeditationHandler}>
 					<input
 						type="text"
@@ -101,9 +101,9 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 			{session && session.user.provider === "spotify" && <MiniPlayer />}
 
 			{/** Meditation courses */}
-			<div className={styles.gallery}>
+			<div key={uid()} className={styles.gallery}>
 				{filteredMeditationCourses?.map((element) => (
-					<Link href={`meditation/${element._id}`}>
+					<Link key={uid()} href={`meditation/${element._id}`}>
 						<Image
 							src={element.imageUrl}
 							width={200}
