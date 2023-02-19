@@ -76,11 +76,15 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 
 	const displayMessageSearchResults = () => {
 		if (filteredYogaPrograms.length === 0) {
-			return (
-				<p className={styles.noResultText}>
-					You don't have any favourite yoga sessions.
-				</p>
-			);
+			if (categoryFilter === "favourites") {
+				return (
+					<p className={styles.noResultText}>
+						You don't have any favourite yoga sessions.
+					</p>
+				);
+			} else {
+				return <p className={styles.noResultText}>No search results found.</p>;
+			}
 		}
 	};
 
