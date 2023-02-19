@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import BackArrow from "@/components/backArrow/backArrow";
-import styles from "./signup.module.css";
 import CircularSection from "@/components/circular-section/circular-section";
+import Image from "next/image";
+import styles from "./signup.module.css";
 
 const SignupPage = () => {
 	const onSubmitHandler = (event) => {
@@ -13,7 +13,12 @@ const SignupPage = () => {
 		<div className={styles.signupPage}>
 			<CircularSection />
 			<Link href="/" className={styles.backBtn}>
-				<BackArrow />
+				<Image
+					src="/img/arrow-back.svg"
+					width="18"
+					height="18"
+					alt="back"
+				></Image>
 			</Link>
 			<div className={styles.content}>
 				<h1 className={styles.header}>Create your account</h1>

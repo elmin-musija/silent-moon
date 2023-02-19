@@ -92,11 +92,11 @@ const YogaDetails = ({ yogaId }) => {
 				<div className={styles.btnContainer}>
 					<button onClick={() => router.back()} className={styles.backBtn}>
 						<Image
-							src="/img/back_arrow_yellow.svg"
-							width="55"
-							height="55"
+							src="/img/arrow-back.svg"
+							width="18"
+							height="18"
 							alt="back"
-						/>
+						></Image>
 					</button>
 					<button
 						className={styles.likeBtn}

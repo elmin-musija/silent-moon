@@ -9,27 +9,52 @@
 	top: 0;
 	left: 0;
 	right: 0;
-	padding: var(--phonePadding) var(--phonePadding);
-	height: 17em;
+	padding: var(--phonePadding) var(--phonePadding) 0;
 	z-index: 100;
 
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
+
+	animation: fadeIn 0.5s;
+	animation-delay: 4s;
+	animation-fill-mode: backwards;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 .btnContainer button {
 	cursor: pointer;
-	background-color: #00000000;
-	border: none;
+}
+
+.backBtn {
+	border: 2px solid #faf2da;
+	width: 5.5rem;
+	height: 5.5rem;
+	border-radius: 50%;
+	background-color: #faf2da;
+	transition: var(--transition);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .backBtn:hover {
-	animation: moveButtonLeft infinite 0.5s;
+	background-color: var(--darkYellow);
+	border: 2px solid var(--darkYellow);
 }
 
 .likeBtn {
 	position: relative;
+	border: none;
+	background-color: #00000000;
 }
 
 .likeBtn[animation="1"]::after {

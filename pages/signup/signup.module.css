@@ -21,10 +21,11 @@
 	border-radius: 50%;
 	cursor: pointer;
 	z-index: 100;
+	transition: var(--transition);
 }
 
 .backBtn:hover {
-	animation: moveButtonLeft infinite 0.5s;
+	background-color: #faf2da;
 }
 
 @keyframes moveButtonLeft {

@@ -1,10 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import BackArrow from "@/components/backArrow/backArrow";
-import styles from "./signin.module.css";
 import CircularSection from "@/components/circular-section/circular-section";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import styles from "./signin.module.css";
 
 const SigninPage = () => {
 	const onSubmitHandler = (event) => {
@@ -35,7 +34,12 @@ const SigninPage = () => {
 			<CircularSection />
 
 			<Link href="/" className={styles.backBtn}>
-				<BackArrow />
+				<Image
+					src="/img/arrow-back.svg"
+					width="18"
+					height="18"
+					alt="back"
+				></Image>
 			</Link>
 			<div className={styles.content}>
 				<h1 className={styles.header}>Welcome Back!</h1>
