@@ -1,13 +1,15 @@
 import { connectToDatabase } from "@/src/models/mongoose-setup";
 import User from "@/src/models/UserModel";
 
-const listAllFavoriteYogaExercises = async ({ email }) => {
+const listAllYogaFavoriteExercises = async ({ email }) => {
 	await connectToDatabase();
-	const result = await User.find({ email: email }).populate("yoga").exec();
-	if (result.length !== 0) {
+	const userExists = await User.findOne({ email: email })
+		.populate("yoga")
+		.exec();
+
+	if (userExists) {
 		/** user does exist */
-		const { yoga } = result[0];
-		const allFavoriteYogaExercises = yoga.map((element) => ({
+		const allFavoriteYogaExercises = userExists.yoga.map((element) => ({
 			_id: element._id.toString(),
 			title: element.title,
 			description: element.description,
@@ -20,6 +22,7 @@ const listAllFavoriteYogaExercises = async ({ email }) => {
 			},
 			videoUrl: element.videoUrl,
 		}));
+
 		return allFavoriteYogaExercises;
 	} else {
 		/** user does not exist */
@@ -28,5 +31,5 @@ const listAllFavoriteYogaExercises = async ({ email }) => {
 };
 
 module.exports = {
-	listAllFavoriteYogaExercises,
+	listAllYogaFavoriteExercises,
 };
