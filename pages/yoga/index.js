@@ -14,13 +14,15 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 	const inputFieldSearchRef = useRef(null);
 	const [filteredYogaPrograms, setFilteredYogaPrograms] =
 		useState(yogaPrograms);
+	const [favoriteYogaPrograms, setFavoriteYogaPrograms] = useState([]);
 	const [inputSearchString, setInputSearchString] = useState("");
 
-	const [categoryFilter, setCategoryFilter] = useState("");
+	const [categoryFilter, setCategoryFilter] = useState("all");
 
 	const onInputSearchYogaHandler = (event) => {
 		event.preventDefault();
 		setInputSearchString(inputFieldSearchRef.current.value);
+		setCategoryFilter("all");
 	};
 
 	useEffect(() => {
@@ -31,21 +33,45 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 	}, [inputSearchString]);
 
 	useEffect(() => {
-		const filteredYogaPrograms = yogaPrograms.filter((element) => {
-			if (categoryFilter !== "all") {
-				return element.category
-					.toLowerCase()
-					.includes(categoryFilter.toLowerCase());
-			} else {
-				return yogaPrograms;
-			}
-		});
-		setFilteredYogaPrograms(filteredYogaPrograms);
+		if (categoryFilter === "favourites") {
+			setFilteredYogaPrograms(favoriteYogaPrograms);
+		} else if (categoryFilter !== "all") {
+			const filteredYogaPrograms = yogaPrograms.filter((element) =>
+				element.category.toLowerCase().includes(categoryFilter.toLowerCase())
+			);
+			setFilteredYogaPrograms(filteredYogaPrograms);
+		} else {
+			setFilteredYogaPrograms(yogaPrograms);
+		}
 	}, [categoryFilter]);
 
 	const focusHandler = () => {
 		inputFieldSearchRef.current.focus();
 	};
+
+	const onCategoryButtonClickHandler = async (buttonId) => {
+		inputFieldSearchRef.current.value = "";
+		setCategoryFilter(buttonId);
+	};
+
+	useEffect(() => {
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				emmil: session.user.email,
+			}),
+		};
+		fetch("/api/yoga/favorite/all/show", options)
+			.then((response) => response.json())
+			.then((favorites) => {
+				if (favorites.status === "success" && favorites.data.favorites) {
+					setFavoriteYogaPrograms(favorites.data.favorites);
+				}
+			});
+	}, []);
 
 	return (
 		<div className={styles.yogaPage}>
@@ -55,14 +81,33 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 
 			{/** Categories*/}
 			<div className={styles.categorySlider}>
-				{yogaCategories.map((element) => (
-					<button key={uid()} onClick={() => setCategoryFilter(element._id)}>
-						<Image
-							src={`/img/${element._id.toLowerCase()}.svg`}
-							width="65"
-							height="65"
-							alt={`${element._id} icon`}
-						/>
+				{yogaCategories?.map((element) => (
+					<button
+						key={uid()}
+						onClick={() => onCategoryButtonClickHandler(element._id)}
+					>
+						{element._id.toLowerCase() === categoryFilter && (
+							<div className={`${styles.categoryContainerActive}`}>
+								<Image
+									className={styles.categoryButton}
+									src={`/img/${element._id.toLowerCase()}.svg`}
+									width="65"
+									height="65"
+									alt={`${element._id} icon`}
+								/>
+							</div>
+						)}
+						{element._id.toLowerCase() !== categoryFilter && (
+							<div className={`${styles.categoryContainer}`}>
+								<Image
+									className={styles.categoryButton}
+									src={`/img/${element._id.toLowerCase()}.svg`}
+									width="65"
+									height="65"
+									alt={`${element._id} icon`}
+								/>
+							</div>
+						)}
 						<p className={styles.categoryName}>{element._id}</p>
 					</button>
 				))}
