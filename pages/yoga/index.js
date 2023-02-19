@@ -1,12 +1,12 @@
 import Title from "@/components/title/title";
 import React, { useEffect, useRef, useState } from "react";
-import { uid } from "uid";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { uid } from "uid";
 import { YogaService } from "@/src/services/use-cases/index";
 import MiniPlayer from "@/components/mini-player/miniPlayer";
 import styles from "./yoga.module.css";
-import { useSession } from "next-auth/react";
 
 const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 	const { data: session, status } = useSession();
@@ -20,7 +20,7 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 
 	const onInputSearchYogaHandler = (event) => {
 		event.preventDefault();
-		setInputSearchString(inputFieldSearchRef.current.value);
+		setInputSearchString(inputFieldSearchRef.current.value.trim());
 		setCategoryFilter("all");
 	};
 
