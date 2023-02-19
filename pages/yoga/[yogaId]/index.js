@@ -36,7 +36,7 @@ const YogaDetails = ({ yogaId }) => {
 				yogaId: yogaId._id,
 			}),
 		};
-		const result = await fetch("/api/yoga/exercise", options);
+		const result = await fetch("/api/yoga/favorite/single/add", options);
 		const response = await result.json();
 		if (response.status === "success") {
 			if (response.data.isFavorite) {
@@ -64,7 +64,7 @@ const YogaDetails = ({ yogaId }) => {
 				yogaId: yogaId._id,
 			}),
 		};
-		fetch("/api/yoga/singlefavorite", options)
+		fetch("/api/yoga/favorite/single/show", options)
 			.then((res) => res.json())
 			.then((result) => {
 				if (result.status === "success") {

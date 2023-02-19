@@ -33,7 +33,7 @@ const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
 				meditationCourseId: meditationCourseInfo._id,
 			}),
 		};
-		const result = await fetch("/api/meditation/favorite/add", options);
+		const result = await fetch("/api/meditation/favorite/single/add", options);
 		const response = await result.json();
 		if (response.status === "success") {
 			if (response.data.isFavorite) {
@@ -61,7 +61,7 @@ const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
 				meditationCourseId: meditationCourseInfo._id,
 			}),
 		};
-		fetch("/api/meditation/favorite/show", options)
+		fetch("/api/meditation/favorite/single/show", options)
 			.then((res) => res.json())
 			.then((result) => {
 				if (result.status === "success") {
