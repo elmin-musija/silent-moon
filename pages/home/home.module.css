@@ -122,3 +122,7 @@
 .itemSubInfo p:first-of-type {
 	text-transform: uppercase;
 }
+
+.noResultText {
+	margin-bottom: 18.6rem;
+}

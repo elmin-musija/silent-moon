@@ -52,13 +52,21 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 
 	const displayMessageFavoriteYoga = () => {
 		if (inputSearchUsed === true && filteredYogaPrograms.length === 0) {
-			return <p>No search result in yoga sessions found.</p>;
+			return (
+				<p className={styles.noResultText}>
+					No search result in yoga sessions found.
+				</p>
+			);
 		}
 	};
 
 	const displayMessageFavoriteMeditationCourses = () => {
 		if (inputSearchUsed === true && filteredMeditationCourses.length === 0) {
-			return <p>No search result in meditations courses found.</p>;
+			return (
+				<p className={styles.noResultText}>
+					No search result in meditations courses found.
+				</p>
+			);
 		}
 	};
 
