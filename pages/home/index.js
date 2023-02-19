@@ -90,7 +90,11 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 				<div className={styles.randomsContainer}>
 					{randomYoga && (
 						<div>
-							<Link key={uid()} href={`/meditation/${randomYoga._id}`}>
+							<Link
+								key={uid()}
+								href={`/yoga/${randomYoga._id}`}
+								prefetch={false}
+							>
 								<div className={styles.imgageContainer} key={uid()}>
 									<Image
 										src={randomYoga.imageUrl}
