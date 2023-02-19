@@ -12,52 +12,85 @@ import styles from "./meditation.module.css";
 const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 	const { data: session, status } = useSession();
 	const inputFieldSearchRef = useRef(null);
-	const [filteredMeditationCourses, setFilteredMeditationCoursesPrograms] =
+	const [filteredMeditationCourses, setFilteredMeditationCourses] =
 		useState(allMeditationCourses);
+
+	// const [inputSearchUsed, setInputSearchUsed] = useState(false);
+	const [favoriteMeditationCourses, setFavoriteMeditationCourses] = useState(
+		[]
+	);
 	const [inputSearchString, setInputSearchString] = useState("");
-	const [inputSearchUsed, setInputSearchUsed] = useState(false);
-	const [categoryFilter, setCategoryFilter] = useState("");
+	const [categoryFilter, setCategoryFilter] = useState("all");
 
 	const onInputSearchMeditationHandler = (event) => {
 		event.preventDefault();
 		setInputSearchString(inputFieldSearchRef.current.value.trim());
-		if (inputSearchString === "") {
-			setInputSearchUsed(false);
-		}
+		setCategoryFilter("all");
 	};
 
 	useEffect(() => {
-		setInputSearchUsed(true);
 		const filteredMeditationCourses = allMeditationCourses.filter((element) =>
 			element.title.toLowerCase().includes(inputSearchString.toLowerCase())
 		);
-		setFilteredMeditationCoursesPrograms(filteredMeditationCourses);
-		if (inputSearchString === "") {
-			setInputSearchUsed(false);
-		}
+		setFilteredMeditationCourses(filteredMeditationCourses);
 	}, [inputSearchString]);
 
 	useEffect(() => {
-		const filteredMeditationCourses = allMeditationCourses.filter((element) => {
-			if (categoryFilter !== "all") {
-				return element.category
-					.toLowerCase()
-					.includes(categoryFilter.toLowerCase());
-			} else {
-				return allMeditationCourses;
-			}
-		});
-		setFilteredMeditationCoursesPrograms(filteredMeditationCourses);
-	}, [categoryFilter]);
-
-	const displayMessageFavoriteMeditationCourses = () => {
-		if (inputSearchUsed === true && filteredMeditationCourses.length === 0) {
-			return <p>No search results found</p>;
+		if (categoryFilter === "favourites") {
+			setFilteredMeditationCourses(favoriteMeditationCourses);
+		} else if (categoryFilter !== "all") {
+			const filteredMeditationCourses = allMeditationCourses.filter((element) =>
+				element.category.toLowerCase().includes(categoryFilter.toLowerCase())
+			);
+			setFilteredMeditationCourses(filteredMeditationCourses);
+		} else {
+			setFilteredMeditationCourses(allMeditationCourses);
 		}
-	};
+	}, [categoryFilter]);
 
 	const focusHandler = () => {
 		inputFieldSearchRef.current.focus();
+	};
+
+	const onCategoryButtonClickHandler = async (buttonId) => {
+		inputFieldSearchRef.current.value = "";
+		setCategoryFilter(buttonId);
+	};
+
+	useEffect(() => {
+		if (session) {
+			const options = {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					email: session.user.email,
+				}),
+			};
+			fetch("/api/meditation/favorite/all/show", options)
+				.then((response) => response.json())
+				.then((favorites) => {
+					console.log(favorites);
+					if (favorites.status === "success" && favorites.data.favorites) {
+						setFavoriteMeditationCourses(favorites.data.favorites);
+					}
+				});
+		}
+	}, [session]);
+
+	const displayMessageSearchResults = () => {
+		if (filteredMeditationCourses.length === 0) {
+			if (categoryFilter === "favourites") {
+				return (
+					<p className={styles.noResultText}>
+						You don't have any favourite meditation courses.
+					</p>
+				);
+			} else {
+				return <p className={styles.noResultText}>No search results found.</p>;
+			}
+		}
 	};
 
 	return (
@@ -68,25 +101,43 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 				Brilliant things happen in calm minds.
 				<br /> Be calm. You're brilliant.
 			</p>
-			{/* <p>Video guided meditation techniques to help you practice on the go.</p> */}
 
 			{/** Categories*/}
-			<div key={uid()} className={styles.categorySlider}>
-				{yogaCategories.map((element) => (
-					<button key={uid()} onClick={() => setCategoryFilter(element._id)}>
-						<Image
-							src={`/img/${element._id.toLowerCase()}.svg`}
-							width="65"
-							height="65"
-							alt={`${element._id} icon`}
-						/>
+			<div className={styles.categorySlider}>
+				{yogaCategories?.map((element) => (
+					<button
+						key={uid()}
+						onClick={() => onCategoryButtonClickHandler(element._id)}
+					>
+						{element._id.toLowerCase() === categoryFilter && (
+							<div className={`${styles.categoryContainerActive}`}>
+								<Image
+									className={styles.categoryButton}
+									src={`/img/${element._id.toLowerCase()}.svg`}
+									width="65"
+									height="65"
+									alt={`${element._id} icon`}
+								/>
+							</div>
+						)}
+						{element._id.toLowerCase() !== categoryFilter && (
+							<div className={`${styles.categoryContainer}`}>
+								<Image
+									className={styles.categoryButton}
+									src={`/img/${element._id.toLowerCase()}.svg`}
+									width="65"
+									height="65"
+									alt={`${element._id} icon`}
+								/>
+							</div>
+						)}
 						<p className={styles.categoryName}>{element._id}</p>
 					</button>
 				))}
 			</div>
 
 			{/** Search bar */}
-			<div key={uid()} className={styles.searchbar} onClick={focusHandler}>
+			<div className={styles.searchbar} onClick={focusHandler}>
 				<form onChange={onInputSearchMeditationHandler}>
 					<input
 						type="text"
@@ -119,10 +170,9 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 						<h3>{element.title}</h3>
 					</Link>
 				))}
-
-				{/** display message if there are no search results */}
-				{displayMessageFavoriteMeditationCourses()}
 			</div>
+			{/** display message if there are no search results */}
+			{displayMessageSearchResults()}
 		</div>
 	);
 };
@@ -133,5 +183,8 @@ export async function getStaticProps() {
 	const allMeditationCourses =
 		await MeditationService.listAllMeditationCourses();
 	const yogaCategories = await YogaService.listAllYogaCategories();
-	return { props: { allMeditationCourses, yogaCategories } };
+	return {
+		props: { allMeditationCourses, yogaCategories },
+		revalidate: 60 * 60 * 24,
+	};
 }
