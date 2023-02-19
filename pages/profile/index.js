@@ -244,7 +244,7 @@ export async function getServerSideProps(context) {
 		return { redirect: { destination: "/", permanent: false } };
 	}
 
-	const allYogaFavorites = await UserService.listAllFavoriteYogaExercises({
+	const allYogaFavorites = await UserService.listAllYogaFavoriteExercises({
 		email: session.user.email,
 	});
 

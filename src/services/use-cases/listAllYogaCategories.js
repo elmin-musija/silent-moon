@@ -9,7 +9,7 @@ const listAllYogaCategories = async () => {
 		{ $sort: { _id: 1 } },
 	]);
 	/** add missing category "all" */
-	const allYogaCategories = [{ _id: "all" }, ...result];
+	const allYogaCategories = [{ _id: "all" }, { _id: "favourites" }, ...result];
 
 	return allYogaCategories;
 };

@@ -131,3 +131,28 @@
 	border-bottom-left-radius: 1rem;
 	border-bottom-right-radius: 1rem;
 }
+
+.categoryContainer {
+	width: 65px;
+	height: 65px;
+	border-radius: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--secondaryText);
+}
+.categoryContainerActive {
+	width: 65px;
+	height: 65px;
+	border-radius: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--secondaryColor);
+}
+.categoryButton {
+	min-height: 35px;
+	min-width: 35px;
+	height: 35px;
+	width: 35px;
+}
