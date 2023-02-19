@@ -94,8 +94,8 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 								<div className={styles.imgageContainer} key={uid()}>
 									<Image
 										src={randomYoga.imageUrl}
-										width={155}
-										height={155}
+										width={174.5}
+										height={200}
 										alt={randomYoga.title}
 										key={randomYoga._id}
 										priority
@@ -126,8 +126,8 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 								<div className={styles.imgageContainer} key={uid()}>
 									<Image
 										src={randomMeditationCourse.imageUrl}
-										width={155}
-										height={155}
+										width={174.5}
+										height={200}
 										alt={randomMeditationCourse.title}
 										key={randomMeditationCourse._id}
 										priority

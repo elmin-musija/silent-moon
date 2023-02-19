@@ -23,6 +23,10 @@
 	margin: 0 var(--phonePadding) 5rem;
 }
 
+.randomsContainer > div img {
+	height: 20rem;
+}
+
 .searchbar {
 	margin: 0 var(--phonePadding) 3rem;
 	background-color: rgba(161, 164, 178, 0.2);
