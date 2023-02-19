@@ -16,7 +16,6 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 		useState(yogaPrograms);
 	const [favoriteYogaPrograms, setFavoriteYogaPrograms] = useState([]);
 	const [inputSearchString, setInputSearchString] = useState("");
-
 	const [categoryFilter, setCategoryFilter] = useState("all");
 
 	const onInputSearchYogaHandler = (event) => {
@@ -56,24 +55,34 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 
 	useEffect(() => {
 		if (session) {
-		const options = {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
+			const options = {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
 					email: session.user.email,
-			}),
-		};
-		fetch("/api/yoga/favorite/all/show", options)
-			.then((response) => response.json())
-			.then((favorites) => {
-				if (favorites.status === "success" && favorites.data.favorites) {
-					setFavoriteYogaPrograms(favorites.data.favorites);
-				}
-			});
+				}),
+			};
+			fetch("/api/yoga/favorite/all/show", options)
+				.then((response) => response.json())
+				.then((favorites) => {
+					if (favorites.status === "success" && favorites.data.favorites) {
+						setFavoriteYogaPrograms(favorites.data.favorites);
+					}
+				});
 		}
 	}, [session]);
+
+	const displayMessageSearchResults = () => {
+		if (filteredYogaPrograms.length === 0) {
+			return (
+				<p className={styles.noResultText}>
+					You don't have any favourite yoga sessions.
+				</p>
+			);
+		}
+	};
 
 	return (
 		<div className={styles.yogaPage}>
@@ -153,6 +162,7 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 					</Link>
 				))}
 			</div>
+			{displayMessageSearchResults()}
 		</div>
 	);
 };

@@ -156,3 +156,11 @@
 	height: 35px;
 	width: 35px;
 }
+
+.noResultText {
+	margin-top: 9.3rem;
+	margin-bottom: 9.3rem;
+	text-align: center;
+	width: 100%;
+	color: var(--secondaryText);
+}
