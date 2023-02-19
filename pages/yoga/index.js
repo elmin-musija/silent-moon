@@ -51,7 +51,10 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 		<div className={styles.yogaPage}>
 			<Title />
 			<h2>Yoga</h2>
-			<p>Find your innter zen from anywhere</p>
+			<p>
+				Yoga takes you into the present moment.
+				<br /> The only place where life exists.
+			</p>
 
 			{/** Categories*/}
 			<div className={styles.categorySlider}>

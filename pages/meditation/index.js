@@ -64,7 +64,11 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 		<div className={styles.meditatePage}>
 			<Title />
 			<h2>Meditate</h2>
-			<p>Video guided meditation techniques to help you practice on the go.</p>
+			<p>
+				Brilliant things happen in calm minds.
+				<br /> Be calm. You're brilliant.
+			</p>
+			{/* <p>Video guided meditation techniques to help you practice on the go.</p> */}
 
 			{/** Categories*/}
 			<div key={uid()} className={styles.categorySlider}>
