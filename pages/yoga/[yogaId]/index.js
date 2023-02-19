@@ -42,12 +42,12 @@ const YogaDetails = ({ yogaId }) => {
 			if (response.data.isFavorite) {
 				displayNotification({
 					type: "success",
-					message: "Exercise successfully added to favorites",
+					message: "Yoga session added to favourites",
 				});
 			} else {
 				displayNotification({
 					type: "success",
-					message: "Exercise successfully removed from favorites",
+					message: "Yoga session removed from favourites",
 				});
 			}
 			setYogaIsFavorite(response.data.isFavorite);

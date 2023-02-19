@@ -39,12 +39,12 @@ const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
 			if (response.data.isFavorite) {
 				displayNotification({
 					type: "success",
-					message: "Exercise successfully added to favorites",
+					message: "Meditation course added to favourites",
 				});
 			} else {
 				displayNotification({
 					type: "success",
-					message: "Exercise successfully removed from favorites",
+					message: "Meditation course removed from favourites",
 				});
 			}
 			setMeditationCourseIsFavorite(response.data.isFavorite);
