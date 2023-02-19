@@ -145,6 +145,14 @@
 	text-transform: uppercase;
 }
 
+.noResultText {
+	margin-top: 9.3rem;
+	margin-bottom: 9.3rem;
+	text-align: center;
+	width: 100%;
+	color: var(--secondaryText);
+}
+
 .linkYogaPage {
 	color: var(--primaryColor);
 	font-weight: 900;
