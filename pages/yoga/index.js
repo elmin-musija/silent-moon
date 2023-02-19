@@ -55,13 +55,14 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 	};
 
 	useEffect(() => {
+		if (session) {
 		const options = {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				emmil: session.user.email,
+					email: session.user.email,
 			}),
 		};
 		fetch("/api/yoga/favorite/all/show", options)
@@ -71,7 +72,8 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 					setFavoriteYogaPrograms(favorites.data.favorites);
 				}
 			});
-	}, []);
+		}
+	}, [session]);
 
 	return (
 		<div className={styles.yogaPage}>
