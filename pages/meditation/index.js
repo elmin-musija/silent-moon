@@ -20,8 +20,8 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 
 	const onInputSearchMeditationHandler = (event) => {
 		event.preventDefault();
-		setInputSearchString(inputFieldSearchRef.current.value);
-		if (inputSearchString.trim() === "") {
+		setInputSearchString(inputFieldSearchRef.current.value.trim());
+		if (inputSearchString === "") {
 			setInputSearchUsed(false);
 		}
 	};
@@ -32,7 +32,7 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 			element.title.toLowerCase().includes(inputSearchString.toLowerCase())
 		);
 		setFilteredMeditationCoursesPrograms(filteredMeditationCourses);
-		if (inputSearchString.trim() === "") {
+		if (inputSearchString === "") {
 			setInputSearchUsed(false);
 		}
 	}, [inputSearchString]);
