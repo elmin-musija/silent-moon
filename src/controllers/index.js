@@ -5,6 +5,7 @@ import { postListSingleYogaFavorite } from "@/src/controllers/userController";
 import { postListAllYogaFavorites } from "@/src/controllers/userController";
 import { postAddMeditationCourseToFavorites } from "@/src/controllers/userController";
 import { postListSingleMeditationCourseFavorite } from "@/src/controllers/userController";
+import { postListAllMeditationCourseFavorites } from "@/src/controllers/userController";
 
 const YogaController = {
 	postInsertYogaExercise,
@@ -16,6 +17,7 @@ const UserController = {
 	postListAllYogaFavorites,
 	postAddMeditationCourseToFavorites,
 	postListSingleMeditationCourseFavorite,
+	postListAllMeditationCourseFavorites,
 };
 
 module.exports = {

@@ -89,10 +89,30 @@ const postListSingleMeditationCourseFavorite = async (req, res) => {
 	});
 };
 
+const postListAllMeditationCourseFavorites = async (req, res) => {
+	const session = await getToken({ req });
+	if (!session) {
+		return res.json({
+			status: "error",
+			message: "Error: You are not logged in!",
+		});
+	}
+	await connectToDatabase();
+	const favorite = {
+		email: session.email,
+	};
+	const result = await UserService.listAllMeditationCourseFavorites(favorite);
+	return res.json({
+		status: "success",
+		data: { favorites: result },
+	});
+};
+
 module.exports = {
 	postAddYogaExerciseToFavorites,
 	postListSingleYogaFavorite,
 	postListAllYogaFavorites,
 	postAddMeditationCourseToFavorites,
 	postListSingleMeditationCourseFavorite,
+	postListAllMeditationCourseFavorites,
 };
