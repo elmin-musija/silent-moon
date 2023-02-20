@@ -92,19 +92,7 @@
 	font-weight: 900;
 	font-size: 3.6rem;
 	letter-spacing: 0.06em;
-	margin-bottom: 2rem;
-}
-
-.levelCategoryContainer {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 2rem;
-}
-
-.levelCategoryContainer > p:first-of-type {
-	padding: 0.3rem 1rem;
-	border-radius: 5rem;
+	margin-bottom: 2.2rem;
 }
 
 .beginner {
@@ -132,27 +120,36 @@
 	align-items: center;
 }
 
-.levelCategoryContainer .typeCategory p:first-of-type {
+.statisticsContainer {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	column-gap: 3rem;
+	row-gap: 1.5rem;
+	margin-bottom: 3.6rem;
+}
+
+.iconNumberContainer {
+	display: flex;
+	align-items: center;
+	gap: 0.7rem;
+}
+
+.statisticsContainer > p {
+	padding: 0.3rem 1rem;
+	border-radius: 5rem;
+	width: fit-content;
+	line-height: 1.4;
+}
+
+.typeCategory p:first-of-type {
 	font-size: 2.4rem;
 	font-weight: 600;
 	color: var(--darkRed);
 }
 
-.levelCategoryContainer .typeCategory p:nth-of-type(2) {
+.typeCategory p:nth-of-type(2) {
 	text-transform: lowercase;
 	font-size: 1.8rem;
-}
-
-.statisticsContainer {
-	display: flex;
-	gap: 5rem;
-	margin-bottom: 2rem;
-}
-
-.statisticsContainer > div {
-	display: flex;
-	align-items: center;
-	gap: 0.7rem;
 }
 
 .statisticsContainer > div p {
@@ -161,13 +158,17 @@
 }
 
 .description {
-	margin-bottom: 3rem;
+	margin-bottom: 3.6rem;
 }
 
 .controlFullscreenContainer {
 	display: flex;
 	gap: 1rem;
 	align-items: center;
+}
+
+.controlFullscreenContainer:hover button {
+	animation: scaleFullscreenBtn infinite 0.6s;
 }
 
 .controlFullscreenContainer button {
@@ -177,10 +178,6 @@
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
-}
-
-.controlFullscreenContainer button:hover {
-	animation: scaleFullscreenBtn infinite 0.5s;
 }
 
 .controlFullscreenContainer p {

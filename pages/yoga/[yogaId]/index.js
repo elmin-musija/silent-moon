@@ -124,17 +124,8 @@ const YogaDetails = ({ yogaId }) => {
 				<iframe src={videoUrl} title={yogaId.title} frameBorder="0"></iframe>
 				<div className={styles.content}>
 					<h2>{yogaId.title}</h2>
-					<div className={styles.levelCategoryContainer}>
-						<p key={uid()} className={levelStyle}>
-							{yogaId.level}
-						</p>
-						<div className={styles.typeCategory}>
-							<p key={uid()}>#</p>
-							<p key={uid()}>{yogaId.category}</p>
-						</div>
-					</div>
 					<div className={styles.statisticsContainer}>
-						<div key={uid()}>
+						<div key={uid()} className={styles.iconNumberContainer}>
 							<Image
 								src="/img/red-heart.svg"
 								width="18"
@@ -145,7 +136,7 @@ const YogaDetails = ({ yogaId }) => {
 								{Math.floor(Math.random() * (35000 - 2000) + 2000)} Follower
 							</p>
 						</div>
-						<div key={uid()}>
+						<div key={uid()} className={styles.iconNumberContainer}>
 							<Image
 								src="/img/headphones.svg"
 								width="20"
@@ -154,10 +145,14 @@ const YogaDetails = ({ yogaId }) => {
 							></Image>
 							<p>{Math.floor(Math.random() * (15000 - 500) + 500)} Listening</p>
 						</div>
+						<p key={uid()} className={levelStyle}>
+							{yogaId.level}
+						</p>
+						<div className={styles.typeCategory}>
+							<p key={uid()}>#</p>
+							<p key={uid()}>{yogaId.category}</p>
+						</div>
 					</div>
-					{/* <p key={uid()} className={styles.lengthCategory}>
-						Length: {yogaId.lengthCategory.toLowerCase()}
-					</p> */}
 					<p key={uid()} className={styles.description}>
 						{yogaId.description}
 					</p>
@@ -170,7 +165,7 @@ const YogaDetails = ({ yogaId }) => {
 								alt="fullscreen"
 							/>
 						</button>
-						<p onClick={videoFullscreenHandler}>Video Fullscreen</p>
+						<p onClick={videoFullscreenHandler}>Fullscreen</p>
 					</div>
 				</div>
 			</div>
