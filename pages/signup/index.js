@@ -4,6 +4,7 @@ import CircularSection from "@/components/circular-section/circular-section";
 import Image from "next/image";
 import styles from "./signup.module.css";
 import NotificationContext from "@/context/context";
+import { AnimatePresence, motion } from "framer-motion";
 import { signIn } from "next-auth/react";
 
 const SignupPage = () => {
@@ -57,59 +58,68 @@ const SignupPage = () => {
 	};
 
 	return (
-		<div className={styles.signupPage} id="top">
-			<CircularSection />
-			<Link href="/" className={styles.backBtn}>
-				<Image
-					src="/img/arrow-back.svg"
-					width="18"
-					height="18"
-					alt="back"
-				></Image>
-			</Link>
-			<div className={styles.content}>
-				<h1 className={styles.header}>Create your account</h1>
-				<form className={styles.form} onSubmit={onSubmitHandler}>
-					<input
-						className={styles.input}
-						type="text"
-						name="input-firstname"
-						id="input-firstname"
-						placeholder="FIRSTNAME"
-						ref={inputRefFirstname}
-						required
-					/>
-					<input
-						className={styles.input}
-						type="text"
-						name="input-lastname"
-						id="input-lastname"
-						placeholder="LASTNAME"
-						ref={inputRefLastname}
-						required
-					/>
-					<input
-						className={styles.input}
-						type="email"
-						name="input-email"
-						id="input-email"
-						placeholder="EMAIL"
-						ref={inputRefEmail}
-						required
-					/>
-					<input
-						className={styles.input}
-						type="password"
-						name="input-password"
-						id="input-password"
-						placeholder="PASSWORD"
-						ref={inputRefPassword}
-						required
-					/>
-					<input className={styles.submit} type="submit" value="REGISTER" />
-				</form>
-			</div>
-		</div>
+		<AnimatePresence>
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				exit={{ opacity: 0 }}
+				transition={{ duration: 0.7 }}
+				className={styles.signupPage}
+				id="top"
+			>
+				<CircularSection />
+				<Link href="/" className={styles.backBtn}>
+					<Image
+						src="/img/arrow-back.svg"
+						width="18"
+						height="18"
+						alt="back"
+					></Image>
+				</Link>
+				<div className={styles.content}>
+					<h1 className={styles.header}>Create your account</h1>
+					<form className={styles.form} onSubmit={onSubmitHandler}>
+						<input
+							className={styles.input}
+							type="text"
+							name="input-firstname"
+							id="input-firstname"
+							placeholder="FIRSTNAME"
+							ref={inputRefFirstname}
+							required
+						/>
+						<input
+							className={styles.input}
+							type="text"
+							name="input-lastname"
+							id="input-lastname"
+							placeholder="LASTNAME"
+							ref={inputRefLastname}
+							required
+						/>
+						<input
+							className={styles.input}
+							type="email"
+							name="input-email"
+							id="input-email"
+							placeholder="EMAIL"
+							ref={inputRefEmail}
+							required
+						/>
+						<input
+							className={styles.input}
+							type="password"
+							name="input-password"
+							id="input-password"
+							placeholder="PASSWORD"
+							ref={inputRefPassword}
+							required
+						/>
+						<input className={styles.submit} type="submit" value="REGISTER" />
+					</form>
+				</div>
+			</motion.div>
+		</AnimatePresence>
 	);
 };
 

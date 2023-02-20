@@ -10,6 +10,7 @@ import { useSession } from "next-auth/react";
 import { getFirstnameLastname } from "@/src/services/utils/name/name";
 import { convertDurationTimeFormat } from "@/src/services/utils/convert/convert";
 import { getRandomItemFromArray } from "@/src/services/utils/random/random";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./home.module.css";
 
 const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
@@ -95,160 +96,174 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 	}, []);
 
 	return (
-		<div className={styles.homePage} id="top">
-			<header>
-				<Title />
-			</header>
-			<main className={styles.homePage}>
-				{userFirstname && <h2>Good afternoon {userFirstname}</h2>}
-				<p className={styles.subheading}>We hope you have a good day</p>
+		<AnimatePresence>
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				exit={{ opacity: 0 }}
+				transition={{ duration: 0.7 }}
+				className={styles.homePage}
+				id="top"
+			>
+				<header>
+					<Title />
+				</header>
+				<main className={styles.homePage}>
+					{userFirstname && <h2>Good afternoon {userFirstname}</h2>}
+					<p className={styles.subheading}>We hope you have a good day</p>
 
-				{/** random yoga and meditation */}
-				<h2>Get inspired</h2>
-				<div className={styles.randomsContainer}>
-					{randomYoga && (
-						<div>
+					{/** random yoga and meditation */}
+					<h2>Get inspired</h2>
+					<div className={styles.randomsContainer}>
+						{randomYoga && (
+							<div>
+								<Link
+									key={uid()}
+									href={`/yoga/${randomYoga._id}`}
+									prefetch={false}
+								>
+									<div className={styles.imgageContainer} key={uid()}>
+										<Image
+											src={randomYoga.imageUrl}
+											width={174.5}
+											height={174.5}
+											alt={randomYoga.title}
+											key={randomYoga._id}
+											priority
+										></Image>
+									</div>
+									<div key={uid()} className={styles.itemInfo}>
+										<h3>{randomYoga.title}</h3>
+										<div className={styles.itemSubInfo}>
+											<p key={uid()}>{randomYoga.level}</p>
+											<p key={uid()}>
+												{convertDurationTimeFormat(
+													(Number(randomYoga.duration.minutes) * 60 +
+														Number(randomYoga.duration.seconds)) *
+														1000
+												)}
+											</p>
+										</div>
+									</div>
+								</Link>
+							</div>
+						)}
+						{randomMeditationCourse && (
+							<div>
+								<Link
+									key={uid()}
+									href={`/meditation/${randomMeditationCourse._id}`}
+									prefetch={false}
+								>
+									<div className={styles.imgageContainer} key={uid()}>
+										<Image
+											src={randomMeditationCourse.imageUrl}
+											width={174.5}
+											height={174.5}
+											alt={randomMeditationCourse.title}
+											key={randomMeditationCourse._id}
+											priority
+										></Image>
+									</div>
+									<div key={uid()} className={styles.itemInfo}>
+										<h3>{randomMeditationCourse.title}</h3>
+										<div className={styles.itemSubInfo}>
+											<p key={uid()}>{randomMeditationCourse.category}</p>
+										</div>
+									</div>
+								</Link>
+							</div>
+						)}
+					</div>
+
+					{/** search bar */}
+					<div className={styles.searchbar} onClick={focusHandler}>
+						<form onChange={onInputSearchYogaHandler}>
+							<input
+								type="text"
+								name="input-yoga-search"
+								id="input-yoga-search"
+								ref={inputFieldSearchRef}
+								placeholder="Search for yoga and meditation session"
+							/>
+						</form>
+						<div className={styles.searchIconContainer}>
+							<Image
+								src="/img/search.svg"
+								width="15"
+								height="15"
+								alt="search"
+							/>
+						</div>
+					</div>
+
+					{/** all yoga categories */}
+					<h2>Yoga sessions for you</h2>
+					<div className={styles.slider}>
+						{filteredYogaPrograms?.map((element) => (
 							<Link
-								key={uid()}
-								href={`/yoga/${randomYoga._id}`}
-								prefetch={false}
+								key={element._id}
+								href={`/yoga/${element._id}`}
+								className={styles.sliderItem}
 							>
 								<div className={styles.imgageContainer} key={uid()}>
 									<Image
-										src={randomYoga.imageUrl}
-										width={174.5}
-										height={174.5}
-										alt={randomYoga.title}
-										key={randomYoga._id}
+										src={element.imageUrl}
+										width={155}
+										height={155}
+										alt={element.title}
+										key={element._id}
 										priority
 									></Image>
 								</div>
 								<div key={uid()} className={styles.itemInfo}>
-									<h3>{randomYoga.title}</h3>
+									<h3>{element.title}</h3>
 									<div className={styles.itemSubInfo}>
-										<p key={uid()}>{randomYoga.level}</p>
+										<p key={uid()}>{element.level}</p>
 										<p key={uid()}>
 											{convertDurationTimeFormat(
-												(Number(randomYoga.duration.minutes) * 60 +
-													Number(randomYoga.duration.seconds)) *
+												(Number(element.duration.minutes) * 60 +
+													Number(element.duration.seconds)) *
 													1000
 											)}
 										</p>
 									</div>
 								</div>
 							</Link>
-						</div>
-					)}
-					{randomMeditationCourse && (
-						<div>
+						))}
+						{displayMessageFavoriteYoga()}
+					</div>
+					<h2>Meditation courses for you</h2>
+					<div className={styles.slider}>
+						{filteredMeditationCourses?.map((element) => (
 							<Link
-								key={uid()}
-								href={`/meditation/${randomMeditationCourse._id}`}
-								prefetch={false}
+								key={element._id}
+								href={`/meditation/${element._id}`}
+								className={styles.sliderItem}
 							>
 								<div className={styles.imgageContainer} key={uid()}>
 									<Image
-										src={randomMeditationCourse.imageUrl}
-										width={174.5}
-										height={174.5}
-										alt={randomMeditationCourse.title}
-										key={randomMeditationCourse._id}
+										src={element.imageUrl}
+										width={155}
+										height={155}
+										alt={element.title}
+										key={element._id}
 										priority
 									></Image>
 								</div>
 								<div key={uid()} className={styles.itemInfo}>
-									<h3>{randomMeditationCourse.title}</h3>
+									<h3>{element.title}</h3>
 									<div className={styles.itemSubInfo}>
-										<p key={uid()}>{randomMeditationCourse.category}</p>
+										<p key={uid()}>{element.category}</p>
 									</div>
 								</div>
 							</Link>
-						</div>
-					)}
-				</div>
-
-				{/** search bar */}
-				<div className={styles.searchbar} onClick={focusHandler}>
-					<form onChange={onInputSearchYogaHandler}>
-						<input
-							type="text"
-							name="input-yoga-search"
-							id="input-yoga-search"
-							ref={inputFieldSearchRef}
-							placeholder="Search for yoga and meditation session"
-						/>
-					</form>
-					<div className={styles.searchIconContainer}>
-						<Image src="/img/search.svg" width="15" height="15" alt="search" />
+						))}
+						{displayMessageFavoriteMeditationCourses()}
 					</div>
-				</div>
-
-				{/** all yoga categories */}
-				<h2>Yoga sessions for you</h2>
-				<div className={styles.slider}>
-					{filteredYogaPrograms?.map((element) => (
-						<Link
-							key={element._id}
-							href={`/yoga/${element._id}`}
-							className={styles.sliderItem}
-						>
-							<div className={styles.imgageContainer} key={uid()}>
-								<Image
-									src={element.imageUrl}
-									width={155}
-									height={155}
-									alt={element.title}
-									key={element._id}
-									priority
-								></Image>
-							</div>
-							<div key={uid()} className={styles.itemInfo}>
-								<h3>{element.title}</h3>
-								<div className={styles.itemSubInfo}>
-									<p key={uid()}>{element.level}</p>
-									<p key={uid()}>
-										{convertDurationTimeFormat(
-											(Number(element.duration.minutes) * 60 +
-												Number(element.duration.seconds)) *
-												1000
-										)}
-									</p>
-								</div>
-							</div>
-						</Link>
-					))}
-					{displayMessageFavoriteYoga()}
-				</div>
-				<h2>Meditation courses for you</h2>
-				<div className={styles.slider}>
-					{filteredMeditationCourses?.map((element) => (
-						<Link
-							key={element._id}
-							href={`/meditation/${element._id}`}
-							className={styles.sliderItem}
-						>
-							<div className={styles.imgageContainer} key={uid()}>
-								<Image
-									src={element.imageUrl}
-									width={155}
-									height={155}
-									alt={element.title}
-									key={element._id}
-									priority
-								></Image>
-							</div>
-							<div key={uid()} className={styles.itemInfo}>
-								<h3>{element.title}</h3>
-								<div className={styles.itemSubInfo}>
-									<p key={uid()}>{element.category}</p>
-								</div>
-							</div>
-						</Link>
-					))}
-					{displayMessageFavoriteMeditationCourses()}
-				</div>
-			</main>
-		</div>
+				</main>
+			</motion.div>
+		</AnimatePresence>
 	);
 };
 

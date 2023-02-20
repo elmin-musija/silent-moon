@@ -5,6 +5,7 @@ import clsx from "classnames";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import NotificationContext from "@/context/context";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./player.module.css";
 
 const MeditationPlayerPage = ({ meditation }) => {
@@ -35,77 +36,88 @@ const MeditationPlayerPage = ({ meditation }) => {
 
 	if (!getPhoneRotated()) {
 		return (
-			<div className={styles.meditationIdPage} id="top">
-				<div className={styles.btnContainer}>
-					<button onClick={() => router.back()} className={styles.backBtn}>
-						<Image
-							src="/img/arrow-back.svg"
-							width="18"
-							height="18"
-							alt="back"
-						></Image>
-					</button>
-				</div>
-				<iframe
-					src={videoUrl}
-					title={meditation.title}
-					frameBorder="0"
-				></iframe>
-				<div className={styles.content}>
-					<h2>{meditation.title}</h2>
-					<div className={styles.statisticsContainer}>
-						<div key={uid()}>
+			<AnimatePresence>
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					transition={{ duration: 0.7 }}
+					className={styles.meditationIdPage}
+					id="top"
+				>
+					<div className={styles.btnContainer}>
+						<button onClick={() => router.back()} className={styles.backBtn}>
 							<Image
-								src="/img/red-heart.svg"
+								src="/img/arrow-back.svg"
 								width="18"
-								height="16"
-								alt="heart icon"
+								height="18"
+								alt="back"
 							></Image>
-							<p>
-								{Math.floor(Math.random() * (35000 - 2000) + 2000)} Follower
+						</button>
+					</div>
+					<iframe
+						src={videoUrl}
+						title={meditation.title}
+						frameBorder="0"
+					></iframe>
+					<div className={styles.content}>
+						<h2>{meditation.title}</h2>
+						<div className={styles.statisticsContainer}>
+							<div key={uid()}>
+								<Image
+									src="/img/red-heart.svg"
+									width="18"
+									height="16"
+									alt="heart icon"
+								></Image>
+								<p>
+									{Math.floor(Math.random() * (35000 - 2000) + 2000)} Follower
+								</p>
+							</div>
+							<div key={uid()}>
+								<Image
+									src="/img/headphones.svg"
+									width="20"
+									height="16"
+									alt="headphones icon"
+								></Image>
+								<p>
+									{Math.floor(Math.random() * (15000 - 500) + 500)} Listening
+								</p>
+							</div>
+						</div>
+						<div className={styles.levelContainer}>
+							<p key={uid()} className={levelStyle}>
+								{meditation.level}
 							</p>
 						</div>
-						<div key={uid()}>
-							<Image
-								src="/img/headphones.svg"
-								width="20"
-								height="16"
-								alt="headphones icon"
-							></Image>
-							<p>{Math.floor(Math.random() * (15000 - 500) + 500)} Listening</p>
+						<p key={uid()} className={styles.description}>
+							{meditation.description}
+						</p>
+						<div className={styles.controlFullscreenContainer}>
+							<button
+								onClick={() => {
+									setPhoneRotated();
+								}}
+							>
+								<Image
+									src="/img/fullscreen.svg"
+									width="20"
+									height="20"
+									alt="fullscreen"
+								/>
+							</button>
+							<p
+								onClick={() => {
+									setPhoneRotated();
+								}}
+							>
+								Fullscreen
+							</p>
 						</div>
 					</div>
-					<div className={styles.levelContainer}>
-						<p key={uid()} className={levelStyle}>
-							{meditation.level}
-						</p>
-					</div>
-					<p key={uid()} className={styles.description}>
-						{meditation.description}
-					</p>
-					<div className={styles.controlFullscreenContainer}>
-						<button
-							onClick={() => {
-								setPhoneRotated();
-							}}
-						>
-							<Image
-								src="/img/fullscreen.svg"
-								width="20"
-								height="20"
-								alt="fullscreen"
-							/>
-						</button>
-						<p
-							onClick={() => {
-								setPhoneRotated();
-							}}
-						>
-							Fullscreen
-						</p>
-					</div>
-				</div>
-			</div>
+				</motion.div>
+			</AnimatePresence>
 		);
 	}
 

@@ -11,6 +11,7 @@ import Image from "next/image";
 import Title from "@/components/title/title";
 import { convertDurationTimeFormat } from "@/src/services/utils/convert/convert";
 import { getFirstnameLastname } from "@/src/services/utils/name/name";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./profile.module.css";
 
 const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
@@ -133,108 +134,122 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 	};
 
 	return (
-		<div className={styles.profilePage} id="top">
-			<header>
-				<Title />
-			</header>
+		<AnimatePresence>
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				exit={{ opacity: 0 }}
+				transition={{ duration: 0.7 }}
+				className={styles.profilePage}
+				id="top"
+			>
+				<header>
+					<Title />
+				</header>
 
-			<main>
-				{/** Profile image, name and logout */}
-				<div className={styles.profileInfoContainer}>
-					<div className={styles.profilePictureContainer}>
-						<Image src={image} width="80" height="80" alt="profile picture" />
+				<main>
+					{/** Profile image, name and logout */}
+					<div className={styles.profileInfoContainer}>
+						<div className={styles.profilePictureContainer}>
+							<Image src={image} width="80" height="80" alt="profile picture" />
+						</div>
+						<div>
+							<p>{userFirstname}</p>
+							<button onClick={onLogoutHandler}>Logout</button>
+						</div>
 					</div>
-					<div>
-						<p>{userFirstname}</p>
-						<button onClick={onLogoutHandler}>Logout</button>
-					</div>
-				</div>
 
-				{/** Search bar */}
-				<div className={styles.searchbar} onClick={focusHandler}>
-					<form
-						onChange={onInputSearchYogaHandler}
-						onSubmit={(event) => event.preventDefault()}
-					>
-						<input
-							type="text"
-							name="input-yoga-search"
-							id="input-yoga-search"
-							ref={inputFieldSearchRef}
-							placeholder="Find your favourite sessions"
-						/>
-					</form>
-					<div className={styles.searchIconContainer}>
-						<Image src="/img/search.svg" width="15" height="15" alt="search" />
-					</div>
-				</div>
-
-				<h2>Favourite Yoga Session</h2>
-				<div className={styles.slider}>
-					{filteredYogaFavorites?.map((element) => (
-						<Link
-							key={element._id}
-							href={`/yoga/${element._id}`}
-							className={styles.sliderItem}
+					{/** Search bar */}
+					<div className={styles.searchbar} onClick={focusHandler}>
+						<form
+							onChange={onInputSearchYogaHandler}
+							onSubmit={(event) => event.preventDefault()}
 						>
-							<div className={styles.imgageContainer} key={uid()}>
-								<Image
-									src={element.imageUrl}
-									width={155}
-									height={155}
-									alt={element.title}
-									key={element._id}
-									priority
-								></Image>
-							</div>
-							<div key={uid()} className={styles.itemInfo}>
-								<h3>{element.title}</h3>
-								<div className={styles.itemSubInfo}>
-									<p key={uid()}>{element.level}</p>
-									<p key={uid()}>
-										{convertDurationTimeFormat(
-											(Number(element.duration.minutes) * 60 +
-												Number(element.duration.seconds)) *
-												1000
-										)}
-									</p>
-								</div>
-							</div>
-						</Link>
-					))}
-					{displayMessageFavoriteYoga()}
-				</div>
+							<input
+								type="text"
+								name="input-yoga-search"
+								id="input-yoga-search"
+								ref={inputFieldSearchRef}
+								placeholder="Find your favourite sessions"
+							/>
+						</form>
+						<div className={styles.searchIconContainer}>
+							<Image
+								src="/img/search.svg"
+								width="15"
+								height="15"
+								alt="search"
+							/>
+						</div>
+					</div>
 
-				<h2>Favourite Meditations</h2>
-				<div className={styles.slider}>
-					{filteredMeditationFavorites?.map((element) => (
-						<Link
-							key={element._id}
-							href={`/meditation/${element._id}`}
-							className={styles.sliderItem}
-						>
-							<div className={styles.imgageContainer} key={uid()}>
-								<Image
-									src={element.imageUrl}
-									width={155}
-									height={155}
-									alt={element.title}
-									key={element._id}
-									priority
-								></Image>
-							</div>
-							<div key={uid()} className={styles.itemInfo}>
-								<h3>{element.title}</h3>
-								<div className={styles.itemSubInfo}>
-									<p key={uid()}>{element.category}</p>
+					<h2>Favourite Yoga Session</h2>
+					<div className={styles.slider}>
+						{filteredYogaFavorites?.map((element) => (
+							<Link
+								key={element._id}
+								href={`/yoga/${element._id}`}
+								className={styles.sliderItem}
+							>
+								<div className={styles.imgageContainer} key={uid()}>
+									<Image
+										src={element.imageUrl}
+										width={155}
+										height={155}
+										alt={element.title}
+										key={element._id}
+										priority
+									></Image>
 								</div>
-							</div>
-						</Link>
-					))}
-					{displayMessageFavoriteMeditationCourses()}
-				</div>
-			</main>
-		</div>
+								<div key={uid()} className={styles.itemInfo}>
+									<h3>{element.title}</h3>
+									<div className={styles.itemSubInfo}>
+										<p key={uid()}>{element.level}</p>
+										<p key={uid()}>
+											{convertDurationTimeFormat(
+												(Number(element.duration.minutes) * 60 +
+													Number(element.duration.seconds)) *
+													1000
+											)}
+										</p>
+									</div>
+								</div>
+							</Link>
+						))}
+						{displayMessageFavoriteYoga()}
+					</div>
+
+					<h2>Favourite Meditations</h2>
+					<div className={styles.slider}>
+						{filteredMeditationFavorites?.map((element) => (
+							<Link
+								key={element._id}
+								href={`/meditation/${element._id}`}
+								className={styles.sliderItem}
+							>
+								<div className={styles.imgageContainer} key={uid()}>
+									<Image
+										src={element.imageUrl}
+										width={155}
+										height={155}
+										alt={element.title}
+										key={element._id}
+										priority
+									></Image>
+								</div>
+								<div key={uid()} className={styles.itemInfo}>
+									<h3>{element.title}</h3>
+									<div className={styles.itemSubInfo}>
+										<p key={uid()}>{element.category}</p>
+									</div>
+								</div>
+							</Link>
+						))}
+						{displayMessageFavoriteMeditationCourses()}
+					</div>
+				</main>
+			</motion.div>
+		</AnimatePresence>
 	);
 };
 
