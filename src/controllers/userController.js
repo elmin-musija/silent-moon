@@ -108,6 +108,26 @@ const postListAllMeditationCourseFavorites = async (req, res) => {
 	});
 };
 
+const postSignUp = async (req, res) => {
+	/** error handling */
+	await connectToDatabase();
+
+	const user = {
+		firstname: req.body.firstname,
+		lastname: req.body.lastname,
+
+		email: req.body.email,
+		password: req.body.password,
+		yoga: [],
+		meditation: [],
+	};
+	const result = await UserService.signup(user);
+	return res.json({
+		status: "success",
+		data: { isRegistered: result },
+	});
+};
+
 module.exports = {
 	postAddYogaExerciseToFavorites,
 	postListSingleYogaFavorite,
@@ -115,4 +135,5 @@ module.exports = {
 	postAddMeditationCourseToFavorites,
 	postListSingleMeditationCourseFavorite,
 	postListAllMeditationCourseFavorites,
+	postSignUp,
 };

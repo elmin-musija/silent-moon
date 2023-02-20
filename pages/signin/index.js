@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import CircularSection from "@/components/circular-section/circular-section";
 import { signIn } from "next-auth/react";
@@ -6,11 +6,19 @@ import Image from "next/image";
 import styles from "./signin.module.css";
 
 const SigninPage = () => {
-	const onSubmitHandler = (event) => {
+	const inputRefEmail = useRef(null);
+	const inputRefPassword = useRef(null);
+
+	const onSubmitHandler = async (event) => {
 		event.preventDefault();
 		/**
 		 * signin with nextauth
 		 */
+		signIn("credentials", {
+			email: inputRefEmail.current.value,
+			password: inputRefPassword.current.value,
+			callbackUrl: "/welcome",
+		});
 	};
 
 	const googleSigninHandler = async () => {
@@ -50,6 +58,7 @@ const SigninPage = () => {
 						name="input-email"
 						id="input-email"
 						placeholder="EMAIL"
+						ref={inputRefEmail}
 						required
 					/>
 					<input
@@ -58,6 +67,7 @@ const SigninPage = () => {
 						name="input-password"
 						id="input-password"
 						placeholder="PASSWORD"
+						ref={inputRefPassword}
 						required
 					/>
 					<input className={styles.submit} type="submit" value="LOGIN" />
