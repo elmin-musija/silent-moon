@@ -38,7 +38,7 @@ const SigninPage = () => {
 	};
 
 	return (
-		<div className={styles.signinPage}>
+		<div className={styles.signinPage} id="top">
 			<CircularSection />
 
 			<Link href="/" className={styles.backBtn}>

@@ -121,12 +121,19 @@ const ProfilePage = ({ allYogaFavorites, allMeditationsCourseFavorites }) => {
 		}
 	};
 
+	useEffect(() => {
+		const handleRouteChange = () => {
+			document.getElementById("top").scrollIntoView();
+		};
+		router.events.on("routeChangeComplete", handleRouteChange);
+	}, []);
+
 	const focusHandler = () => {
 		inputFieldSearchRef.current.focus();
 	};
 
 	return (
-		<div className={styles.profilePage}>
+		<div className={styles.profilePage} id="top">
 			<header>
 				<Title />
 			</header>

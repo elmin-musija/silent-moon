@@ -1,6 +1,7 @@
 .title {
-	margin: 3rem 0 6rem;
+	margin: 0 0 6rem;
 	position: relative;
+	padding-top: 3rem;
 }
 
 .title h1 {
@@ -15,6 +16,6 @@
 	position: absolute;
 	top: 0;
 	right: var(--phonePadding);
-	transform: translateY(-25%);
+	transform: translateY(50%);
 	border-radius: 1.2rem;
 }

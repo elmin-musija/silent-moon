@@ -21,7 +21,7 @@ const WelcomePage = ({ name }) => {
 	const { firstname, lastname } = getFirstnameLastname(name);
 
 	return (
-		<div className={styles.welcome}>
+		<div className={styles.welcome} id="top">
 			<p className={styles.hiName}>Hi {firstname}!</p>
 			<p className={styles.welcome}>Welcome to</p>
 			<p className={styles.silentMoon}>Silent Moon</p>

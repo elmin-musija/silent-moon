@@ -27,7 +27,7 @@ const PlayerPage = ({ type, offset, id, token }) => {
 	}, []);
 
 	return (
-		<div className={styles.playerPage}>
+		<div className={styles.playerPage} id="top">
 			<button onClick={() => router.back()} className={styles.closeBtn}>
 				<Image
 					src="/img/close_player.svg"

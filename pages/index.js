@@ -12,7 +12,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div className={styles.splashscreenPage}>
+		<div className={styles.splashscreenPage} id="top">
 			<main>
 				<Image
 					src={"/img/login.png"}

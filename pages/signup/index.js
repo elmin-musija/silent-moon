@@ -57,7 +57,7 @@ const SignupPage = () => {
 	};
 
 	return (
-		<div className={styles.signupPage}>
+		<div className={styles.signupPage} id="top">
 			<CircularSection />
 			<Link href="/" className={styles.backBtn}>
 				<Image

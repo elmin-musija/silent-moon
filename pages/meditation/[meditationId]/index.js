@@ -73,10 +73,14 @@ const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
 					setMeditationCourseIsFavorite(result.data.isFavorite);
 				}
 			});
+		const handleRouteChange = () => {
+			document.getElementById("top").scrollIntoView();
+		};
+		router.events.on("routeChangeComplete", handleRouteChange);
 	}, []);
 
 	return (
-		<div className={styles.mediationDetailsPage}>
+		<div className={styles.mediationDetailsPage} id="top">
 			<h1>Silent Moon</h1>
 			<div className={styles.imgBtnContainer}>
 				<div className={styles.btnContainer}>

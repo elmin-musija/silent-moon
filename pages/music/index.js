@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { getServerSession } from "next-auth/next";
@@ -19,6 +20,7 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 	const { data: session, status } = useSession();
 	const { resetPhoneRotated } = useContext(NotificationContext);
 	const { items } = playlistTracks;
+	const router = useRouter();
 
 	const spotifySigninHandler = async () => {
 		await signIn("spotify", { callbackUrl: "/music" });
@@ -30,11 +32,15 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 
 	useEffect(() => {
 		resetPhoneRotated();
+		const handleRouteChange = () => {
+			document.getElementById("top").scrollIntoView();
+		};
+		router.events.on("routeChangeComplete", handleRouteChange);
 	}, []);
 
 	if (session.user.provider !== "spotify") {
 		return (
-			<div className={styles.spotifyLoginPage}>
+			<div className={styles.spotifyLoginPage} id="top">
 				<header>
 					<Title />
 				</header>
@@ -69,7 +75,7 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 	}
 
 	return (
-		<div className={styles.musicPage}>
+		<div className={styles.musicPage} id="top">
 			<header>
 				<Title />
 			</header>

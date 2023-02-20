@@ -1,5 +1,6 @@
 import Title from "@/components/title/title";
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { uid } from "uid";
@@ -26,6 +27,8 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 
 	const [randomYoga, setRandomYoga] = useState();
 	const [randomMeditationCourse, setRandomMeditationCourse] = useState();
+
+	const router = useRouter();
 
 	const onInputSearchYogaHandler = (event) => {
 		event.preventDefault();
@@ -84,8 +87,15 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 		userFirstname = firstname;
 	}
 
+	useEffect(() => {
+		const handleRouteChange = () => {
+			document.getElementById("top").scrollIntoView();
+		};
+		router.events.on("routeChangeComplete", handleRouteChange);
+	}, []);
+
 	return (
-		<div className={styles.homePage}>
+		<div className={styles.homePage} id="top">
 			<header>
 				<Title />
 			</header>
@@ -165,7 +175,7 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 							name="input-yoga-search"
 							id="input-yoga-search"
 							ref={inputFieldSearchRef}
-							placeholder="Search for yoga session"
+							placeholder="Search for yoga and meditation session"
 						/>
 					</form>
 					<div className={styles.searchIconContainer}>

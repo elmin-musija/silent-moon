@@ -6,7 +6,7 @@ import styles from "./reminders.module.css";
 
 const RemindersPage = () => {
 	return (
-		<div className={styles.reminders}>
+		<div className={styles.reminders} id="top">
 			<header>
 				<Title />
 			</header>

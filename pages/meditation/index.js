@@ -1,5 +1,6 @@
 import Title from "@/components/title/title";
 import React, { useEffect, useRef, useState, useContext } from "react";
+import { useRouter } from "next/router";
 import NotificationContext from "@/context/context";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -17,6 +18,7 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 	const inputFieldSearchRef = useRef(null);
 	const [filteredMeditationCourses, setFilteredMeditationCourses] =
 		useState(allMeditationCourses);
+	const router = useRouter();
 
 	// const [inputSearchUsed, setInputSearchUsed] = useState(false);
 	const [favoriteMeditationCourses, setFavoriteMeditationCourses] = useState(
@@ -100,8 +102,15 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 		}
 	};
 
+	useEffect(() => {
+		const handleRouteChange = () => {
+			document.getElementById("top").scrollIntoView();
+		};
+		router.events.on("routeChangeComplete", handleRouteChange);
+	}, []);
+
 	return (
-		<div className={styles.meditatePage}>
+		<div className={styles.meditatePage} id="top">
 			<Title />
 			<h2>Meditate</h2>
 			<p>

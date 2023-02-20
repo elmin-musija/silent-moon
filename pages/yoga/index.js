@@ -2,6 +2,7 @@ import Title from "@/components/title/title";
 import React, { useEffect, useRef, useState, useContext } from "react";
 import NotificationContext from "@/context/context";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import { uid } from "uid";
@@ -19,6 +20,7 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 	const [favoriteYogaPrograms, setFavoriteYogaPrograms] = useState([]);
 	const [inputSearchString, setInputSearchString] = useState("");
 	const [categoryFilter, setCategoryFilter] = useState("all");
+	const router = useRouter();
 
 	if (getPhoneRotated()) {
 		resetPhoneRotated();
@@ -80,6 +82,13 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 		}
 	}, [session]);
 
+	useEffect(() => {
+		const handleRouteChange = () => {
+			document.getElementById("top").scrollIntoView();
+		};
+		router.events.on("routeChangeComplete", handleRouteChange);
+	}, []);
+
 	const displayMessageSearchResults = () => {
 		if (filteredYogaPrograms.length === 0) {
 			if (categoryFilter === "favourites") {
@@ -95,7 +104,7 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 	};
 
 	return (
-		<div className={styles.yogaPage}>
+		<div className={styles.yogaPage} id="top">
 			<Title />
 			<h2>Yoga</h2>
 			<p>

@@ -70,6 +70,10 @@ const YogaDetails = ({ yogaId }) => {
 					setYogaIsFavorite(result.data.isFavorite);
 				}
 			});
+		const handleRouteChange = () => {
+			document.getElementById("top").scrollIntoView();
+		};
+		router.events.on("routeChangeComplete", handleRouteChange);
 	}, []);
 
 	{
@@ -87,7 +91,7 @@ const YogaDetails = ({ yogaId }) => {
 
 	if (!getPhoneRotated()) {
 		return (
-			<div className={styles.yogaIdPage}>
+			<div className={styles.yogaIdPage} id="top">
 				<div className={styles.btnContainer}>
 					<button onClick={() => router.back()} className={styles.backBtn}>
 						<Image
@@ -184,7 +188,7 @@ const YogaDetails = ({ yogaId }) => {
 
 	if (getPhoneRotated()) {
 		return (
-			<div className={styles.videoFullscreenContainer}>
+			<div className={styles.videoFullscreenContainer} id="top">
 				<div className={styles.overlay}>
 					<button
 						onClick={() => {

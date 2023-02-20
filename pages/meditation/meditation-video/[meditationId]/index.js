@@ -26,9 +26,16 @@ const MeditationPlayerPage = ({ meditation }) => {
 		[styles.advanced]: meditation.level === "advanced",
 	});
 
+	useEffect(() => {
+		const handleRouteChange = () => {
+			document.getElementById("top").scrollIntoView();
+		};
+		router.events.on("routeChangeComplete", handleRouteChange);
+	}, []);
+
 	if (!getPhoneRotated()) {
 		return (
-			<div className={styles.meditationIdPage}>
+			<div className={styles.meditationIdPage} id="top">
 				<div className={styles.btnContainer}>
 					<button onClick={() => router.back()} className={styles.backBtn}>
 						<Image
