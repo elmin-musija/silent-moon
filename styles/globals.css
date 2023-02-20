@@ -68,7 +68,7 @@ h1,
 h2,
 h3,
 button {
-	color: var(--primaryText);
+	color: var(--darkGreen);
 	font-size: 1.6rem;
 }
 
