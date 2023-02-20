@@ -149,7 +149,7 @@ const YogaDetails = ({ yogaId }) => {
 								alt="fullscreen"
 							/>
 						</button>
-						<p>Video Fullscreen</p>
+						<p onClick={videoFullscreenHandler}>Video Fullscreen</p>
 					</div>
 				</div>
 			</div>

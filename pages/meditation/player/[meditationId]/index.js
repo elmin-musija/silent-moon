@@ -153,7 +153,7 @@ const MeditationPlayerPage = ({ meditation }) => {
 								alt="fullscreen"
 							/>
 						</button>
-						<p>Video Fullscreen</p>
+						<p onClick={videoFullscreenHandler}>Video Fullscreen</p>
 					</div>
 				</div>
 			</div>
