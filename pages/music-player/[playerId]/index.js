@@ -31,9 +31,6 @@ const PlayerPage = ({ type, offset, id, token }) => {
 						alt="close player"
 					/>
 				</button>
-				<button className={styles.likeBtn}>
-					<Image src="/img/like_btn.svg" width="55" height="55" alt="heart" />
-				</button>
 			</div>
 			<div key={uid()}>
 				{render && (
