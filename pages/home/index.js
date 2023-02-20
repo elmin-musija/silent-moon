@@ -107,7 +107,7 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 									<Image
 										src={randomYoga.imageUrl}
 										width={174.5}
-										height={200}
+										height={174.5}
 										alt={randomYoga.title}
 										key={randomYoga._id}
 										priority
@@ -139,7 +139,7 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 									<Image
 										src={randomMeditationCourse.imageUrl}
 										width={174.5}
-										height={200}
+										height={174.5}
 										alt={randomMeditationCourse.title}
 										key={randomMeditationCourse._id}
 										priority

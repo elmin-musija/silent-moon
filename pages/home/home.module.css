@@ -88,6 +88,8 @@
 }
 
 .imgageContainer img {
+	min-width: auto;
+	min-height: auto;
 	object-fit: cover;
 	transition: var(--transition);
 	display: block;
