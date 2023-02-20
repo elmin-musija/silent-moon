@@ -14,9 +14,14 @@ const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
 	const { data: session, status } = useSession();
 	const [meditationCourseIsFavorite, setMeditationCourseIsFavorite] =
 		useState(false);
-	const { displayNotification } = useContext(NotificationContext);
+	const { displayNotification, getPhoneRotated, setPhoneRotated } =
+		useContext(NotificationContext);
 	const [animation, setAnimation] = useState(0);
 	const router = useRouter();
+
+	if (getPhoneRotated()) {
+		setPhoneRotated();
+	}
 
 	const onLikeButtonClickHandler = async () => {
 		// Change animation state

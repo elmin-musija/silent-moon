@@ -4,73 +4,16 @@ import { MeditationService } from "@/src/services/use-cases/index";
 import clsx from "classnames";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
 import NotificationContext from "@/context/context";
 import styles from "./player.module.css";
 
 const MeditationPlayerPage = ({ meditation }) => {
-	// const { data: session, status } = useSession();
-	// const { displayNotification } = useContext(NotificationContext);
+	const { getPhoneRotated, setPhoneRotated } = useContext(NotificationContext);
 	const router = useRouter();
-	const [videoFullscreen, setVideoFullscreen] = useState(false);
-	// const [yogaIsFavorite, setYogaIsFavorite] = useState(false);
-	// const [animation, setAnimation] = useState(0);
 
 	const videoFullscreenHandler = () => {
-		setVideoFullscreen(!videoFullscreen);
+		setPhoneRotated();
 	};
-
-	// const onLikeButtonClickHandler = async () => {
-	// 	// Change animation state
-	// 	setAnimation(1);
-
-	// 	const options = {
-	// 		method: "POST",
-	// 		headers: {
-	// 			"Content-Type": "application/json",
-	// 		},
-	// 		body: JSON.stringify({
-	// 			name: session.user.name,
-	// 			email: session.user.email,
-	// 			meditationId: meditation._id,
-	// 		}),
-	// 	};
-	// 	const result = await fetch("/api/meditation/exercise", options);
-	// 	const response = await result.json();
-	// 	if (response.status === "success") {
-	// 		if (response.data.isFavorite) {
-	// 			displayNotification({
-	// 				type: "success",
-	// 				message: "Exercise successfully added to favorites",
-	// 			});
-	// 		} else {
-	// 			displayNotification({
-	// 				type: "success",
-	// 				message: "Exercise successfully removed from favorites",
-	// 			});
-	// 		}
-	// 		setYogaIsFavorite(response.data.isFavorite);
-	// 	}
-	// };
-
-	// useEffect(() => {
-	// 	const options = {
-	// 		method: "POST",
-	// 		headers: {
-	// 			"Content-Type": "application/json",
-	// 		},
-	// 		body: JSON.stringify({
-	// 			yogaId: meditation._id,
-	// 		}),
-	// 	};
-	// 	fetch("/api/yoga/singlefavorite", options)
-	// 		.then((res) => res.json())
-	// 		.then((result) => {
-	// 			if (result.status === "success") {
-	// 				setYogaIsFavorite(result.data.isFavorite);
-	// 			}
-	// 		});
-	// }, []);
 
 	{
 		/** extract video Id from video link and format to embed  */
@@ -86,7 +29,7 @@ const MeditationPlayerPage = ({ meditation }) => {
 		[styles.advanced]: meditation.level === "advanced",
 	});
 
-	if (!videoFullscreen) {
+	if (!getPhoneRotated()) {
 		return (
 			<div className={styles.yogaIdPage}>
 				<div className={styles.btnContainer}>
@@ -98,29 +41,6 @@ const MeditationPlayerPage = ({ meditation }) => {
 							alt="back"
 						></Image>
 					</button>
-					{/* <button
-						className={styles.likeBtn}
-						onClick={onLikeButtonClickHandler}
-						onAnimationEnd={() => setAnimation(0)}
-						animation={animation}
-					>
-						{!yogaIsFavorite && (
-							<Image
-								src="/img/like_btn.svg"
-								width="55"
-								height="55"
-								alt="heart"
-							/>
-						)}
-						{yogaIsFavorite && (
-							<Image
-								src="/img/like_btn_filled.svg"
-								width="55"
-								height="55"
-								alt="heart"
-							/>
-						)}
-					</button> */}
 				</div>
 				<iframe
 					src={videoUrl}
@@ -133,14 +53,7 @@ const MeditationPlayerPage = ({ meditation }) => {
 						<p key={uid()} className={levelStyle}>
 							{meditation.level}
 						</p>
-						{/* <div className={styles.typeCategory}>
-							<p key={uid()}>#</p>
-							<p key={uid()}>{meditation.category}</p>
-						</div> */}
 					</div>
-					{/* <p key={uid()} className={styles.lengthCategory}>
-						Length: {yogaId.lengthCategory.toLowerCase()}
-					</p> */}
 					<p key={uid()} className={styles.description}>
 						{meditation.description}
 					</p>
@@ -160,7 +73,7 @@ const MeditationPlayerPage = ({ meditation }) => {
 		);
 	}
 
-	if (videoFullscreen) {
+	if (getPhoneRotated()) {
 		return (
 			<div className={styles.videoFullscreenContainer}>
 				<div className={styles.overlay}>

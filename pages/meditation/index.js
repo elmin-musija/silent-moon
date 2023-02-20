@@ -1,5 +1,6 @@
 import Title from "@/components/title/title";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
+import NotificationContext from "@/context/context";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,6 +12,7 @@ import styles from "./meditation.module.css";
 
 const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 	const { data: session, status } = useSession();
+	const { getPhoneRotated, setPhoneRotated } = useContext(NotificationContext);
 	const inputFieldSearchRef = useRef(null);
 	const [filteredMeditationCourses, setFilteredMeditationCourses] =
 		useState(allMeditationCourses);
@@ -21,6 +23,10 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 	);
 	const [inputSearchString, setInputSearchString] = useState("");
 	const [categoryFilter, setCategoryFilter] = useState("all");
+
+	if (getPhoneRotated()) {
+		setPhoneRotated();
+	}
 
 	const onInputSearchMeditationHandler = (event) => {
 		event.preventDefault();
