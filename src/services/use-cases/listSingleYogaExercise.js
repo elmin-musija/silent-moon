@@ -3,7 +3,7 @@ import Yoga from "@/src/models/YogaModel";
 
 const listSingleYogaExercise = async (paramYogaId) => {
 	await connectToDatabase();
-	const result = await Yoga.findOne({ _id: paramYogaId });
+	const result = await Yoga.findOne({ _id: paramYogaId }).exec();
 	const singleYogaExercise = {
 		_id: result._id.toString(),
 		title: result.title,
