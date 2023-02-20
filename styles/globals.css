@@ -21,26 +21,10 @@
 	--notificationGreen: rgb(181, 213, 197);
 	--notificationYellow: rgba(255, 246, 189);
 	--notificationRed: rgba(255, 211, 178);
-	/* --notificationGreen: rgba(203, 237, 213, 0.5);
-	--notificationYellow: rgba(255, 246, 189, 0.5);
-	--notificationRed: rgba(255, 211, 178, 0.5); */
 
 	--focusInputField: rgba(226, 144, 131, 0.07);
 	--likeBtnRingBg: #d1b0b0;
 	--boxShadow: #54575c57;
-
-	/* ------------ DEPRECATED ------------ */
-	/* --primaryColor: #e28f83; */
-	/* --secondaryColor: #8e9775; */
-
-	/* --primaryText: #4a503d; */
-	/* --secondaryText: #a1a4b2; */
-	/* --tertiaryText: #faf2da; */
-	/* --quarternaryText: #fefcf8; */
-
-	/* --notificationGreen: #c4c5a7; */
-	/* --notificationYellow: #faf2da; */
-	/* --notificationRed: #eec1af; */
 }
 
 * {
