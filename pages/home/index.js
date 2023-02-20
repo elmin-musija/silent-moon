@@ -134,6 +134,7 @@ const HomePage = ({ allYogaPrograms, allMeditationCourses }) => {
 							<Link
 								key={uid()}
 								href={`/meditation/${randomMeditationCourse._id}`}
+								prefetch={false}
 							>
 								<div className={styles.imgageContainer} key={uid()}>
 									<Image
