@@ -69,7 +69,7 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 			</header>
 			<main>
 				<Link
-					href={`/player/q?type=${playlistInfo.type}&offset=0&id=${playlistInfo.id}`}
+					href={`/music-player/q?type=${playlistInfo.type}&offset=0&id=${playlistInfo.id}`}
 					className={styles.linkToPlaylistCover}
 				>
 					<Image
@@ -81,7 +81,7 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 					/>
 				</Link>
 				<Link
-					href={`/player/q?type=${playlistInfo.type}&offset=0&id=${playlistInfo.id}`}
+					href={`/music-player/q?type=${playlistInfo.type}&offset=0&id=${playlistInfo.id}`}
 					className={styles.linkToPlaylist}
 				>
 					<h2>{playlistInfo.name}</h2>
@@ -116,7 +116,7 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 					<div key={uid()} className={styles.trackContainer}>
 						<Link
 							key={uid()}
-							href={`/player/q?type=${playlistInfo.type}&offset=${index}&id=${playlistInfo.id}`}
+							href={`/music-player/q?type=${playlistInfo.type}&offset=${index}&id=${playlistInfo.id}`}
 						>
 							<Image
 								src="/img/play_button.svg"
@@ -130,7 +130,7 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 							<div key={uid()} className={styles.trackNameDurationContainer}>
 								<Link
 									key={uid()}
-									href={`/player/q?type=${playlistInfo.type}&offset=${index}&id=${playlistInfo.id}`}
+									href={`/music-player/q?type=${playlistInfo.type}&offset=${index}&id=${playlistInfo.id}`}
 								>
 									{element.track.name}
 								</Link>
