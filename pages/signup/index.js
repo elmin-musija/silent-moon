@@ -1,12 +1,59 @@
-import React from "react";
+import React, { useRef, useContext } from "react";
 import Link from "next/link";
 import CircularSection from "@/components/circular-section/circular-section";
 import Image from "next/image";
 import styles from "./signup.module.css";
+import NotificationContext from "@/context/context";
+import { signIn } from "next-auth/react";
 
 const SignupPage = () => {
-	const onSubmitHandler = (event) => {
+	const { displayNotification } = useContext(NotificationContext);
+	const inputRefFirstname = useRef(null);
+	const inputRefLastname = useRef(null);
+	const inputRefEmail = useRef(null);
+	const inputRefPassword = useRef(null);
+
+	const clearInputFields = () => {
+		inputRefFirstname.current.value = "";
+		inputRefLastname.current.value = "";
+		inputRefEmail.current.value = "";
+		inputRefPassword.current.value = "";
+	};
+
+	const onSubmitHandler = async (event) => {
 		event.preventDefault();
+
+		const options = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				firstname: inputRefFirstname.current.value,
+				lastname: inputRefLastname.current.value,
+				email: inputRefEmail.current.value,
+				password: inputRefPassword.current.value,
+			}),
+		};
+		const result = await fetch("/api/auth/signup", options);
+		const response = await result.json();
+		if (response.status === "success") {
+			if (response.data.isRegistered) {
+				displayNotification({
+					type: "success",
+					message: "Successfully signed up",
+				});
+				clearInputFields();
+				setTimeout(() => {
+					signIn();
+				}, 3000);
+			} else {
+				displayNotification({
+					type: "error",
+					message: "User already exists",
+				});
+			}
+		}
 	};
 
 	return (
@@ -29,6 +76,7 @@ const SignupPage = () => {
 						name="input-firstname"
 						id="input-firstname"
 						placeholder="FIRSTNAME"
+						ref={inputRefFirstname}
 						required
 					/>
 					<input
@@ -37,6 +85,7 @@ const SignupPage = () => {
 						name="input-lastname"
 						id="input-lastname"
 						placeholder="LASTNAME"
+						ref={inputRefLastname}
 						required
 					/>
 					<input
@@ -45,6 +94,7 @@ const SignupPage = () => {
 						name="input-email"
 						id="input-email"
 						placeholder="EMAIL"
+						ref={inputRefEmail}
 						required
 					/>
 					<input
@@ -53,6 +103,7 @@ const SignupPage = () => {
 						name="input-password"
 						id="input-password"
 						placeholder="PASSWORD"
+						ref={inputRefPassword}
 						required
 					/>
 					<input className={styles.submit} type="submit" value="REGISTER" />
