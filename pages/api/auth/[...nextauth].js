@@ -69,10 +69,6 @@ export const NextAuthOptions = {
 			}
 			return token;
 		},
-		async session(session, token) {
-			session.user = session.token;
-			return session;
-		},
 	},
 	secret: process.env.NEXT_AUTH_SECRET,
 	pages: { signIn: "/signin" },
