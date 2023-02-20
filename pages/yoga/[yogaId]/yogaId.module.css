@@ -35,11 +35,11 @@
 }
 
 .backBtn {
-	border: 2px solid #faf2da;
+	border: 2px solid var(--lightYellow);
 	width: 5.5rem;
 	height: 5.5rem;
 	border-radius: 50%;
-	background-color: #faf2da;
+	background-color: var(--lightYellow);
 	transition: var(--transition);
 	display: flex;
 	align-items: center;
@@ -54,7 +54,7 @@
 .likeBtn {
 	position: relative;
 	border: none;
-	background-color: #00000000;
+	background-color: transparent;
 }
 
 .likeBtn[animation="1"]::after {
@@ -67,7 +67,7 @@
 	top: 0;
 	left: 0;
 	z-index: -1;
-	background-color: #d1b0b0;
+	background-color: var(--likeBtnRingBg);
 	animation: flickerButton 0.5s;
 }
 
@@ -116,41 +116,28 @@
 }
 
 .levelCategoryContainer > p:first-of-type {
-	color: white;
 	padding: 0.3rem 1rem;
 	border-radius: 5rem;
 }
 
 .beginner {
-	background: linear-gradient(
-		to right bottom,
-		rgb(140, 241, 140),
-		rgb(8, 183, 20)
-	);
+	background-color: var(--notificationGreen);
+	color: var(--lightGray);
 }
 
 .medium {
-	background: linear-gradient(
-		to right bottom,
-		rgb(177, 215, 89),
-		rgb(214, 200, 75)
-	);
+	background-color: var(--notificationYellow);
+	color: var(--darkGreen);
 }
 
 .intermediate {
-	background: linear-gradient(
-		to right bottom,
-		rgb(238, 231, 150),
-		rgb(239, 189, 6)
-	);
+	background-color: var(--notificationRed);
+	color: var(--darkGreen);
 }
 
 .advanced {
-	background: linear-gradient(
-		to right bottom,
-		rgb(253, 122, 155),
-		rgb(227, 21, 49)
-	);
+	background-color: var(--darkRed);
+	color: var(--lightGray);
 }
 
 .typeCategory {
@@ -161,7 +148,7 @@
 .levelCategoryContainer .typeCategory p:first-of-type {
 	font-size: 2.4rem;
 	font-weight: 600;
-	color: var(--primaryColor);
+	color: var(--darkRed);
 }
 
 .levelCategoryContainer .typeCategory p:nth-of-type(2) {
@@ -188,7 +175,7 @@
 	align-items: center;
 
 	border: none;
-	background-color: #00000000;
+	background-color: transparent;
 	cursor: pointer;
 }
 
@@ -232,8 +219,6 @@
 	left: 0;
 	z-index: 2;
 
-	/* background-color: red; */
-
 	transform-origin: bottom left;
 	transform: rotate(-90deg) translateY(100%);
 }
@@ -244,7 +229,7 @@
 	right: 5rem;
 
 	cursor: pointer;
-	background-color: #00000000;
+	background-color: transparent;
 	border: none;
 
 	transform-origin: 27.5px 27.5px;

@@ -29,7 +29,7 @@
 
 .searchbar {
 	margin: 0 var(--phonePadding) 3rem;
-	background-color: var(--searchbarBg);
+	background-color: var(--mediumGray);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

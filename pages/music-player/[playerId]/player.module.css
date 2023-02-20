@@ -1,5 +1,5 @@
 .playerPage {
-	background-color: #faf2da;
+	background-color: var(--lightYellow);
 	height: 100%;
 }
 
@@ -16,7 +16,7 @@
 
 .btnContainer button {
 	cursor: pointer;
-	background-color: #00000000;
+	background-color: transparent;
 	border: none;
 }
 
@@ -43,7 +43,7 @@
 	top: 0;
 	left: 0;
 	z-index: -1;
-	background-color: #d1b0b0;
+	background-color: var(--likeBtnRingBg);
 	animation: flickerButton 0.5s;
 }
 

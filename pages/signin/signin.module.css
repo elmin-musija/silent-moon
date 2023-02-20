@@ -15,7 +15,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: 2px solid #faf2da;
+	border: 2px solid var(--lightYellow);
 	width: 5.5rem;
 	height: 5.5rem;
 	border-radius: 50%;
@@ -79,7 +79,7 @@
 
 .input:focus {
 	outline: none;
-	background-color: rgba(226, 144, 131, 0.07);
+	background-color: var(--focusInputField);
 }
 
 .submit {

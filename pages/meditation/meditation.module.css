@@ -12,7 +12,7 @@
 
 .meditatePage > p:first-of-type {
 	font-weight: 600;
-	color: var(--secondaryText);
+	color: var(--darkGray);
 	letter-spacing: 0.05em;
 	text-align: center;
 	margin-bottom: 5rem;
@@ -54,12 +54,12 @@
 	letter-spacing: 0.05em;
 	font-size: 1.4rem;
 	font-weight: 600;
-	color: var(--secondaryText);
+	color: var(--darkGray);
 }
 
 .searchbar {
 	margin: 0 var(--phonePadding);
-	background-color: rgba(161, 164, 178, 0.2);
+	background-color: var(--mediumGray);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -71,7 +71,7 @@
 }
 
 .searchbar:focus-within {
-	border: 1px solid var(--primaryColor);
+	border: 1px solid var(--darkRed);
 	transform: translateY(-3px);
 	box-shadow: 0 3px 3px var(--boxShadow);
 }
@@ -84,7 +84,7 @@
 
 .searchbar form input {
 	border: none;
-	color: var(--primaryText);
+	color: var(--darkGreen);
 	padding: 0.5rem;
 	font-size: 1.4rem;
 }
@@ -139,7 +139,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--secondaryText);
+	background-color: var(--darkGray);
 }
 .categoryContainerActive {
 	width: 65px;
@@ -148,7 +148,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--secondaryColor);
+	background-color: var(--darkGray);
 }
 .categoryButton {
 	min-height: 35px;
@@ -162,5 +162,5 @@
 	margin-bottom: 9.3rem;
 	text-align: center;
 	width: 100%;
-	color: var(--secondaryText);
+	color: var(--darkGray);
 }

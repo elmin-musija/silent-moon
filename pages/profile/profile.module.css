@@ -50,7 +50,7 @@
 
 .searchbar {
 	margin: 0 var(--phonePadding);
-	background-color: var(--searchbarBg);
+	background-color: var(--mediumGray);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
