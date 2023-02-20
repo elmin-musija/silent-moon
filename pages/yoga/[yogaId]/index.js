@@ -10,15 +10,15 @@ import styles from "./yogaId.module.css";
 
 const YogaDetails = ({ yogaId }) => {
 	const { data: session, status } = useSession();
-	const { displayNotification, getPhoneRotated, setPhoneRotated } =
-		useContext(NotificationContext);
+	const {
+		displayNotification,
+		getPhoneRotated,
+		setPhoneRotated,
+		resetPhoneRotated,
+	} = useContext(NotificationContext);
 	const router = useRouter();
 	const [yogaIsFavorite, setYogaIsFavorite] = useState(false);
 	const [animation, setAnimation] = useState(0);
-
-	const videoFullscreenHandler = () => {
-		setPhoneRotated();
-	};
 
 	const onLikeButtonClickHandler = async () => {
 		// Change animation state
@@ -157,7 +157,11 @@ const YogaDetails = ({ yogaId }) => {
 						{yogaId.description}
 					</p>
 					<div className={styles.controlFullscreenContainer}>
-						<button onClick={videoFullscreenHandler}>
+						<button
+							onClick={() => {
+								setPhoneRotated();
+							}}
+						>
 							<Image
 								src="/img/fullscreen.svg"
 								width="20"
@@ -165,7 +169,13 @@ const YogaDetails = ({ yogaId }) => {
 								alt="fullscreen"
 							/>
 						</button>
-						<p onClick={videoFullscreenHandler}>Fullscreen</p>
+						<p
+							onClick={() => {
+								setPhoneRotated();
+							}}
+						>
+							Fullscreen
+						</p>
 					</div>
 				</div>
 			</div>
@@ -176,7 +186,11 @@ const YogaDetails = ({ yogaId }) => {
 		return (
 			<div className={styles.videoFullscreenContainer}>
 				<div className={styles.overlay}>
-					<button onClick={videoFullscreenHandler}>
+					<button
+						onClick={() => {
+							resetPhoneRotated();
+						}}
+					>
 						<Image
 							src="/img/close_player.svg"
 							width="55"

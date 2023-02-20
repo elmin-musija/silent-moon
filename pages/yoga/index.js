@@ -11,7 +11,8 @@ import styles from "./yoga.module.css";
 
 const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 	const { data: session, status } = useSession();
-	const { getPhoneRotated, setPhoneRotated } = useContext(NotificationContext);
+	const { getPhoneRotated, resetPhoneRotated } =
+		useContext(NotificationContext);
 	const inputFieldSearchRef = useRef(null);
 	const [filteredYogaPrograms, setFilteredYogaPrograms] =
 		useState(yogaPrograms);
@@ -20,7 +21,7 @@ const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 	const [categoryFilter, setCategoryFilter] = useState("all");
 
 	if (getPhoneRotated()) {
-		setPhoneRotated();
+		resetPhoneRotated();
 	}
 
 	const onInputSearchYogaHandler = (event) => {

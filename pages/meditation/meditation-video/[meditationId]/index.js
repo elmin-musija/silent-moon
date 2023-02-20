@@ -8,12 +8,9 @@ import NotificationContext from "@/context/context";
 import styles from "./player.module.css";
 
 const MeditationPlayerPage = ({ meditation }) => {
-	const { getPhoneRotated, setPhoneRotated } = useContext(NotificationContext);
+	const { getPhoneRotated, setPhoneRotated, resetPhoneRotated } =
+		useContext(NotificationContext);
 	const router = useRouter();
-
-	const videoFullscreenHandler = () => {
-		setPhoneRotated();
-	};
 
 	{
 		/** extract video Id from video link and format to embed  */
@@ -80,7 +77,11 @@ const MeditationPlayerPage = ({ meditation }) => {
 						{meditation.description}
 					</p>
 					<div className={styles.controlFullscreenContainer}>
-						<button onClick={videoFullscreenHandler}>
+						<button
+							onClick={() => {
+								setPhoneRotated();
+							}}
+						>
 							<Image
 								src="/img/fullscreen.svg"
 								width="20"
@@ -88,7 +89,13 @@ const MeditationPlayerPage = ({ meditation }) => {
 								alt="fullscreen"
 							/>
 						</button>
-						<p onClick={videoFullscreenHandler}>Fullscreen</p>
+						<p
+							onClick={() => {
+								setPhoneRotated();
+							}}
+						>
+							Fullscreen
+						</p>
 					</div>
 				</div>
 			</div>
@@ -99,7 +106,11 @@ const MeditationPlayerPage = ({ meditation }) => {
 		return (
 			<div className={styles.videoFullscreenContainer}>
 				<div className={styles.overlay}>
-					<button onClick={videoFullscreenHandler}>
+					<button
+						onClick={() => {
+							resetPhoneRotated();
+						}}
+					>
 						<Image
 							src="/img/close_player.svg"
 							width="55"

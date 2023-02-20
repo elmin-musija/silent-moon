@@ -12,7 +12,8 @@ import styles from "./meditation.module.css";
 
 const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 	const { data: session, status } = useSession();
-	const { getPhoneRotated, setPhoneRotated } = useContext(NotificationContext);
+	const { getPhoneRotated, resetPhoneRotated } =
+		useContext(NotificationContext);
 	const inputFieldSearchRef = useRef(null);
 	const [filteredMeditationCourses, setFilteredMeditationCourses] =
 		useState(allMeditationCourses);
@@ -25,7 +26,7 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 	const [categoryFilter, setCategoryFilter] = useState("all");
 
 	if (getPhoneRotated()) {
-		setPhoneRotated();
+		resetPhoneRotated();
 	}
 
 	const onInputSearchMeditationHandler = (event) => {

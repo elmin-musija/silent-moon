@@ -17,7 +17,7 @@ import styles from "./music.module.css";
 
 const MusicPage = ({ playlistInfo, playlistTracks }) => {
 	const { data: session, status } = useSession();
-	const { setPhoneRotated } = useContext(NotificationContext);
+	const { resetPhoneRotated } = useContext(NotificationContext);
 	const { items } = playlistTracks;
 
 	const spotifySigninHandler = async () => {
@@ -29,7 +29,7 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 	}
 
 	useEffect(() => {
-		setPhoneRotated();
+		resetPhoneRotated();
 	}, []);
 
 	if (session.user.provider !== "spotify") {
