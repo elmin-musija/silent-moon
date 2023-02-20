@@ -29,17 +29,19 @@ const Player = ({ type, offset, id, token }) => {
 					token={token}
 					uris={[`spotify:${type}:${id}`]}
 					play={true}
-					// showSaveIcon={true}
+					showSaveIcon={true}
 					autoPlay={true}
 					offset={offset}
 					styles={{
 						bgColor: "#00000000",
 						sliderColor: "#e28f83",
+						sliderHandleColor: "#4a503d",
 						loaderColor: "#e28f83",
 						color: "#4a503d",
-						activeColor: "#00000000",
-						trackArtistColor: "#00000000",
-						trackNameColor: "#00000000",
+						activeColor: "#e28f83",
+						trackArtistColor: "#4a503d",
+						trackNameColor: "#4a503d",
+						height: "220",
 					}}
 					callback={(state) => {
 						setTrackName(state.track.name);

@@ -1,32 +1,31 @@
 .playerPage {
-	background-color: var(--lightYellow);
+	/* background-color: #dbe5bf; */
+	background-color: #feedbb;
 	height: 100%;
-}
-
-.btnContainer {
-	position: absolute;
-	top: var(--phonePadding);
-	left: var(--phonePadding);
-	right: var(--phonePadding);
-	z-index: 1000;
-
-	display: flex;
-	justify-content: space-between;
-}
-
-.btnContainer button {
-	cursor: pointer;
-	background-color: transparent;
-	border: none;
+	position: relative;
+	overflow: hidden;
 }
 
 .closeBtn {
+	position: absolute;
+	top: var(--phonePadding);
+	left: var(--phonePadding);
+	z-index: 999;
+
+	cursor: pointer;
+	background-color: transparent;
+	border: none;
 	transform-origin: 27.5px 27.5px;
 	transition: var(--transition);
 }
 
 .closeBtn:hover {
 	transform: rotate(90deg);
+}
+
+.playerContainer {
+	height: 100%;
+	position: relative;
 }
 
 .bg_element_1 {
@@ -62,14 +61,14 @@
 	position: absolute;
 	bottom: 0;
 	left: -7rem;
-	animation: scalingBubbles5 10s infinite;
+	animation: scalingBubbles5 6s infinite;
 }
 
 .bg_element_6 {
 	position: absolute;
 	bottom: -2rem;
 	right: -2rem;
-	animation: scalingBubbles6 7s infinite;
+	animation: scalingBubbles6 6s infinite;
 }
 
 @keyframes scalingBubbles1 {
@@ -77,7 +76,7 @@
 		transform: scale(1) translateY(0);
 	}
 	50% {
-		transform: scale(1.35) translate(-6px, 3px);
+		transform: scale(1.4) translate(-6px, 3px);
 	}
 	100% {
 		transform: scale(1) translateY(0);
@@ -89,7 +88,7 @@
 		transform: scale(1) translateY(0) rotate(0deg);
 	}
 	50% {
-		transform: scale(1.2) translate(5px, -3px) rotate(-5deg);
+		transform: scale(1.25) translate(5px, -3px) rotate(-5deg);
 	}
 	100% {
 		transform: scale(1) translateY(0) rotate(0deg);
@@ -125,7 +124,7 @@
 		transform: scale(1) translateY(0) rotate(0deg);
 	}
 	50% {
-		transform: scale(1.2) translate(-5px, -7px) rotate(3deg);
+		transform: scale(1.2) translate(-5px, -7px) rotate(12deg);
 	}
 	100% {
 		transform: scale(1) translateY(0) rotate(0deg);
@@ -137,7 +136,7 @@
 		transform: scale(1) translateY(0);
 	}
 	50% {
-		transform: scale(1.2) translate(5px, -3px);
+		transform: scale(1.35) translate(5px, -3px);
 	}
 	100% {
 		transform: scale(1) translateY(0);

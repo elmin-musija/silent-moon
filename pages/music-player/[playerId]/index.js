@@ -22,17 +22,15 @@ const PlayerPage = ({ type, offset, id, token }) => {
 
 	return (
 		<div className={styles.playerPage}>
-			<div className={styles.btnContainer}>
-				<button onClick={() => router.back()} className={styles.closeBtn}>
-					<Image
-						src="/img/close_player.svg"
-						width="55"
-						height="55"
-						alt="close player"
-					/>
-				</button>
-			</div>
-			<div key={uid()}>
+			<button onClick={() => router.back()} className={styles.closeBtn}>
+				<Image
+					src="/img/close_player.svg"
+					width="55"
+					height="55"
+					alt="close player"
+				/>
+			</button>
+			<div key={uid()} className={styles.playerContainer}>
 				{render && (
 					<DynamicPlayer type={type} offset={offset} id={id} token={token} />
 				)}
