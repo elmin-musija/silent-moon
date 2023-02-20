@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { getServerSession } from "next-auth/next";
 import { NextAuthOptions } from "@/pages/api/auth/[...nextauth]";
@@ -6,6 +6,7 @@ import { uid } from "uid";
 import { getAccessToken } from "@/src/services/utils/spotify/spotify";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import NotificationContext from "@/context/context";
 import styles from "./player.module.css";
 
 const DynamicPlayer = dynamic(() => import("@/components/player/player"), {
@@ -13,12 +14,17 @@ const DynamicPlayer = dynamic(() => import("@/components/player/player"), {
 });
 
 const PlayerPage = ({ type, offset, id, token }) => {
+	const { setPhoneRotated } = useContext(NotificationContext);
 	const [render, setRender] = useState(false);
 	const router = useRouter();
 
 	useEffect(() => {
 		setRender(true);
 	}, [token]);
+
+	useEffect(() => {
+		setPhoneRotated();
+	}, []);
 
 	return (
 		<div className={styles.playerPage}>

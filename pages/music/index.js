@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getServerSession } from "next-auth/next";
@@ -11,11 +11,13 @@ import {
 import { convertDurationTimeFormat } from "@/src/services/utils/convert/convert";
 import Title from "@/components/title/title";
 import { useSession } from "next-auth/react";
+import NotificationContext from "@/context/context";
 import { signIn } from "next-auth/react";
 import styles from "./music.module.css";
 
 const MusicPage = ({ playlistInfo, playlistTracks }) => {
 	const { data: session, status } = useSession();
+	const { setPhoneRotated } = useContext(NotificationContext);
 	const { items } = playlistTracks;
 
 	const spotifySigninHandler = async () => {
@@ -25,6 +27,10 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 	if (!session) {
 		return null;
 	}
+
+	useEffect(() => {
+		setPhoneRotated();
+	}, []);
 
 	if (session.user.provider !== "spotify") {
 		return (
