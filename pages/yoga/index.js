@@ -1,5 +1,6 @@
 import Title from "@/components/title/title";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
+import NotificationContext from "@/context/context";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,13 +11,17 @@ import styles from "./yoga.module.css";
 
 const YogaPage = ({ yogaPrograms, yogaCategories }) => {
 	const { data: session, status } = useSession();
-
+	const { getPhoneRotated, setPhoneRotated } = useContext(NotificationContext);
 	const inputFieldSearchRef = useRef(null);
 	const [filteredYogaPrograms, setFilteredYogaPrograms] =
 		useState(yogaPrograms);
 	const [favoriteYogaPrograms, setFavoriteYogaPrograms] = useState([]);
 	const [inputSearchString, setInputSearchString] = useState("");
 	const [categoryFilter, setCategoryFilter] = useState("all");
+
+	if (getPhoneRotated()) {
+		setPhoneRotated();
+	}
 
 	const onInputSearchYogaHandler = (event) => {
 		event.preventDefault();
