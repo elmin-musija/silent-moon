@@ -27,10 +27,6 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 		await signIn("spotify", { callbackUrl: "/music" });
 	};
 
-	if (!session) {
-		return null;
-	}
-
 	useEffect(() => {
 		resetPhoneRotated();
 		const handleRouteChange = () => {
@@ -38,6 +34,10 @@ const MusicPage = ({ playlistInfo, playlistTracks }) => {
 		};
 		router.events.on("routeChangeComplete", handleRouteChange);
 	}, []);
+
+	if (!session) {
+		return null;
+	}
 
 	if (session.user.provider !== "spotify") {
 		return (
