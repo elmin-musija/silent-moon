@@ -4,7 +4,7 @@
 	left: 50%;
 	transform: translateX(-50%);
 
-	color: var(--primaryText);
+	color: var(--darkGreen);
 	letter-spacing: 0.2em;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -30,7 +30,7 @@
 
 .introTextBox p {
 	text-align: center;
-	color: var(--secondaryText);
+	color: var(--darkGray);
 	font-weight: 600;
 	letter-spacing: 0.05em;
 	line-height: 120%;
@@ -40,10 +40,10 @@
 	text-transform: uppercase;
 	font-weight: 600;
 	letter-spacing: 0.05em;
-	color: var(--secondaryText);
+	color: var(--darkGray);
 	text-align: center;
 }
 
 .logInText a {
-	color: var(--primaryColor);
+	color: var(--darkRed);
 }
