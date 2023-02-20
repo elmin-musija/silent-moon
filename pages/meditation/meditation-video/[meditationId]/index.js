@@ -31,7 +31,7 @@ const MeditationPlayerPage = ({ meditation }) => {
 
 	if (!getPhoneRotated()) {
 		return (
-			<div className={styles.yogaIdPage}>
+			<div className={styles.meditationIdPage}>
 				<div className={styles.btnContainer}>
 					<button onClick={() => router.back()} className={styles.backBtn}>
 						<Image
@@ -49,11 +49,6 @@ const MeditationPlayerPage = ({ meditation }) => {
 				></iframe>
 				<div className={styles.content}>
 					<h2>{meditation.title}</h2>
-					<div className={styles.levelCategoryContainer}>
-						<p key={uid()} className={levelStyle}>
-							{meditation.level}
-						</p>
-					</div>
 					<div className={styles.statisticsContainer}>
 						<div key={uid()}>
 							<Image
@@ -75,6 +70,11 @@ const MeditationPlayerPage = ({ meditation }) => {
 							></Image>
 							<p>{Math.floor(Math.random() * (15000 - 500) + 500)} Listening</p>
 						</div>
+					</div>
+					<div className={styles.levelContainer}>
+						<p key={uid()} className={levelStyle}>
+							{meditation.level}
+						</p>
 					</div>
 					<p key={uid()} className={styles.description}>
 						{meditation.description}
