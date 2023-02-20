@@ -2,7 +2,7 @@
 	position: relative;
 	height: 9.5rem;
 	margin: 0 var(--phonePadding) 5rem;
-	background-color: var(--tertiaryText);
+	background-color: var(--lightYellow);
 	background-image: url("/img/mini-player-bg.svg");
 	border-radius: 1rem;
 
@@ -18,7 +18,7 @@
 }
 
 .subtitle {
-	color: #858f72;
+	color: var(--mediumGreen);
 	letter-spacing: 0.05em;
 }
 
@@ -26,7 +26,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: var(--primaryText);
+	background-color: var(--darkGreen);
 	padding: 2rem;
 	border-radius: 4rem;
 	cursor: pointer;
@@ -34,6 +34,6 @@
 }
 
 .playBtnContainer:hover {
-	background-color: var(--primaryColor);
+	background-color: var(--darkRed);
 	transform: rotate(120deg);
 }

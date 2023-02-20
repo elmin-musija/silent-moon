@@ -33,7 +33,7 @@
 .artistsContainer p {
 	font-weight: 600;
 	text-transform: uppercase;
-	color: var(--secondaryText);
+	color: var(--darkGray);
 	letter-spacing: 0.06em;
 }
 

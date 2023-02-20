@@ -13,7 +13,7 @@
 .reminders p {
 	font-weight: 600;
 	letter-spacing: 0.05em;
-	color: var(--secondaryText);
+	color: var(--darkGray);
 	width: 80%;
 	margin-bottom: 3rem;
 }
@@ -36,23 +36,23 @@
 	height: 4rem;
 	font-size: 1.6rem;
 	font-weight: 600;
-	color: var(--primaryText);
+	color: var(--darkGreen);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid var(--tertiaryText);
+	border: 1px solid var(--lightYellow);
 	border-radius: 2rem;
 	cursor: pointer;
 }
 
 .day:hover {
-	background-color: var(--secondaryColor);
-	border: 1px solid var(--secondaryColor);
-	color: var(--tertiaryText);
+	background-color: var(--mediumGreen);
+	border: 1px solid var(--mediumGreen);
+	color: var(--lightYellow);
 }
 
 .noThanks {
-	color: var(--primaryColor);
+	color: var(--darkRed);
 	display: block;
 	text-align: center;
 }

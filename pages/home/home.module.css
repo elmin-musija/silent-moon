@@ -10,7 +10,7 @@
 }
 
 .subheading {
-	color: var(--secondaryText);
+	color: var(--darkGray);
 	margin: -1rem var(--phonePadding) 5rem;
 	font-weight: 600;
 	letter-spacing: 0.05em;
@@ -29,7 +29,7 @@
 
 .searchbar {
 	margin: 0 var(--phonePadding) 3rem;
-	background-color: rgba(161, 164, 178, 0.2);
+	background-color: var(--searchbarBg);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -40,7 +40,7 @@
 }
 
 .searchbar:focus-within {
-	border: 1px solid var(--primaryColor);
+	border: 1px solid var(--darkRed);
 	transform: translateY(-3px);
 	box-shadow: 0 3px 3px var(--boxShadow);
 }
@@ -53,7 +53,7 @@
 
 .searchbar form input {
 	border: none;
-	color: var(--primaryText);
+	color: var(--darkGreen);
 	padding: 0.5rem;
 	font-size: 1.4rem;
 }
@@ -115,7 +115,7 @@
 
 .itemSubInfo p {
 	font-size: 1.4rem;
-	color: var(--secondaryText);
+	color: var(--darkGray);
 	letter-spacing: 0.05em;
 }
 
@@ -128,5 +128,5 @@
 	margin-bottom: 9.3rem;
 	text-align: center;
 	width: 100%;
-	color: var(--secondaryText);
+	color: var(--darkGray);
 }

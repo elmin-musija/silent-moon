@@ -13,15 +13,15 @@
 }
 
 .success {
-	background-color: rgba(61, 255, 47, 0.4);
+	background-color: var(--notificationGreen);
 }
 
 .warning {
-	background-color: rgba(255, 231, 47, 0.4);
+	background-color: var(--notificationYellow);
 }
 
 .error {
-	background-color: rgba(255, 47, 47, 0.4);
+	background-color: var(--notificationRed);
 }
 
 .success .notificationText,

@@ -30,15 +30,15 @@
 }
 
 .imgContainerActive {
-	background-color: var(--primaryColor);
+	background-color: var(--darkRed);
 }
 
 .footer p {
 	letter-spacing: 0.05em;
 	text-align: center;
-	color: var(--secondaryText);
+	color: var(--darkGray);
 }
 
 .footer .activeText {
-	color: var(--primaryColor);
+	color: var(--darkRed);
 }
