@@ -10,6 +10,7 @@ import { toggleMeditationCourseFavorites } from "@/src/services/use-cases/toggle
 import { listSingleMeditationCourseFavorite } from "@/src/services/use-cases/listSingleMeditationCourseFavorite";
 import { listAllMeditationCourseFavorites } from "@/src/services/use-cases/listAllMeditationCourseFavorites";
 import { signup } from "@/src/services/use-cases/signup";
+import { signin } from "@/src/services/use-cases/signin";
 
 import { listAllMeditationCourses } from "@/src/services/use-cases/listAllMeditationCourses";
 import { listMeditationCourseById } from "@/src/services/use-cases/listMeditationCourseById";
@@ -38,6 +39,8 @@ const UserService = {
 	listAllMeditationCourseFavorites,
 	/** signup user */
 	signup,
+	/** signin user */
+	signin,
 };
 
 const MeditationService = {
