@@ -133,6 +133,28 @@ const YogaDetails = ({ yogaId }) => {
 							<p key={uid()}>{yogaId.category}</p>
 						</div>
 					</div>
+					<div className={styles.statisticsContainer}>
+						<div key={uid()}>
+							<Image
+								src="/img/red-heart.svg"
+								width="18"
+								height="16"
+								alt="heart icon"
+							></Image>
+							<p>
+								{Math.floor(Math.random() * (35000 - 2000) + 2000)} Follower
+							</p>
+						</div>
+						<div key={uid()}>
+							<Image
+								src="/img/headphones.svg"
+								width="20"
+								height="16"
+								alt="headphones icon"
+							></Image>
+							<p>{Math.floor(Math.random() * (15000 - 500) + 500)} Listening</p>
+						</div>
+					</div>
 					{/* <p key={uid()} className={styles.lengthCategory}>
 						Length: {yogaId.lengthCategory.toLowerCase()}
 					</p> */}

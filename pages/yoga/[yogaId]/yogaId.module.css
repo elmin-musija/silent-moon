@@ -99,7 +99,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 0.8rem;
+	margin-bottom: 2rem;
 }
 
 .levelCategoryContainer > p:first-of-type {
@@ -143,12 +143,25 @@
 	font-size: 1.8rem;
 }
 
-.lengthCategory {
-	margin-bottom: 2.4rem;
+.statisticsContainer {
+	display: flex;
+	gap: 5rem;
+	margin-bottom: 2rem;
+}
+
+.statisticsContainer > div {
+	display: flex;
+	align-items: center;
+	gap: 0.7rem;
+}
+
+.statisticsContainer > div p {
+	color: var(--darkGray);
+	letter-spacing: 0.02em;
 }
 
 .description {
-	margin-bottom: 2.4rem;
+	margin-bottom: 3rem;
 }
 
 .controlFullscreenContainer {

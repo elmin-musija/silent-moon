@@ -134,7 +134,7 @@ const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
 							height="16"
 							alt="heart icon"
 						></Image>
-						{/* <p>{playlistInfo.followers.total} Follower</p> */}
+						<p>{Math.floor(Math.random() * (35000 - 2000) + 2000)} Follower</p>
 					</div>
 					<div key={uid()}>
 						<Image
@@ -143,7 +143,7 @@ const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
 							height="16"
 							alt="headphones icon"
 						></Image>
-						{/* <p>{(playlistInfo.followers.total % 500) * 33} Listening</p> */}
+						<p>{Math.floor(Math.random() * (15000 - 500) + 500)} Listening</p>
 					</div>
 				</div>
 			</div>
