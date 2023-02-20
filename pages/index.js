@@ -1,9 +1,16 @@
+import React, { useEffect, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./index.module.css";
 import LargeBtn from "@/components/largeBtn/largeBtn";
+import NotificationContext from "@/context/context";
 
 export default function Home() {
+	const { resetPhoneRotated } = useContext(NotificationContext);
+	useEffect(() => {
+		resetPhoneRotated();
+	}, []);
+
 	return (
 		<div className={styles.splashscreenPage}>
 			<main>
