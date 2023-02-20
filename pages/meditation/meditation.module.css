@@ -97,7 +97,6 @@
 	padding: 0 var(--phonePadding);
 	column-count: 2;
 	gap: var(--gapGrid);
-	margin-bottom: 3rem;
 }
 
 .gallery a {
@@ -158,8 +157,7 @@
 }
 
 .noResultText {
-	margin-top: 9.3rem;
-	margin-bottom: 9.3rem;
+	margin-bottom: 16rem;
 	text-align: center;
 	width: 100%;
 	color: var(--darkGray);
