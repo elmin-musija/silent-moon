@@ -10,15 +10,14 @@ import styles from "./yogaId.module.css";
 
 const YogaDetails = ({ yogaId }) => {
 	const { data: session, status } = useSession();
-	const { displayNotification, setRotation } = useContext(NotificationContext);
+	const { displayNotification, getPhoneRotated, setPhoneRotated } =
+		useContext(NotificationContext);
 	const router = useRouter();
-	const [videoFullscreen, setVideoFullscreen] = useState(false);
 	const [yogaIsFavorite, setYogaIsFavorite] = useState(false);
 	const [animation, setAnimation] = useState(0);
 
 	const videoFullscreenHandler = () => {
-		setRotation();
-		setVideoFullscreen(!videoFullscreen);
+		setPhoneRotated();
 	};
 
 	const onLikeButtonClickHandler = async () => {
@@ -86,7 +85,7 @@ const YogaDetails = ({ yogaId }) => {
 		[styles.advanced]: yogaId.level === "advanced",
 	});
 
-	if (!videoFullscreen) {
+	if (!getPhoneRotated()) {
 		return (
 			<div className={styles.yogaIdPage}>
 				<div className={styles.btnContainer}>
@@ -156,7 +155,7 @@ const YogaDetails = ({ yogaId }) => {
 		);
 	}
 
-	if (videoFullscreen) {
+	if (getPhoneRotated()) {
 		return (
 			<div className={styles.videoFullscreenContainer}>
 				<div className={styles.overlay}>

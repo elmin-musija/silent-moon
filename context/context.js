@@ -27,10 +27,10 @@ export const NotificationContextProvider = ({ children }) => {
 	const getMessage = () => {
 		return message;
 	};
-	const getStatusRotation = () => {
+	const getPhoneRotated = () => {
 		return isRotated;
 	};
-	const setRotation = () => {
+	const setPhoneRotated = () => {
 		setIsRotated((prevState) => !prevState);
 	};
 
@@ -53,8 +53,8 @@ export const NotificationContextProvider = ({ children }) => {
 				getShowNotification,
 				getNotificationType,
 				getMessage,
-				getStatusRotation,
-				setRotation,
+				getPhoneRotated,
+				setPhoneRotated,
 			}}
 		>
 			{children}

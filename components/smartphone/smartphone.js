@@ -3,12 +3,12 @@ import NotificationContext from "@/context/context";
 import styles from "./smartphone.module.css";
 
 const Smartphone = ({ children }) => {
-	const { getStatusRotation } = useContext(NotificationContext);
+	const { getPhoneRotated } = useContext(NotificationContext);
 
 	return (
 		<div
 			className={
-				getStatusRotation()
+				getPhoneRotated()
 					? `${styles.smartphoneContainer} ${styles.smartphoneContainerRotated} `
 					: `${styles.smartphoneContainer}  `
 			}
