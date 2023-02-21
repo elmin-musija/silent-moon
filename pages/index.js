@@ -1,41 +1,169 @@
-import React, { useEffect, useContext } from "react";
-import Link from "next/link";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./index.module.css";
-import LargeBtn from "@/components/largeBtn/largeBtn";
-import NotificationContext from "@/context/context";
 
-export default function Home() {
-	const { resetPhoneRotated } = useContext(NotificationContext);
+export default function SplashScreenPage() {
+	const router = useRouter();
 	useEffect(() => {
-		resetPhoneRotated();
+		const timer = setTimeout(() => {
+			router.push("/start");
+		}, 10000);
+		return () => {
+			clearInterval(timer);
+		};
 	}, []);
 
+	const icon = {
+		hidden: {
+			pathLength: 0,
+			fill: "#cf0153",
+		},
+		visible: {
+			pathLength: 1,
+			fill: "#cf0153",
+		},
+	};
+
 	return (
-		<div className={styles.splashscreenPage} id="top">
-			<main>
+		<AnimatePresence>
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				exit={{ opacity: 0 }}
+				className={styles.splashscreenPage}
+				id="top"
+			>
+				<motion.svg
+					width="110"
+					height="72"
+					viewBox="-2 0 115 72"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					version="1.1"
+					initial={{ pathLength: 0 }}
+					animate={{ pathLength: 1 }}
+					transition={{
+						duration: 6,
+						ease: "easeInOut",
+					}}
+					className={styles.logo}
+				>
+					<motion.path
+						stroke="#cf0153"
+						strokeWidth="1.5"
+						strokeLinecap="round"
+						initial={{ pathLength: 0 }}
+						animate={{ pathLength: 1 }}
+						transition={{
+							duration: 6,
+							ease: "easeInOut",
+						}}
+						class="st0"
+						variants={icon}
+						d="M109.283 36.3716C107.626 34.5725 105.469 33.2961 103.072 32.4774C100.696 31.6777 98.0399 31.3181 95.2467 31.3181C93.7282 31.3181 92.1518 31.4182 90.5528 31.6373C90.9524 29.3422 91.1717 26.9662 91.1717 24.5709C91.1717 20.3172 90.495 15.9634 88.9554 11.6307L88.4366 10.1753L86.8987 10.2945C80.39 10.8521 74.2616 13.0089 68.8295 16.2247C66.1732 10.4735 60.3518 3.36326 55.0021 0.348999C49.6506 3.36326 43.8273 10.4733 41.1709 16.2247C35.739 13.0089 29.6106 10.8521 23.1019 10.2945L21.5641 10.1753L21.045 11.6307C19.5072 15.9634 18.8287 20.3172 18.8287 24.5709C18.8287 26.9662 19.0478 29.3422 19.4477 31.6373C17.8486 31.4182 16.2723 31.3181 14.7555 31.3181C11.9606 31.3181 9.30402 31.6775 6.92828 32.4774C4.53127 33.2961 2.37445 34.5725 0.717578 36.3716L0 37.1485L0.23998 38.1884C3.15434 50.8465 9.18435 59.3909 17.1907 64.5828C25.1969 69.7923 34.9811 71.6507 45.4631 71.6507C48.2389 71.6507 51.0742 71.5106 53.9286 71.2702C54.0023 71.2878 54.9194 71.2827 55.0017 71.2878C55.0786 71.2827 55.9977 71.2878 56.0712 71.2702C58.9256 71.5104 61.7611 71.6507 64.5367 71.6507C75.0206 71.6507 84.8029 69.7923 92.811 64.5828C100.815 59.3909 106.845 50.8463 109.76 38.1884L110 37.1485L109.283 36.3716Z"
+					/>
+					<motion.path
+						stroke="#cf0153"
+						strokeWidth="1.5"
+						strokeLinecap="round"
+						initial={{ pathLength: 0 }}
+						animate={{ pathLength: 1 }}
+						transition={{
+							duration: 6,
+							ease: "easeInOut",
+						}}
+						class="st0"
+						variants={icon}
+						d="
+			
+						M73.5812 37.1889C73.3814 31.3183 72.345 25.3671 70.3671 19.9561C75.04 17.1225 80.2302 15.1659 85.7009 14.466C86.7197 17.8605 87.1791 21.2361 87.1791 24.5709C87.1791 27.2255 86.8792 29.8402 86.3601 32.3964C86.0411 33.8938 85.6412 35.3722 85.1819 36.8292C83.9633 40.5815 82.2675 44.178 80.2512 47.4516C77.1968 52.4437 73.4426 56.7341 69.7288 59.9308C72.0453 54.7792 73.3427 48.3898 73.5619 41.7215C73.602 40.9622 73.6216 40.2047 73.6216 39.4454C73.6216 38.7074 73.602 37.9479 73.5812 37.1889Z"
+					/>
+					<motion.path
+						stroke="#cf0153"
+						strokeWidth="1.5"
+						strokeLinecap="round"
+						initial={{ pathLength: 0 }}
+						animate={{ pathLength: 1 }}
+						transition={{
+							duration: 6,
+							ease: "easeInOut",
+						}}
+						class="st0"
+						variants={icon}
+						d="
+						M24.299 14.466C29.7696 15.1657 34.96 17.1225 39.6329 19.9561C37.655 25.3671 36.6188 31.3183 36.4188 37.1889C36.3978 37.9479 36.3784 38.7074 36.3784 39.4454C36.3784 40.2047 36.3978 40.9622 36.4381 41.7215C36.6573 48.3898 37.9549 54.7792 40.2729 59.9308C36.5574 56.7343 32.8034 52.4437 29.7488 47.4516C27.7325 44.178 26.0367 40.5815 24.8181 36.8292C24.3588 35.3722 23.9589 33.8938 23.6399 32.3964C23.1208 29.84 22.8209 27.2255 22.8209 24.5709C22.8209 21.2361 23.2805 17.8607 24.299 14.466ZM113.101,155.769c25.463,3.257,49.622,12.365,71.372,25.554
+			c-9.206,25.186-14.029,52.886-14.96,80.211c-0.098,3.533-0.188,7.068-0.188,10.503c0,3.534,0.09,7.06,0.278,10.594
+			c1.02,31.038,7.06,60.778,17.849,84.756c-17.294-14.878-34.767-34.849-48.985-58.085c-9.385-15.237-17.278-31.977-22.95-49.442
+			c-2.138-6.782-3.999-13.663-5.484-20.633c-2.416-11.899-3.812-24.068-3.812-36.424C106.221,187.281,108.36,171.57,113.101,155.769z"
+					/>
+					<motion.path
+						stroke="#cf0153"
+						strokeWidth="1.5"
+						strokeLinecap="round"
+						initial={{ pathLength: 0 }}
+						animate={{ pathLength: 1 }}
+						transition={{
+							duration: 6,
+							ease: "easeInOut",
+						}}
+						class="st0"
+						variants={icon}
+						d="
+						M19.3684 61.2267C12.5177 56.7571 7.24689 49.647 4.39205 38.3671C5.43018 37.4693 6.70678 36.768 8.20424 36.2702C10.0822 35.6319 12.3002 35.3129 14.755 35.3129C16.5331 35.3129 18.4284 35.4723 20.3854 35.8317C22.4615 43.5996 26.4943 50.6061 31.1079 56.2348C34.5217 60.3692 38.2338 63.7642 41.8685 66.161C42.7066 66.7187 43.5467 67.2185 44.3654 67.6393C34.7813 67.518 26.1963 65.6997 19.3684 61.2267Z
+			"
+					/>
+					<motion.path
+						stroke="#cf0153"
+						strokeWidth="1.5"
+						strokeLinecap="round"
+						initial={{ pathLength: 0 }}
+						animate={{ pathLength: 1 }}
+						transition={{
+							duration: 6,
+							ease: "easeInOut",
+						}}
+						class="st0"
+						variants={icon}
+						d="
+			
+						M61.0827 65.2612C61.0231 65.2999 60.9634 65.3614 60.9039 65.4017C59.666 66.3398 58.3475 66.9377 56.9095 67.1974C56.8113 67.2185 56.7308 67.2185 56.6307 67.2395H56.5518C56.471 67.2586 56.3711 67.2586 56.2712 67.2782C56.2712 67.2782 56.2712 67.2782 56.2502 67.2782C56.1153 67.2885 55.142 67.2958 55.0017 67.3027C54.8612 67.2958 53.8865 67.2885 53.7496 67.2782C53.7305 67.2782 53.7305 67.2782 53.7305 67.2782C53.6286 67.2589 53.5287 67.2589 53.448 67.2395H53.3691C53.269 67.2185 53.1904 67.2185 53.0902 67.1974C51.6525 66.9379 50.3355 66.3398 49.0959 65.4017C49.0361 65.3614 48.9784 65.2999 48.9171 65.2612C46.3607 63.2449 44.1652 59.6521 42.6678 55.0985C41.6088 51.9038 40.9108 48.2495 40.5917 44.3954C40.4514 42.7789 40.3706 41.1409 40.3706 39.465V39.4456C40.3706 33.6154 41.2511 27.6258 43.0465 22.2532C43.3464 21.3553 43.6672 20.4962 44.0056 19.6581C44.1845 19.2389 44.365 18.82 44.565 18.4008C46.7796 13.43 50.9263 8.09605 55.0015 5.4814C59.0728 8.09583 63.2197 13.4298 65.4343 18.4008C65.6341 18.82 65.8148 19.2389 65.9936 19.6581C66.3339 20.4962 66.6529 21.3553 66.9526 22.2532C68.7481 27.6258 69.6285 33.6154 69.6285 39.4456V39.465C69.6285 41.1412 69.5477 42.7789 69.4074 44.3954C69.0884 48.2495 68.3906 51.9038 67.3316 55.0985C65.8346 59.6521 63.6391 63.2449 61.0827 65.2612Z"
+					/>
+					<motion.path
+						stroke="#cf0153"
+						strokeWidth="1.5"
+						strokeLinecap="round"
+						initial={{ pathLength: 0 }}
+						animate={{ pathLength: 1 }}
+						transition={{
+							duration: 6,
+							ease: "easeInOut",
+						}}
+						class="st0"
+						variants={icon}
+						d="
+			
+						M90.6316 61.2267C83.8039 65.6997 75.2187 67.518 65.6345 67.6391C66.4552 67.2183 67.2934 66.7185 68.1315 66.1608C71.7664 63.764 75.4785 60.3693 78.8921 56.2346C83.5057 50.6059 87.5385 43.5992 89.6145 35.8315C91.5713 35.4721 93.4667 35.3127 95.2465 35.3127C97.7013 35.3127 99.9176 35.6317 101.796 36.27C103.293 36.7678 104.569 37.4693 105.608 38.3669C102.753 49.647 97.4821 56.7571 90.6316 61.2267Z"
+					/>
+				</motion.svg>
 				<Image
-					src={"/img/login.png"}
-					width="414"
-					height="468"
-					alt="man doing handstand in nature"
+					src={"/img/splashscreen.jpg"}
+					width="415"
+					height="810"
+					alt="woman does yoga"
 					priority
 				/>
+				<Image
+					src={"/img/splashscreen_body.png"}
+					width="415"
+					height="810"
+					alt="woman does yoga"
+					priority
+					className={styles.bodyImg}
+				/>
 				<h1>silent moon</h1>
-				<div className={styles.content}>
-					<div className={styles.introTextBox}>
-						<h2>We are what we do</h2>
-						<p>
-							Thousand of people are using silent moon for meditation and yoga
-							classes.
-						</p>
-					</div>
-					<LargeBtn url="/signup">Sign Up</LargeBtn>
-					<p className={styles.logInText}>
-						Already have an account? <Link href="/signin">Log in</Link>
-					</p>
-				</div>
-			</main>
-		</div>
+			</motion.div>
+		</AnimatePresence>
 	);
 }

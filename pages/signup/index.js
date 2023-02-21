@@ -68,7 +68,7 @@ const SignupPage = () => {
 				id="top"
 			>
 				<CircularSection />
-				<Link href="/" className={styles.backBtn}>
+				<Link href="/start" className={styles.backBtn}>
 					<Image
 						src="/img/arrow-back.svg"
 						width="18"
