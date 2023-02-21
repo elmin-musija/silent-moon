@@ -13,7 +13,7 @@ export const NextAuthOptions = {
 		/**
 		 *
 		 */
-		maxAge: 60 * 5,
+		maxAge: 60 * 60,
 	},
 	providers: [
 		GithubProvider({
