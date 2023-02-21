@@ -86,6 +86,7 @@
 
 .content {
 	padding: 0 var(--phonePadding);
+	margin-bottom: 6rem;
 }
 
 .content h2 {
