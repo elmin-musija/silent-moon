@@ -19,7 +19,6 @@ const signup = async ({ firstname, lastname, email, password }) => {
 			yoga: [],
 			meditation: [],
 		});
-		console.log({ insertUser });
 
 		return true;
 	} else {

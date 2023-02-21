@@ -81,7 +81,6 @@ const MeditationPage = ({ allMeditationCourses, yogaCategories }) => {
 			fetch("/api/meditation/favorite/all/show", options)
 				.then((response) => response.json())
 				.then((favorites) => {
-					console.log(favorites);
 					if (favorites.status === "success" && favorites.data.favorites) {
 						setFavoriteMeditationCourses(favorites.data.favorites);
 					}

@@ -3,11 +3,9 @@ import { verifyPassword } from "@/src/services/utils/crypt/crypt";
 import User from "@/src/models/UserModel";
 
 const signin = async ({ email, password }) => {
-	console.log("use-case, signin...", email, password);
 	await connectToDatabase();
 	/** check if user already exists in db */
 	const userExists = await User.findOne({ email }).exec();
-	console.log({ userExists });
 
 	if (userExists) {
 		const enteredPasswordIsValid = await verifyPassword(
