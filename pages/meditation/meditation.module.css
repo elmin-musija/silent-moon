@@ -147,7 +147,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--darkGray);
+	background-color: var(--mediumGreen);
 }
 .categoryButton {
 	min-height: 35px;
