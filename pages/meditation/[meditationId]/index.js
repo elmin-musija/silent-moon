@@ -82,13 +82,14 @@ const MeditationDetails = ({ meditationCourseInfo, meditationsById }) => {
 
 	return (
 		<AnimatePresence>
-			<div 
-						<motion.div
+			<motion.div
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				exit={{ opacity: 0 }}
 				transition={{ duration: 0.7 }}
-			className={styles.mediationDetailsPage} id="top">
+				className={styles.mediationDetailsPage}
+				id="top"
+			>
 				<h1>Silent Moon</h1>
 				<div className={styles.imgBtnContainer}>
 					<div className={styles.btnContainer}>
