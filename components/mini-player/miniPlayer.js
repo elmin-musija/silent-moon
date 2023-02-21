@@ -36,7 +36,7 @@ const MiniPlayer = () => {
 			</div>
 			<Link
 				key={uid()}
-				href="/player/q?type=playlist&offset=0&id=3pDOlfaY0lXRAW0iwNl7c7"
+				href="/music-player/q?type=playlist&offset=0&id=3pDOlfaY0lXRAW0iwNl7c7"
 				className={styles.playBtnContainer}
 			>
 				<Image
