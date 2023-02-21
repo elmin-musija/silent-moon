@@ -10,7 +10,7 @@
 	margin-bottom: 1.5rem;
 }
 
-.reminders p {
+.text {
 	font-weight: 600;
 	letter-spacing: 0.05em;
 	color: var(--darkGray);
@@ -20,39 +20,101 @@
 
 .timeContainer {
 	width: 100%;
-	background-color: gray;
 	height: 6rem;
-	margin-bottom: 4rem;
+	margin-bottom: 5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+.timeContainer input {
+	border: 1px solid var(--lightGreen);
+	border-radius: 0.75rem;
+
+	text-align: center;
+	width: 10rem;
+	height: 5rem;
+	font-size: 1.8rem;
+}
+
+.timeContainer input:focus {
+	outline: 1px solid var(--darkRed);
+}
+
+.timeContainer p {
+	display: block;
+	width: min-content;
+}
+
+.reminders .space {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2.4rem;
 }
 
 .dayContainer {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 5rem;
+	margin-bottom: 6rem;
 }
 
 .day {
-	width: 4rem;
-	height: 4rem;
+	width: 4.5rem;
+	height: 4.5rem;
 	font-size: 1.6rem;
 	font-weight: 600;
 	color: var(--darkGreen);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid var(--lightYellow);
-	border-radius: 2rem;
+	border: 1px solid var(--lightGreen);
+	border-radius: 5rem;
 	cursor: pointer;
+	padding: 1.8rem;
 }
 
-.day:hover {
+.daySelected {
 	background-color: var(--mediumGreen);
-	border: 1px solid var(--mediumGreen);
 	color: var(--lightYellow);
+	border: 1px solid var(--mediumGreen);
 }
 
 .noThanks {
 	color: var(--darkRed);
 	display: block;
 	text-align: center;
+}
+
+.btn {
+	background-color: var(--darkRed);
+	color: white;
+	text-transform: uppercase;
+	font-weight: 600;
+	line-height: 120%;
+	letter-spacing: 0.05em;
+	text-align: center;
+	display: block;
+	padding: 2.2rem 0;
+	margin-bottom: 1.5rem;
+	border-radius: 5rem;
+	cursor: pointer;
+}
+
+.btn p {
+	color: var(--lightGray);
+}
+
+/* Chrome, Safari, Edge, Opera */
+.reminders input::-webkit-outer-spin-button,
+.reminders input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+.reminders input[type="number"] {
+	-moz-appearance: textfield;
 }

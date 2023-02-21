@@ -1,11 +1,35 @@
 import LargeBtn from "@/components/largeBtn/largeBtn";
-import React from "react";
+import React, { useState, useContext, useRef } from "react";
 import Link from "next/link";
 import Title from "@/components/title/title";
 import { AnimatePresence, motion } from "framer-motion";
+import { useRouter } from "next/router";
+import NotificationContext from "@/context/context";
+
 import styles from "./reminders.module.css";
 
 const RemindersPage = () => {
+	const { displayNotification } = useContext(NotificationContext);
+	const router = useRouter();
+	const weekdays = ["SU", "MO", "TU", "W", "TH", "F", "SA"];
+	const [selectedWeekdays, setSelectedWeekdays] = useState([]);
+	const inputHoursRef = useRef(null);
+	const inputMinutesRef = useRef(null);
+
+	const onWeekdayClickHandler = (weekday) => {
+		const weekdayIsSelected = selectedWeekdays.filter(
+			(element) => element === weekday
+		);
+		if (weekdayIsSelected.length === 0) {
+			setSelectedWeekdays((prevState) => [...prevState, weekday]);
+		} else {
+			const selectedWeekdaysUpdate = selectedWeekdays.filter(
+				(element) => element !== weekday
+			);
+			setSelectedWeekdays(selectedWeekdaysUpdate);
+		}
+	};
+
 	return (
 		<AnimatePresence>
 			<motion.div
@@ -21,22 +45,99 @@ const RemindersPage = () => {
 				</header>
 				<main>
 					<h2>What time would you like to meditate?</h2>
-					<p>
+					<p className={styles.text}>
 						You can meditate at any time, but we recommend to do in the morning.
 					</p>
-					<div className={styles.timeContainer}></div>
+					<form className={styles.timeContainer}>
+						<input
+							type="number"
+							name="input-time-hours"
+							id="input-time-hours"
+							placeholder="hh"
+							ref={inputHoursRef}
+							onChange={() => {
+								if (
+									Number(inputHoursRef.current.value > 23) ||
+									inputHoursRef.current.value.length > 2
+								) {
+									inputHoursRef.current.value = "";
+								}
+							}}
+							required
+						/>
+						<p className={styles.space}>:</p>
+						<input
+							type="number"
+							name="input-time-minutes"
+							id="input-time-minutes"
+							ref={inputMinutesRef}
+							placeholder="mm"
+							onChange={() => {
+								if (
+									Number(inputMinutesRef.current.value) > 59 ||
+									inputMinutesRef.current.value.length > 2
+								) {
+									inputMinutesRef.current.value = "";
+								}
+							}}
+							required
+						/>
+					</form>
+
 					<h2>On which days would you like to meditate?</h2>
-					<p>Everyday is best, but we recommend picking at least five days.</p>
+					<p className={styles.text}>
+						Everyday is best, but we recommend picking at least five days.
+					</p>
 					<div className={styles.dayContainer}>
-						<div className={styles.day}>SU</div>
-						<div className={styles.day}>M</div>
-						<div className={styles.day}>TU</div>
-						<div className={styles.day}>W</div>
-						<div className={styles.day}>TH</div>
-						<div className={styles.day}>F</div>
-						<div className={styles.day}>SA</div>
+						{weekdays.map((element, index) => (
+							<div
+								className={
+									selectedWeekdays.indexOf(element) !== -1
+										? `${styles.day} ${styles.daySelected}`
+										: `${styles.day}`
+								}
+								key={index}
+								onClick={() => {
+									onWeekdayClickHandler(weekdays[index]);
+								}}
+							>
+								{element}
+							</div>
+						))}
 					</div>
-					<LargeBtn url="/home">SAVE</LargeBtn>
+
+					<div
+						className={styles.btn}
+						onClick={() => {
+							if (
+								Number(inputHoursRef.current.value) >= 0 &&
+								Number(inputHoursRef.current.value) <= 23 &&
+								Number(inputMinutesRef.current.value) >= 0 &&
+								Number(inputMinutesRef.current.value) <= 59 &&
+								inputHoursRef.current.value.length !== 0 &&
+								inputMinutesRef.current.value.length !== 0 &&
+								selectedWeekdays.length !== 0
+							) {
+								displayNotification({
+									type: "success",
+									message: "Reminder successfully set",
+								});
+								const timer = setTimeout(() => {
+									router.push("/home");
+								}, 3000);
+								return () => {
+									clearInterval(timer);
+								};
+							} else {
+								displayNotification({
+									type: "warning",
+									message: "Please select time and days",
+								});
+							}
+						}}
+					>
+						<p>save</p>
+					</div>
 					<Link href="/home" className={styles.noThanks}>
 						NO THANKS
 					</Link>
