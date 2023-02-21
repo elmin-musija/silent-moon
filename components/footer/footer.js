@@ -8,6 +8,7 @@ const Footer = () => {
 
 	if (
 		router.pathname === "/" ||
+		router.pathname === "/start" ||
 		router.pathname === "/signin" ||
 		router.pathname === "/signup" ||
 		router.pathname === "/welcome" ||

@@ -42,7 +42,7 @@ export default function App({
 						</div>
 					</div>
 					<div className={styles.loudspeaker}></div>
-					<Link href="/" className={styles.homeBtn}></Link>
+					<Link href="/start" className={styles.homeBtn}></Link>
 				</Smartphone>
 			</NotificationContextProvider>
 		</SessionProvider>

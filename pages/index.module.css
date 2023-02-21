@@ -1,49 +1,73 @@
+.splashscreenPage {
+	position: relative;
+}
+
 .splashscreenPage h1 {
 	position: absolute;
-	top: 3rem;
-	left: 50%;
-	transform: translateX(-50%);
+	top: 40%;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	text-align: center;
 
 	color: var(--darkGreen);
 	letter-spacing: 0.2em;
-	font-weight: 700;
-	text-transform: uppercase;
-	text-align: center;
-}
-
-.content {
-	padding: 0 var(--phonePadding);
-}
-
-.introTextBox {
-	width: 90%;
-	margin: 0 auto;
-	margin-bottom: 7.5rem;
-}
-
-.introTextBox h2 {
 	font-size: 3rem;
 	font-weight: 700;
-	margin-bottom: 1.3rem;
-	text-align: center;
-}
-
-.introTextBox p {
-	text-align: center;
-	color: var(--darkGray);
-	font-weight: 600;
-	letter-spacing: 0.05em;
-	line-height: 120%;
-}
-
-.logInText {
 	text-transform: uppercase;
-	font-weight: 600;
-	letter-spacing: 0.05em;
-	color: var(--darkGray);
-	text-align: center;
+	opacity: 0;
+
+	animation: fadeInTitle 4s;
+	animation-delay: 4s;
+	animation-fill-mode: forwards;
 }
 
-.logInText a {
-	color: var(--darkRed);
+@keyframes fadeInTitle {
+	0% {
+		opacity: 0;
+		transform: translateY(200px);
+	}
+	10% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+.splashscreenPage img {
+	display: block;
+}
+
+.bodyImg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	z-index: 999;
+}
+
+.logo {
+	position: absolute;
+	top: 28%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.lotus {
+	position: absolute;
+	z-index: 99999;
+	top: 28%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.item {
+	width: 56%;
+	overflow: visible;
+	stroke: #fff;
+	stroke-width: 2;
+	stroke-linejoin: round;
+	stroke-linecap: round;
 }
