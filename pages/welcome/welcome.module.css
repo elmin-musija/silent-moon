@@ -1,9 +1,11 @@
 .welcome {
 	position: relative;
+	overflow: hidden;
 }
 
 .welcome img {
 	object-fit: cover;
+	display: block;
 }
 
 .welcome p {
